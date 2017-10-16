@@ -1,0 +1,14 @@
+language: objective-c
+osx_image: xcode8.1
+//TODO check xcode9
+rvm:
+- 2.2
+before_install:
+  //TODO add .sh scripts, consult w group
+- chmod a+x ./Scripts/install.sh
+- chmod a+x ./Scripts/build.sh
+install:
+- ./Scripts/install.sh
+script:
+- ./Scripts/build.sh
+//TODO explore deployment options
