@@ -1,15 +1,22 @@
 language: objective-c
-osx_image: xcode9
+osx_image: xcode9.1
 rvm:
 - 2.2
 before_install:
-#TODO add .sh scripts, consult w group
-- chmod a+x ./scripts/install.sh
-- chmod a+x ./scripts/build.sh
+#- chmod a+x ./scripts/install.sh
+#- chmod a+x ./scripts/build.sh
+- softwareupdate -l
+- travis_retry brew update && travis_retry brew uninstall xctool && travis_retry brew install xctool --build-from-source
+- travis_retry gem update --system --no-document && travis_retry gem update --no-document && travis_retry gem uninstall -ax cocoapods && travis_retry gem install --no-document cocoapods && gem cleanup
+- pod --version
+- brew --version
+- xctool -version
+- xcodebuild -version -sdk
 install:
-- ./scripts/install.sh
+- travis_retry pod install
+#- ./scripts/install.sh
 script:
-- ./scripts/build.sh
+#- ./scripts/build.sh
 deploy:
 #s3 bucket
 #heroku
