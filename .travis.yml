@@ -1,14 +1,18 @@
 language: objective-c
 osx_image: xcode8.1
-//TODO check xcode9
+#TODO check xcode9
 rvm:
 - 2.2
 before_install:
-  //TODO add .sh scripts, consult w group
-- chmod a+x ./Scripts/install.sh
-- chmod a+x ./Scripts/build.sh
+#TODO add .sh scripts, consult w group
+- chmod a+x ./scripts/install.sh
+- chmod a+x ./scripts/build.sh
 install:
-- ./Scripts/install.sh
+- ./scripts/install.sh
 script:
-- ./Scripts/build.sh
-//TODO explore deployment options
+- ./scripts/build.sh
+deploy:
+#s3 bucket
+#heroku
+#teamcity
+#hockeyapp
