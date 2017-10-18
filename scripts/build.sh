@@ -2,8 +2,6 @@
 
 project="ARDIY"
 
-cd ARDIY
-
 echo "Attempting to build $project for OS X"
 /Applications/Unity/Unity.app/Contents/MacOS/Unity
   -batchmode
