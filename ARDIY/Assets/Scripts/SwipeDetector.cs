@@ -7,9 +7,16 @@ public class SwipeDetector : MonoBehaviour
     private Vector2 fingerUp;
     public bool detectSwipeOnlyAfterRelease = false;
     public GameObject Panel_Instructions;
-
+    private Animator instructionsAnimator;
+    private bool instructionsShow = false;
 
     public float SWIPE_THRESHOLD = 20f;
+
+    private void Start()
+    {
+        instructionsAnimator = Panel_Instructions.GetComponent<Animator>();
+        instructionsAnimator.enabled = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -63,13 +70,16 @@ public class SwipeDetector : MonoBehaviour
         else if (horizontalValMove() > SWIPE_THRESHOLD && horizontalValMove() > verticalMove())
         {
             //Debug.Log("Horizontal");
-            if (fingerDown.x - fingerUp.x > 0)//Right swipe
+            if (instructionsShow && fingerDown.x - fingerUp.x > 0)//Right swipe at correct time
             {
                 OnSwipeRight();
             }
-            else if (fingerDown.x - fingerUp.x < 0)//Left swipe
+            else if (!instructionsShow && fingerDown.x - fingerUp.x < 0)//Left swipe at correct time
             {
                 OnSwipeLeft();
+            } else
+            {
+                return;
             }
             fingerUp = fingerDown;
         }
@@ -110,23 +120,22 @@ public class SwipeDetector : MonoBehaviour
 
     void OnSwipeRight()
     {
-        //float posX = Panel_Instructions.transform.position.x;
-        //float posY = Panel_Instructions.transform.position.y;
-        //float posX_new = (posX + horizontalValMove()) % Screen.width;
-       
-        //Panel_Instructions.GetComponent<RectTransform>().anchoredPosition = new Vector2(posX_new, posY);
-        //Panel_Instructions.transform.position.Set(posX + horizontalValMove(), posY, posZ);
         hidePanel();
         Debug.Log("Swipe Right");
     }
 
     private void showPanel()
     {
-        Panel_Instructions.gameObject.SetActive(true);
+        instructionsAnimator.enabled = true;
+        instructionsAnimator.Play("InstructionsSlideIn");
+        instructionsShow = true;
+        //Panel_Instructions.gameObject.SetActive(true);
     }
 
     private void hidePanel()
     {
-        Panel_Instructions.gameObject.SetActive(false);
+        instructionsAnimator.Play("InstructionsSlideOut");
+        instructionsShow = false;
+        //Panel_Instructions.gameObject.SetActive(false);
     }
 }
