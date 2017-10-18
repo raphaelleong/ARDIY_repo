@@ -17,7 +17,4 @@ echo 'Logs from build'
 cat $(pwd)/unity.log
 
 echo 'Attempting to compress builds'
-ls 
-
-#zip -r $(pwd)/Build/ios.zip $(pwd)/Build/ios
-#zip -r $(pwd)/Build/mac.zip $(pwd)/Build/osx/
+zip -r $(pwd)/Build/iOS.zip $(pwd)/Build/iOS

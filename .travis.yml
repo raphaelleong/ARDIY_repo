@@ -10,7 +10,7 @@ before_install:
 - chmod a+x ./scripts/install.sh
 - chmod a+x ./scripts/build.sh
 
-#- softwareupdate -l
+- softwareupdate -l
 - pod --version
 - brew --version
 - xctool -version
@@ -20,11 +20,11 @@ install:
 - travis_retry brew update && travis_retry brew uninstall xctool && travis_retry brew install xctool --build-from-source
 - travis_retry gem update --system --no-document && travis_retry gem update --no-document && travis_retry gem uninstall -ax cocoapods && travis_retry gem install --no-document cocoapods && gem cleanup
 - ./scripts/install.sh
-# install cocoapods
 
 script:
-- ./scripts/build.sh
-
+- ./scripts/build.sh 
+#TODO check what build.sh outputs :)
+#- xcodebuild -project {project}.xcodeproj -target {target} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
 deploy:
 #s3 bucket
 #heroku
