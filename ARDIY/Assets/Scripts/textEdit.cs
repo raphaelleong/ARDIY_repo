@@ -13,27 +13,30 @@ public class textEdit : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		initialiseWallInstr ();
-		displayInstr.text = "Welcome; click next to start!";
+		displayInstr.text = instructions[0];
 	}
 
 	public void forwardClick() {
 
 		if (instrNo < 15) {
+			//next instruction
 			instrNo++;
 			displayInstr.text = instructions[instrNo];
+		} else {
+			//end of instructions
 		}
 
 	}
 
 	public void backwardClick() {
 
-		if (instrNo == 0) {
-			displayInstr.text = "Welcome; click next to start!";
+		if (instrNo > 0) {
+			//previous instruction
+			instrNo--;
+			displayInstr.text = instructions[instrNo];
+		} else {
+			//beginning of instructions
 		}
-
-		instrNo--;
-		displayInstr.text = instructions[instrNo];
-
 	}
 
 	void initialiseWallInstr() {
