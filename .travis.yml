@@ -23,7 +23,7 @@ install:
 
 script:
 - ./scripts/build.sh 
-#TODO check what build.sh outputs :)
+#TODO check what build.sh outputs :) Builds/iOS/ zip file
 #- xcodebuild -project {project}.xcodeproj -target {target} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
 deploy:
 #s3 bucket
