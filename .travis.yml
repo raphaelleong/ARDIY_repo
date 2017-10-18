@@ -7,6 +7,9 @@ before_install:
 #compile unity -> .proj file
 #.proj file build into ios app
 #deploy ios app (.ipa?)
+- chmod a+x ./scripts/install.sh
+- chmod a+x ./scripts/build.sh
+
 - softwareupdate -l
 - travis_retry brew update && travis_retry brew uninstall xctool && travis_retry brew install xctool --build-from-source
 - travis_retry gem update --system --no-document && travis_retry gem update --no-document && travis_retry gem uninstall -ax cocoapods && travis_retry gem install --no-document cocoapods && gem cleanup
@@ -14,8 +17,14 @@ before_install:
 - brew --version
 - xctool -version
 - xcodebuild -version -sdk
+
 install:
+- ./scripts/install.sh
+# install cocoapods
+
 script:
+- ./scripts/build.sh
+
 deploy:
 #s3 bucket
 #heroku
