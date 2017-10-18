@@ -4,7 +4,7 @@ ARDIY/[Oo]bj/
 ARDIY/[Bb]uild/
 ARDIY/[Bb]uilds/
 ARDIY/Assets/AssetStoreTools*
-
+.DS_Store
 # Visual Studio 2015 cache directory
 */.vs/
 
@@ -14,11 +14,13 @@ ExportedObj/
 *.csproj
 *.unityproj
 *.suo
+*.sln
 *.tmp
 *.user
 *.userprefs
 *.pidb
 *.booproj
+*.sln
 *.svd
 *.pdb
 
