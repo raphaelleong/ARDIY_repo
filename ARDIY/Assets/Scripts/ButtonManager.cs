@@ -12,6 +12,7 @@ public class ButtonManager : MonoBehaviour {
 
     public void OpenSteps()
     {
+        isPreview = false;
         SceneManager.LoadScene("EditorTestScene");
     }
 
