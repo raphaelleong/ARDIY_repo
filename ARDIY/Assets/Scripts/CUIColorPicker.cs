@@ -21,7 +21,7 @@ public class CUIColorPicker : MonoBehaviour
 			isVisible = false;
 		} else {
 			foreach (GameObject obj in objs) {
-				obj.transform.localScale = new Vector3 (1, 1, 1);
+				obj.transform.localScale = new Vector3 (2, 2, 2);
 			}
 			isVisible = true;
 		}

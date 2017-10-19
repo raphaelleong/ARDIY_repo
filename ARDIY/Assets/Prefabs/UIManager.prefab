@@ -76,7 +76,6 @@ GameObject:
   - component: {fileID: 224557108069087110}
   - component: {fileID: 222249273650585726}
   - component: {fileID: 114806010075166948}
-  - component: {fileID: 114131407596343344}
   m_Layer: 5
   m_Name: Result
   m_TagString: colourPalette
@@ -166,7 +165,6 @@ GameObject:
   - component: {fileID: 223965350669770878}
   - component: {fileID: 114493222854564108}
   - component: {fileID: 114972578080270608}
-  - component: {fileID: 114488627760419772}
   m_Layer: 5
   m_Name: ColourUI
   m_TagString: Untagged
@@ -182,7 +180,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224198445471670004}
-  - component: {fileID: 114393460072896920}
+  - component: {fileID: 114847569289361122}
   m_Layer: 5
   m_Name: CUIColorPicker
   m_TagString: colourPalette
@@ -285,7 +283,6 @@ GameObject:
   - component: {fileID: 224274331175884370}
   - component: {fileID: 222505616769758308}
   - component: {fileID: 114375800841159294}
-  - component: {fileID: 114381043628582674}
   m_Layer: 5
   m_Name: SaturationValue
   m_TagString: colourPalette
@@ -304,7 +301,6 @@ GameObject:
   - component: {fileID: 222880172225398536}
   - component: {fileID: 114621658540434448}
   - component: {fileID: 114378055273157324}
-  - component: {fileID: 114268064772256028}
   m_Layer: 5
   m_Name: Colour Palette
   m_TagString: Untagged
@@ -374,7 +370,6 @@ GameObject:
   - component: {fileID: 224723606942715446}
   - component: {fileID: 222933227831037364}
   - component: {fileID: 114859747087255910}
-  - component: {fileID: 114514702387720276}
   m_Layer: 5
   m_Name: Hue
   m_TagString: colourPalette
@@ -495,18 +490,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114131407596343344
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1166276039707348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67fe8cf2682634429a82e70367b1350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objs: []
 --- !u!114 &114138651701163204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -614,18 +597,6 @@ MonoBehaviour:
   detectSwipeOnlyAfterRelease: 0
   Panel_Instructions: {fileID: 1431582997386114}
   SWIPE_THRESHOLD: 20
---- !u!114 &114268064772256028
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1733805802760440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67fe8cf2682634429a82e70367b1350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objs: []
 --- !u!114 &114287502340094466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -866,7 +837,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114268064772256028}
+      - m_Target: {fileID: 0}
         m_MethodName: toggle
         m_Mode: 1
         m_Arguments:
@@ -879,30 +850,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114381043628582674
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1714443654823290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67fe8cf2682634429a82e70367b1350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objs: []
---- !u!114 &114393460072896920
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1423270090807812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67fe8cf2682634429a82e70367b1350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objs: []
 --- !u!114 &114416184273967854
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -952,18 +899,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114488627760419772
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1414244544958978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67fe8cf2682634429a82e70367b1350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objs: []
 --- !u!114 &114493222854564108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -985,18 +920,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114514702387720276
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1870003533416106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67fe8cf2682634429a82e70367b1350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objs: []
 --- !u!114 &114549946272307054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1333,6 +1256,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114847569289361122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1423270090807812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d67fe8cf2682634429a82e70367b1350, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objs: []
 --- !u!114 &114859747087255910
 MonoBehaviour:
   m_ObjectHideFlags: 1

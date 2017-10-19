@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour {
 	// Use this for initialization
+	bool palette; 
+	CUIColorPicker picker;
 	void Start () {
-
+		palette = false; 
+		picker = this.gameObject.GetComponentInChildren<CUIColorPicker> (true);
         if (ButtonManager.isPreview)
         {
             GameObject instructions = GameObject.Find("InstructionsUI");
@@ -16,9 +19,9 @@ public class UIManager : MonoBehaviour {
             colourPicker.SetActive(false);
         }
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
-}
+ }
