@@ -59,7 +59,7 @@ public static class AutoBuilder {
   [MenuItem("File/AutoBuilder/Windows/32-bit")]
   static void PerformWinBuild ()
   {
-    EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTarget.StandaloneWindows);
+    EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Standalone,BuildTarget.StandaloneWindows);
     BuildPipeline.BuildPlayer(GetScenePaths(), "Builds/Win/" + GetProjectName()
 + ".exe",BuildTarget.StandaloneWindows,BuildOptions.None);
   }
