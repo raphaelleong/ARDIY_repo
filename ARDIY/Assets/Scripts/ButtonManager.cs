@@ -4,10 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour {
-
+    static public bool isPreview = false;
 	public void OpenPreview() {
+        isPreview = true; 
 		SceneManager.LoadScene("EditorTestScene");
 	}
+
+    public void OpenSteps()
+    {
+        SceneManager.LoadScene("EditorTestScene");
+    }
 
 	public void ComingSoonFeature() {
 
