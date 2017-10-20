@@ -20,25 +20,23 @@ public class DrawLine : MonoBehaviour {
     if (Input.touchCount > 0) {
       var touch = Input.GetTouch(0);
       if (touch.phase == TouchPhase.Began) {
-        // positions.Add(Camera.main.ScreenToWorldPoint(touch.position));
         var screenPosition = Camera.main.ScreenToViewportPoint (touch.position);
         ARPoint point = new ARPoint {
           x = screenPosition.x,
           y = screenPosition.y
         };
 
-        // UnityARSessionNativeInterface.GetARSessionNativeInterface ().RunWithConfig (new ARKitWorldTrackingSessionConfiguration());
+        UnityARSessionNativeInterface.GetARSessionNativeInterface ().RunWithConfig (new ARKitWorldTrackingSessionConfiguration());
         // prioritize reults types
         ARHitTestResultType[] resultTypes = {
             ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent,
             // if you want to use infinite planes use this:
             ARHitTestResultType.ARHitTestResultTypeExistingPlane,
             ARHitTestResultType.ARHitTestResultTypeHorizontalPlane,
-            ARHitTestResultType.ARHitTestResultTypeFeaturePoint
         };
 
         foreach (var resultType in resultTypes) {
-          if (foundPointInPlane(point, resultType)) {
+          if (/*Input.GetMouseButtonDown(0) &&*/ foundPointInPlane(point, resultType)) {
             return ;
           }
         }
@@ -52,20 +50,24 @@ public class DrawLine : MonoBehaviour {
     List<ARHitTestResult> corners = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, resultType);
     if (corners.Count > 0) {
         foreach (var corner in corners) {
+          // Vector3 currentCoordinate = Input.mousePosition;
+          // currentCoordinate.z = Camera.main.nearClipPlane;
+          // currentCoordinate = Camera.main.ScreenToWorldPoint(currentCoordinate);
           Vector3 currentCoordinate = UnityARMatrixOps.GetPosition (corner.worldTransform);
 
-          // if (Vector3.Distance(currentCoordinate, origin) < 1) {
-          //   currentCoordinate = origin;
-          // } else {
+          if (lastCoordinate != null && Vector3.Distance(currentCoordinate, origin) < 0.1) {
+            currentCoordinate = origin;
+          } else {
             GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
             cube.transform.position = currentCoordinate;
-            cube.transform.localScale = cube.transform.position*0.3f;
-          // }
+            cube.transform.localScale = cube.transform.localScale * 0.01f;
+          }
 
-            if(lastCoordinate != null) {
+            if (lastCoordinate != null) {
               drawLine(currentCoordinate);
             } else {
               origin = currentCoordinate;
+              anchorPosition();
             }
 
             lastCoordinate = currentCoordinate;
@@ -77,21 +79,20 @@ public class DrawLine : MonoBehaviour {
   }
 
   void drawLine(Vector3 currentCoordinate) {
-    GameObject plane = new GameObject();
+    GameObject plane = Instantiate(line);
     MeshFilter mf = plane.AddComponent<MeshFilter>();
-    SkinnedMeshRenderer mr = plane.AddComponent<SkinnedMeshRenderer>();
-    mr.updateWhenOffscreen = true;
+    MeshRenderer mr = plane.AddComponent<MeshRenderer>();
 
-    // LineRenderer newLine = Instantiate(line).GetComponent<LineRenderer>();
-    // newLine.enabled = true;
-    // newLine.SetPosition(0, lastCoordinate.Value);
-    // newLine.SetPosition(1, currentCoordinate);
-    // newLine.startWidth = 0.01f;
-    // newLine.endWidth = 0.01f;
+    LineRenderer newLine = Instantiate(line).GetComponent<LineRenderer>();
+    newLine.enabled = true;
+    newLine.SetPosition(0, lastCoordinate.Value);
+    newLine.SetPosition(1, currentCoordinate);
+    newLine.startWidth = 0.01f;
+    newLine.endWidth = 0.01f;
     var wall = new Mesh();
     wall.vertices = new Vector3[] {lastCoordinate.Value, currentCoordinate,
-                      new Vector3(currentCoordinate.x, currentCoordinate.y + 100, currentCoordinate.z),
-                      new Vector3(lastCoordinate.Value.x, lastCoordinate.Value.y + 100, lastCoordinate.Value.z)};
+                      new Vector3(currentCoordinate.x, currentCoordinate.y + 10, currentCoordinate.z),
+                      new Vector3(lastCoordinate.Value.x, lastCoordinate.Value.y + 10, lastCoordinate.Value.z)};
 
     wall.triangles = new int[] {0, 1, 2, 0, 2, 3};
 
@@ -105,5 +106,12 @@ public class DrawLine : MonoBehaviour {
     mf.mesh = wall;
     wall.RecalculateBounds();
     wall.RecalculateNormals();
+  }
+
+  void anchorPosition() {
+    UnityARUserAnchorData anchor = UnityARUserAnchorData.UnityARUserAnchorDataFromGameObject(Camera.main.gameObject);
+
+    UnityARSessionNativeInterface.GetARSessionNativeInterface ().AddUserAnchor(anchor);
+
   }
 }
