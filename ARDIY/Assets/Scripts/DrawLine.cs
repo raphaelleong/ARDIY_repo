@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.iOS;
 
-public class drawWall : MonoBehaviour {
+public class DrawLine : MonoBehaviour {
   // determines the previous coordinate that was saved
   Vector3? lastCoordinate;
   // The first coordinate that was saved
   Vector3 origin;
-  GameObject wallObject;
 
-  void Start() {
-    line = new GameObject();
-    LineRenderer renderedLine = line.AddComponent<LineRenderer>();
-    renderedLine.enabled = false;
-  }
+  public GameObject wallPrefab;
 
   /*
   Find the touch point on the screen and draw a wall between two consecutive points
@@ -89,33 +84,13 @@ public class drawWall : MonoBehaviour {
 
   /* Draw a wall between current point and the last point by specifying a mesh with 4 vertices */
   void drawWall(Vector3 currentCoordinate) {
-    GameObject plane = Instantiate(wallObject);
-    MeshFilter mf = plane.AddComponent<MeshFilter>();
-    MeshRenderer mr = plane.AddComponent<MeshRenderer>();
-
-    LineRenderer newLine = Instantiate(line).GetComponent<LineRenderer>();
-    newLine.enabled = true;
-    newLine.SetPosition(0, lastCoordinate.Value);
-    newLine.SetPosition(1, currentCoordinate);
-    newLine.startWidth = 0.01f;
-    newLine.endWidth = 0.01f;
-    var wall = new Mesh();
-    wall.vertices = new Vector3[] {lastCoordinate.Value, currentCoordinate,
+	GameObject wall = Instantiate (wallPrefab);
+	
+	MeshFilter meshFilter = wall.GetComponent (typeof(MeshFilter)) as MeshFilter;
+	Mesh wallMesh = meshFilter.mesh;
+		wallMesh.vertices = new Vector3[] {lastCoordinate.Value, currentCoordinate,
       new Vector3(currentCoordinate.x, currentCoordinate.y + 10, currentCoordinate.z),
       new Vector3(lastCoordinate.Value.x, lastCoordinate.Value.y + 10, lastCoordinate.Value.z)};
-
-      wall.triangles = new int[] {0, 1, 2, 0, 2, 3};
-
-      wall.uv = new Vector2[] {
-        new Vector2(0, 0),
-        new Vector2(1, 0),
-        new Vector2(0, 1),
-        new Vector2(1, 1)
-      };
-
-      mf.mesh = wall;
-      wall.RecalculateBounds();
-      wall.RecalculateNormals();
     }
 
     /* Anchor the origin to the camera */
