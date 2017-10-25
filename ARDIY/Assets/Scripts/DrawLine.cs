@@ -13,13 +13,21 @@ public class DrawLine : MonoBehaviour {
 
   public GameObject wallPrefab;
   public Text debugText;
+  public Slider slider;
 
-  int k = 0;
+  GameObject wallParent;
 
   /*
   Find the touch point on the screen and draw a wall between two consecutive points
   */
+
+  void Start() {
+    wallParent = new GameObject ();
+  }
+
   void Update() {
+    //wallParent.transform.localScale = new Vector3 (1, slider.value, 1);
+    //wallParent.transform.position = new Vector3 (0, slider.value / 4.0f, 0);
     if (Input.touchCount > 0) {
       var touch = Input.GetTouch(0);
       if (touch.phase == TouchPhase.Began) {
@@ -65,25 +73,33 @@ public class DrawLine : MonoBehaviour {
   bool foundPointInPlane(ARPoint point, ARHitTestResultType resultType) {
     List<ARHitTestResult> corners = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, resultType);
     debugText.text = corners.Count.ToString();
+
     if (corners.Count > 0) {
 
-      ARHitTestResult corner = corners [0];
+      Vector3 furthestPoint = Camera.main.transform.position;
+      foreach (ARHitTestResult corner in corners) {
+        Vector3 realWorldPoint = UnityARMatrixOps.GetPosition (corner.worldTransform);
+        if (Vector3.Distance (Camera.main.transform.position, realWorldPoint) >
+          Vector3.Distance (Camera.main.transform.position, furthestPoint)) {
+          furthestPoint = realWorldPoint;
+        }
+      }
+      
       // Vector3 currentCoordinate = Input.mousePosition;
       // currentCoordinate.z = Camera.main.nearClipPlane;
       // currentCoordinate = Camera.main.ScreenToWorldPoint(currentCoordinate);
-      Vector3 currentCoordinate = UnityARMatrixOps.GetPosition (corner.worldTransform);
+      Vector3 currentCoordinate = furthestPoint;
 
       if (lastCoordinate != null && Vector3.Distance(currentCoordinate, origin) < 0.1) {
         currentCoordinate = origin;
       } else {
         GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-
         cube.transform.position = currentCoordinate;
         cube.transform.localScale = cube.transform.localScale * 0.01f;
       }
 
       if (lastCoordinate != null) {
-		drawWall(lastCoordinate.Value, currentCoordinate);
+		    drawWall(lastCoordinate.Value, currentCoordinate);
         drawWall(currentCoordinate, lastCoordinate.Value);
       } else {
         origin = currentCoordinate;
@@ -100,14 +116,17 @@ public class DrawLine : MonoBehaviour {
   /* Draw a wall between current point and the last point by specifying a mesh with 4 vertices */
 	void drawWall(Vector3 point1, Vector3 point2) {
 	GameObject wall = Instantiate (wallPrefab);
-	
+  wall.transform.position = point1;
+  wall.transform.localScale = new Vector3(1, slider.value, 1);
+  //wall.transform.SetParent (wallParent.transform);
 	MeshFilter meshFilter = wall.GetComponent (typeof(MeshFilter)) as MeshFilter;
 	Mesh wallMesh = meshFilter.mesh;
 		wallMesh.vertices = new Vector3[] {
-            point1, 
-            point2,
-			new Vector3(point2.x, point2.y + 1, point2.z),
-			new Vector3(point1.x, point1.y + 1, point1.z)};
+      Vector3.zero, 
+      (point2 - point1),
+      (point2 - point1) + Vector3.up,
+      Vector3.up
+    };
     //point1, point2, point2.xyz, point1.xyz
 
     wallMesh.triangles = new int[] { 0, 1, 2, 0, 2, 3 };
