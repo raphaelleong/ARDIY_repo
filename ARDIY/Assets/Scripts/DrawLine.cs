@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR.iOS;
 
 public class DrawLine : MonoBehaviour {
@@ -9,11 +10,13 @@ public class DrawLine : MonoBehaviour {
   // The first coordinate that was saved
   Vector3 origin;
   GameObject wallObject;
+  Text measurementText; 
 
   void Start() {
     wallObject = new GameObject();
     LineRenderer renderedLine = wallObject.AddComponent<LineRenderer>();
     renderedLine.enabled = false;
+	measurementText = this.GetComponentsInChildren<Text> () [0];
   }
 
   /*
@@ -72,6 +75,9 @@ public class DrawLine : MonoBehaviour {
           cube.transform.localScale = cube.transform.localScale * 0.01f;
         }
 
+		float distance = Vector3.Distance (lastCoordinate.Value, currentCoordinate);
+		measurementText.text = distance.ToString();
+		
         if (lastCoordinate != null) {
           drawWall(currentCoordinate);
         } else {
@@ -80,38 +86,45 @@ public class DrawLine : MonoBehaviour {
         }
 
         lastCoordinate = currentCoordinate;
+		
       }
       return true;
     }
 
     return false;
   }
-
+		
   /* Draw a wall between current point and the last point by specifying a mesh with 4 vertices */
   void drawWall(Vector3 currentCoordinate) {
     GameObject plane = Instantiate(wallObject);
-    MeshFilter mf = plane.AddComponent<MeshFilter>();
-    MeshRenderer mr = plane.AddComponent<MeshRenderer>();
-
-    var wall = new Mesh();
-    wall.vertices = new Vector3[] {lastCoordinate.Value, currentCoordinate,
-      new Vector3(currentCoordinate.x, currentCoordinate.y + 10, currentCoordinate.z),
-      new Vector3(lastCoordinate.Value.x, lastCoordinate.Value.y + 10, lastCoordinate.Value.z)};
-
-      wall.triangles = new int[] {0, 1, 2, 0, 2, 3};
-
-      wall.uv = new Vector2[] {
-        new Vector2(0, 0),
-        new Vector2(1, 0),
-        new Vector2(0, 1),
-        new Vector2(1, 1)
-      };
-
-      wall.transform.localScale = new Vector3(wall.x, wall.y + 50, wall.z);
-
-      mf.mesh = wall;
-      wall.RecalculateBounds();
-      wall.RecalculateNormals();
+		LineRenderer newLine = plane.GetComponent<LineRenderer> ();
+		newLine.enabled = true;
+		newLine.SetPosition (0, lastCoordinate.Value);
+		newLine.SetPosition (1, currentCoordinate);
+		newLine.startWidth = 0.01f;
+		newLine.endWidth = 0.01f;
+//    MeshFilter mf = plane.AddComponent<MeshFilter>();
+//    MeshRenderer mr = plane.AddComponent<MeshRenderer>();
+//
+//    var wall = new Mesh();
+//    wall.vertices = new Vector3[] {lastCoordinate.Value, currentCoordinate,
+//      new Vector3(currentCoordinate.x, currentCoordinate.y + 10, currentCoordinate.z),
+//      new Vector3(lastCoordinate.Value.x, lastCoordinate.Value.y + 10, lastCoordinate.Value.z)};
+//
+//      wall.triangles = new int[] {0, 1, 2, 0, 2, 3};
+//
+//      wall.uv = new Vector2[] {
+//        new Vector2(0, 0),
+//        new Vector2(1, 0),
+//        new Vector2(0, 1),
+//        new Vector2(1, 1)
+//      };
+//
+////      wall.transform.localScale = new Vector3(wall.x, wall.y + 50, wall.z);
+//
+//      mf.mesh = wall;
+//      wall.RecalculateBounds();
+//      wall.RecalculateNormals();
     }
 
     /* Anchor the origin to the camera */
@@ -121,4 +134,5 @@ public class DrawLine : MonoBehaviour {
       UnityARSessionNativeInterface.GetARSessionNativeInterface ().AddUserAnchor(anchor);
 
     }
+
   }
