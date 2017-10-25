@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.iOS;
 
-public class drawWall : MonoBehaviour {
+public class DrawLine : MonoBehaviour {
   // determines the previous coordinate that was saved
   Vector3? lastCoordinate;
   // The first coordinate that was saved
@@ -11,8 +11,8 @@ public class drawWall : MonoBehaviour {
   GameObject wallObject;
 
   void Start() {
-    line = new GameObject();
-    LineRenderer renderedLine = line.AddComponent<LineRenderer>();
+    wallObject = new GameObject();
+    LineRenderer renderedLine = wallObject.AddComponent<LineRenderer>();
     renderedLine.enabled = false;
   }
 
@@ -48,7 +48,7 @@ public class drawWall : MonoBehaviour {
     }
 
   }
-  
+
   /*
   Find coordinates of the touch point on screen relative to the plane and place the cube there.
   If lastCoordinate is null, this point is the first cube that is placed.
@@ -93,12 +93,6 @@ public class drawWall : MonoBehaviour {
     MeshFilter mf = plane.AddComponent<MeshFilter>();
     MeshRenderer mr = plane.AddComponent<MeshRenderer>();
 
-    LineRenderer newLine = Instantiate(line).GetComponent<LineRenderer>();
-    newLine.enabled = true;
-    newLine.SetPosition(0, lastCoordinate.Value);
-    newLine.SetPosition(1, currentCoordinate);
-    newLine.startWidth = 0.01f;
-    newLine.endWidth = 0.01f;
     var wall = new Mesh();
     wall.vertices = new Vector3[] {lastCoordinate.Value, currentCoordinate,
       new Vector3(currentCoordinate.x, currentCoordinate.y + 10, currentCoordinate.z),
@@ -112,6 +106,8 @@ public class drawWall : MonoBehaviour {
         new Vector2(0, 1),
         new Vector2(1, 1)
       };
+
+      wall.transform.localScale = new Vector3(wall.x, wall.y + 50, wall.z);
 
       mf.mesh = wall;
       wall.RecalculateBounds();
