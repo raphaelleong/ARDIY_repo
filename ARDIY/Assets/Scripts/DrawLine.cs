@@ -14,6 +14,8 @@ public class DrawLine : MonoBehaviour {
   public GameObject wallPrefab;
   public Text debugText;
 
+  int k = 0;
+
   /*
   Find the touch point on the screen and draw a wall between two consecutive points
   */
@@ -36,11 +38,18 @@ public class DrawLine : MonoBehaviour {
           ARHitTestResultType.ARHitTestResultTypeHorizontalPlane,
         };
 
-        foreach (var resultType in resultTypes) {
-          if (/*Input.GetMouseButtonDown(0) &&*/ foundPointInPlane(point, resultType)) {
+        int i = 0;
+        while (i < resultTypes.Length && !foundPointInPlane (point, resultTypes [i])) {
+          i++;
+        }
+
+        /*
+        foreach (ARHitTestResultType resultType in resultTypes) {
+          if (/*Input.GetMouseButtonDown(0) &&*//* foundPointInPlane(point, resultType)) {
             return ;
           }
         }
+        */
       }
 
     }
@@ -55,30 +64,33 @@ public class DrawLine : MonoBehaviour {
   */
   bool foundPointInPlane(ARPoint point, ARHitTestResultType resultType) {
     List<ARHitTestResult> corners = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, resultType);
+    debugText.text = corners.Count.ToString();
     if (corners.Count > 0) {
-      foreach (var corner in corners) {
-        // Vector3 currentCoordinate = Input.mousePosition;
-        // currentCoordinate.z = Camera.main.nearClipPlane;
-        // currentCoordinate = Camera.main.ScreenToWorldPoint(currentCoordinate);
-        Vector3 currentCoordinate = UnityARMatrixOps.GetPosition (corner.worldTransform);
 
-        if (lastCoordinate != null && Vector3.Distance(currentCoordinate, origin) < 0.1) {
-          currentCoordinate = origin;
-        } else {
-          GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-          cube.transform.position = currentCoordinate;
-          cube.transform.localScale = cube.transform.localScale * 0.01f;
-        }
+      ARHitTestResult corner = corners [0];
+      // Vector3 currentCoordinate = Input.mousePosition;
+      // currentCoordinate.z = Camera.main.nearClipPlane;
+      // currentCoordinate = Camera.main.ScreenToWorldPoint(currentCoordinate);
+      Vector3 currentCoordinate = UnityARMatrixOps.GetPosition (corner.worldTransform);
 
-        if (lastCoordinate != null) {
-			drawWall(lastCoordinate.Value, currentCoordinate);
-        } else {
-          origin = currentCoordinate;
-          anchorPosition();
-        }
+      if (lastCoordinate != null && Vector3.Distance(currentCoordinate, origin) < 0.1) {
+        currentCoordinate = origin;
+      } else {
+        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
 
-        lastCoordinate = currentCoordinate;
+        cube.transform.position = currentCoordinate;
+        cube.transform.localScale = cube.transform.localScale * 0.01f;
       }
+
+      if (lastCoordinate != null) {
+		drawWall(lastCoordinate.Value, currentCoordinate);
+        drawWall(currentCoordinate, lastCoordinate.Value);
+      } else {
+        origin = currentCoordinate;
+        anchorPosition();
+      }
+
+      lastCoordinate = currentCoordinate;
       return true;
     }
 
@@ -99,11 +111,6 @@ public class DrawLine : MonoBehaviour {
     //point1, point2, point2.xyz, point1.xyz
 
     wallMesh.triangles = new int[] { 0, 1, 2, 0, 2, 3 };
-
-    debugText.text = "";
-    foreach (int vec in wallMesh.triangles) {
-      debugText.text += vec.ToString () + " - ";
-    }
   }
 
 	/* Anchor the origin to the camera */
