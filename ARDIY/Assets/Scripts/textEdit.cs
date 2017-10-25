@@ -5,39 +5,21 @@ using UnityEngine.UI;
 
 public class textEdit : MonoBehaviour {
 
-	[SerializeField]
-	private Text displayInstr = null;
+    public GameObject contentObject;
+    public GameObject instructionObject;
 	string[] instructions = new string[16];
-	static int instrNo = 0;
 
 	// Use this for initialization
 	void Start () {
 		initialiseWallInstr ();
-		displayInstr.text = instructions[0];
-	}
-
-	public void forwardClick() {
-
-		if (instrNo < 15) {
-			//next instruction
-			instrNo++;
-			displayInstr.text = instructions[instrNo];
-		} else {
-			//end of instructions
-		}
-
-	}
-
-	public void backwardClick() {
-
-		if (instrNo > 0) {
-			//previous instruction
-			instrNo--;
-			displayInstr.text = instructions[instrNo];
-		} else {
-			//beginning of instructions
-		}
-	}
+        foreach (string instr in instructions)
+        {
+            GameObject newInstr = Instantiate(instructionObject, contentObject.transform.position, Quaternion.identity);
+            newInstr.transform.SetParent(contentObject.transform);
+            Text text = newInstr.transform.GetChild(0).GetComponent(typeof(Text)) as Text;
+            text.text = instr;
+        }
+    }
 
 	void initialiseWallInstr() {
 		instructions [0] = "Welcome; click next to start!";
