@@ -47,10 +47,11 @@ public class SwipeDetector : MonoBehaviour
                 checkSwipe();
             }
         }
-    }
+	}
 
     void checkSwipe()
     {
+		
         //Check if Vertical swipe
         if (verticalMove() > SWIPE_THRESHOLD && verticalMove() > horizontalValMove())
         {
