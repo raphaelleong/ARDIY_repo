@@ -19,4 +19,26 @@ public class ButtonManager : MonoBehaviour {
 	public void ComingSoonFeature() {
 
 	}
+
+	/*public void nextInstructionClick() {
+		if (instrNo < 15) {
+			//next instruction
+			instrNo++;
+			displayInstr.text = instructions[instrNo];
+		} else {
+			//end of instructions
+		}
+
+	}
+
+	public void backInstructionClick() {
+		if (instrNo > 0) {
+			//next instruction
+			instrNo--;
+			displayInstr.text = instructions[instrNo];
+		} else {
+			//beginning of instructions
+		}
+
+	}*/
 }
