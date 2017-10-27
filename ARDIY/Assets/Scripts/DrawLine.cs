@@ -10,13 +10,15 @@ public class DrawLine : MonoBehaviour {
   // The first coordinate that was saved
   Vector3 origin;
   GameObject wallObject;
-  Text measurementText; 
+  GameObject measurement; 
+	float distance;
 
   void Start() {
     wallObject = new GameObject();
     LineRenderer renderedLine = wallObject.AddComponent<LineRenderer>();
     renderedLine.enabled = false;
-	measurementText = this.GetComponentsInChildren<Text> () [0];
+	measurement = GameObject.Find("Measurement");
+
   }
 
   /*
@@ -39,6 +41,7 @@ public class DrawLine : MonoBehaviour {
           // if you want to use infinite planes use this:
           ARHitTestResultType.ARHitTestResultTypeExistingPlane,
           ARHitTestResultType.ARHitTestResultTypeHorizontalPlane,
+		  ARHitTestResultType.ARHitTestResultTypeFeaturePoint
         };
 
         foreach (var resultType in resultTypes) {
@@ -74,11 +77,12 @@ public class DrawLine : MonoBehaviour {
           cube.transform.position = currentCoordinate;
           cube.transform.localScale = cube.transform.localScale * 0.01f;
         }
-
-		float distance = Vector3.Distance (lastCoordinate.Value, currentCoordinate);
-		measurementText.text = distance.ToString();
 		
         if (lastCoordinate != null) {
+		  Vector3 lastCoordinateValue = lastCoordinate.Value;
+   		  currentCoordinate.z = lastCoordinateValue.z;			
+		  distance = Vector3.Distance (lastCoordinate.Value, currentCoordinate);
+		  writeText ();
           drawWall(currentCoordinate);
         } else {
           origin = currentCoordinate;
@@ -93,6 +97,10 @@ public class DrawLine : MonoBehaviour {
 
     return false;
   }
+
+	public void writeText(){
+		measurement.GetComponent<Text>().text = distance.ToString(); 
+	}
 		
   /* Draw a wall between current point and the last point by specifying a mesh with 4 vertices */
   void drawWall(Vector3 currentCoordinate) {
