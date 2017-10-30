@@ -13,17 +13,12 @@ public class DrawLine : MonoBehaviour {
 
   public GameObject wallPrefab;
   public Text debugText;
-  public Slider slider;
 
-  GameObject wallParent;
+  public List<GameObject> wallsCreated;
 
   /*
   Find the touch point on the screen and draw a wall between two consecutive points
   */
-
-  void Start() {
-    wallParent = new GameObject ();
-  }
 
   void Update() {
     //wallParent.transform.localScale = new Vector3 (1, slider.value, 1);
@@ -72,7 +67,7 @@ public class DrawLine : MonoBehaviour {
   */
   bool foundPointInPlane(ARPoint point, ARHitTestResultType resultType) {
     List<ARHitTestResult> corners = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, resultType);
-    debugText.text = corners.Count.ToString();
+    //debugText.text = corners.Count.ToString();
 
     if (corners.Count > 0) {
 
@@ -91,8 +86,10 @@ public class DrawLine : MonoBehaviour {
       Vector3 currentCoordinate = furthestPoint;
 
       if (lastCoordinate != null && Vector3.Distance(currentCoordinate, origin) < 0.1) {
+      //if close to the first point then take it as the first point
         currentCoordinate = origin;
       } else {
+      //otherwise create a new cube in the correct position with correct size
         GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         cube.transform.position = currentCoordinate;
         cube.transform.localScale = cube.transform.localScale * 0.01f;
@@ -116,8 +113,9 @@ public class DrawLine : MonoBehaviour {
   /* Draw a wall between current point and the last point by specifying a mesh with 4 vertices */
 	void drawWall(Vector3 point1, Vector3 point2) {
 	GameObject wall = Instantiate (wallPrefab);
+  wallsCreated.Add (wall);
   wall.transform.position = point1;
-  wall.transform.localScale = new Vector3(1, slider.value, 1);
+  //wall.transform.localScale = new Vector3(1, slider.value, 1);
   //wall.transform.SetParent (wallParent.transform);
 	MeshFilter meshFilter = wall.GetComponent (typeof(MeshFilter)) as MeshFilter;
 	Mesh wallMesh = meshFilter.mesh;
@@ -139,4 +137,20 @@ public class DrawLine : MonoBehaviour {
 	  UnityARSessionNativeInterface.GetARSessionNativeInterface ().AddUserAnchor(anchor);
 
 	}
+
+public void adjustWallHeight (float height) {
+    debugText.text = "height: " + height;
+    foreach (GameObject wall in wallsCreated) {
+      MeshFilter meshFilter = wall.GetComponent (typeof(MeshFilter)) as MeshFilter;
+      Mesh wallMesh = meshFilter.mesh;
+      Vector3[] vertices = wallMesh.vertices; 
+      wallMesh.SetVertices (
+        new List<Vector3>() {
+          Vector3.zero, 
+          vertices[1],
+          vertices[1] + Vector3.up * height,
+          Vector3.up * height
+        });
+    }
+  }
 }
