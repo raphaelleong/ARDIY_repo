@@ -151,7 +151,7 @@ PlayerSettings:
     Android: com.Company.ProductName
     Standalone: unity.Unity Technologies.Native Rendering Plugin Example
     Tizen: com.Company.ProductName
-    iOS: com.unity.arkitscene
+    iOS: com.donamphuong.arkit
     tvOS: com.Company.ProductName
   buildNumber:
     iOS: 0
