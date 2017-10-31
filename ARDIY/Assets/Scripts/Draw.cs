@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.XR.iOS;
 using UnityEngine.UI;
 
-public class DrawLine : MonoBehaviour
+public class Draw : MonoBehaviour
 {
 	// determines the previous coordinate that was saved
 	Vector3? lastCoordinate;
@@ -13,8 +13,8 @@ public class DrawLine : MonoBehaviour
 	Vector3 origin;
 
 	public GameObject wallPrefab;
-	public Text debugText;
 	public Text measurement;
+  public float cumulativeArea;
 
 	public List<GameObject> wallsCreated;
 	float currentWallHeight = 1;
@@ -57,7 +57,7 @@ public class DrawLine : MonoBehaviour
 		}
 
 	}
-  
+
 	/*
 	  Find coordinates of the touch point on screen relative to the plane and place the cube there.
 	  If lastCoordinate is null, this point is the first cube that is placed.
@@ -107,13 +107,17 @@ public class DrawLine : MonoBehaviour
 		if (lastCoordinate != null) {
 			drawWall (lastCoordinate.Value, currentCoordinate);
 			drawWall (currentCoordinate, lastCoordinate.Value);
-			measurement.text = Vector3.Distance (lastCoordinate.Value, currentCoordinate).ToString();
+      float width = Measure.findDistance(lastCoordinate.Value, currentCoordinate);
+      float height = width;
+      cumulativeArea = Measure.findArea(height, width);
+
+      measurement.text = width.ToString();
 		} else {
 			origin = currentCoordinate;
 			anchorPosition ();
 		}
 	}
-		
+
 	/* Draw a wall between current point and the last point by specifying a mesh with 4 vertices */
 	void drawWall (Vector3 point1, Vector3 point2)
 	{
@@ -124,7 +128,7 @@ public class DrawLine : MonoBehaviour
 		MeshFilter meshFilter = wall.GetComponent (typeof(MeshFilter)) as MeshFilter;
 		Mesh wallMesh = meshFilter.mesh;
 		wallMesh.vertices = new Vector3[] {
-			Vector3.zero, 
+			Vector3.zero,
 			(point2 - point1),
 			(point2 - point1) + Vector3.up * currentWallHeight,
 			Vector3.up * currentWallHeight
@@ -144,15 +148,14 @@ public class DrawLine : MonoBehaviour
 
 	public void adjustWallHeight (float height)
 	{
-		debugText.text = "height: " + height;
 		currentWallHeight = height;
 		foreach (GameObject wall in wallsCreated) {
 			MeshFilter meshFilter = wall.GetComponent (typeof(MeshFilter)) as MeshFilter;
 			Mesh wallMesh = meshFilter.mesh;
-			Vector3[] vertices = wallMesh.vertices; 
+			Vector3[] vertices = wallMesh.vertices;
 			wallMesh.SetVertices (
 				new List<Vector3> () {
-					Vector3.zero, 
+					Vector3.zero,
 					vertices [1],
 					vertices [1] + Vector3.up * height,
 					Vector3.up * height
