@@ -1,109 +1,162 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.iOS;
+using UnityEngine.UI;
 
-public class DrawLine : MonoBehaviour {
-  Vector3? lastCoordinate;
-  Vector3 origin;
-  List<Vector3> positions;
-  GameObject line;
+public class DrawLine : MonoBehaviour
+{
+	// determines the previous coordinate that was saved
+	Vector3? lastCoordinate;
+	Vector3 currentCoordinate;
+	// The first coordinate that was saved
+	Vector3 origin;
 
-  void Start() {
-    positions = new List<Vector3>();
-    line = new GameObject();
-    LineRenderer renderedLine = line.AddComponent<LineRenderer>();
-    renderedLine.enabled = false;
-  }
+	public GameObject wallPrefab;
+	public Text debugText;
+	public Text measurement;
 
-  void Update() {
-    if (Input.touchCount > 0) {
-      var touch = Input.GetTouch(0);
-      if (touch.phase == TouchPhase.Began) {
-        // positions.Add(Camera.main.ScreenToWorldPoint(touch.position));
-        var screenPosition = Camera.main.ScreenToViewportPoint (touch.position);
-        ARPoint point = new ARPoint {
-          x = screenPosition.x,
-          y = screenPosition.y
-        };
+	public List<GameObject> wallsCreated;
+	float currentWallHeight = 1;
 
-        // UnityARSessionNativeInterface.GetARSessionNativeInterface ().RunWithConfig (new ARKitWorldTrackingSessionConfiguration());
-        // prioritize reults types
-        ARHitTestResultType[] resultTypes = {
-            ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent,
-            // if you want to use infinite planes use this:
-            ARHitTestResultType.ARHitTestResultTypeExistingPlane,
-            ARHitTestResultType.ARHitTestResultTypeHorizontalPlane,
-            ARHitTestResultType.ARHitTestResultTypeFeaturePoint
-        };
+	void Start ()
+	{
+		measurement = GameObject.Find("Measurement").GetComponent<Text>();
+	}
 
-        foreach (var resultType in resultTypes) {
-          if (foundPointInPlane(point, resultType)) {
-            return ;
-          }
-        }
-      }
+	/*
+	  Find the touch point on the screen and draw a wall between two consecutive points
+	*/
+	void Update ()
+	{
+		if (Input.touchCount > 0) {
+			var touch = Input.GetTouch (0);
+			if (touch.phase == TouchPhase.Began) {
+				var screenPosition = Camera.main.ScreenToViewportPoint (new Vector3(Screen.width/2, Screen.height/2, Camera.main.nearClipPlane));
+				ARPoint point = new ARPoint {
+					x = screenPosition.x,
+					y = screenPosition.y
+				};
 
-    }
+				UnityARSessionNativeInterface.GetARSessionNativeInterface ().RunWithConfig (new ARKitWorldTrackingSessionConfiguration ());
+				// prioritize result types
+				ARHitTestResultType[] resultTypes = {
+					ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent,
+					// if you want to use infinite planes use this:
+					ARHitTestResultType.ARHitTestResultTypeExistingPlane,
+					ARHitTestResultType.ARHitTestResultTypeHorizontalPlane,
+				};
 
-  }
+				int i = 0;
+				while (i < resultTypes.Length && !foundPointInPlane (point, resultTypes [i])) {
+					i++;
+				}
 
-  bool foundPointInPlane(ARPoint point, ARHitTestResultType resultType) {
-    List<ARHitTestResult> corners = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, resultType);
-    if (corners.Count > 0) {
-        foreach (var corner in corners) {
-          Vector3 currentCoordinate = UnityARMatrixOps.GetPosition (corner.worldTransform);
+			}
 
-          // if (Vector3.Distance(currentCoordinate, origin) < 1) {
-          //   currentCoordinate = origin;
-          // } else {
-            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube.transform.position = currentCoordinate;
-            cube.transform.localScale = cube.transform.position*0.3f;
-          // }
+		}
 
-            if(lastCoordinate != null) {
-              drawLine(currentCoordinate);
-            } else {
-              origin = currentCoordinate;
-            }
+	}
+  
+	/*
+	  Find coordinates of the touch point on screen relative to the plane and place the cube there.
+	  If lastCoordinate is null, this point is the first cube that is placed.
+	  Otherwise, connect the previous cube with the current cube
+	  If the currentCube is close to the origin cube, user has gone back to the original position -> connect the line from the current cube the origin cube
+	*/
+	bool foundPointInPlane (ARPoint point, ARHitTestResultType resultType)
+	{
+		List<ARHitTestResult> corners = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, resultType);
 
-            lastCoordinate = currentCoordinate;
-        }
-        return true;
-    }
+		if (corners.Count > 0) {
+			Vector3 currentCoordinate = getFurthestPoint(corners);
+			drawCube (currentCoordinate);
+			lastCoordinate = currentCoordinate;
+			return true;
+		}
 
-    return false;
-  }
+		return false;
+	}
 
-  void drawLine(Vector3 currentCoordinate) {
-    GameObject plane = new GameObject();
-    MeshFilter mf = plane.AddComponent<MeshFilter>();
-    SkinnedMeshRenderer mr = plane.AddComponent<SkinnedMeshRenderer>();
-    mr.updateWhenOffscreen = true;
+	/* Get the furthest point from the screen where it is tapped */
+	Vector3 getFurthestPoint(List<ARHitTestResult> corners) {
+		Vector3 furthestPoint = Camera.main.transform.position;
+		foreach (ARHitTestResult corner in corners) {
+			Vector3 realWorldPoint = UnityARMatrixOps.GetPosition (corner.worldTransform);
+			if (Vector3.Distance (Camera.main.transform.position, realWorldPoint) >
+				Vector3.Distance (Camera.main.transform.position, furthestPoint)) {
+				furthestPoint = realWorldPoint;
+			}
+		}
 
-    // LineRenderer newLine = Instantiate(line).GetComponent<LineRenderer>();
-    // newLine.enabled = true;
-    // newLine.SetPosition(0, lastCoordinate.Value);
-    // newLine.SetPosition(1, currentCoordinate);
-    // newLine.startWidth = 0.01f;
-    // newLine.endWidth = 0.01f;
-    var wall = new Mesh();
-    wall.vertices = new Vector3[] {lastCoordinate.Value, currentCoordinate,
-                      new Vector3(currentCoordinate.x, currentCoordinate.y + 100, currentCoordinate.z),
-                      new Vector3(lastCoordinate.Value.x, lastCoordinate.Value.y + 100, lastCoordinate.Value.z)};
+		return furthestPoint;
+	}
 
-    wall.triangles = new int[] {0, 1, 2, 0, 2, 3};
+	/* Place a cube in the specify coordinate and draw a wall if cube is not the first cube placed */
+	void drawCube (Vector3 currentCoordinate) {
+		if (lastCoordinate != null && Vector3.Distance (currentCoordinate, origin) < 0.1) {
+			//if close to the first point then take it as the first point
+			currentCoordinate = origin;
+		} else {
+			//otherwise create a new cube in the correct position with correct size
+			GameObject cube = GameObject.CreatePrimitive (PrimitiveType.Cube);
+			cube.transform.position = currentCoordinate;
+			cube.transform.localScale = cube.transform.localScale * 0.01f;
+		}
 
-    wall.uv = new Vector2[] {
-      new Vector2(0, 0),
-      new Vector2(1, 0),
-      new Vector2(0, 1),
-      new Vector2(1, 1)
-    };
+		if (lastCoordinate != null) {
+			drawWall (lastCoordinate.Value, currentCoordinate);
+			drawWall (currentCoordinate, lastCoordinate.Value);
+			measurement.text = Vector3.Distance (lastCoordinate.Value, currentCoordinate).ToString();
+		} else {
+			origin = currentCoordinate;
+			anchorPosition ();
+		}
+	}
+		
+	/* Draw a wall between current point and the last point by specifying a mesh with 4 vertices */
+	void drawWall (Vector3 point1, Vector3 point2)
+	{
+		GameObject wall = Instantiate (wallPrefab);
+		wallsCreated.Add (wall);
+		wall.transform.position = point1;
 
-    mf.mesh = wall;
-    wall.RecalculateBounds();
-    wall.RecalculateNormals();
-  }
+		MeshFilter meshFilter = wall.GetComponent (typeof(MeshFilter)) as MeshFilter;
+		Mesh wallMesh = meshFilter.mesh;
+		wallMesh.vertices = new Vector3[] {
+			Vector3.zero, 
+			(point2 - point1),
+			(point2 - point1) + Vector3.up * currentWallHeight,
+			Vector3.up * currentWallHeight
+		};
+		//point1, point2, point2.xyz, point1.xyz
+		wallMesh.triangles = new int[] { 0, 1, 2, 0, 2, 3 };
+	}
+
+	/* Anchor the origin to the camera */
+	void anchorPosition ()
+	{
+		UnityARUserAnchorData anchor = UnityARUserAnchorData.UnityARUserAnchorDataFromGameObject (Camera.main.gameObject);
+
+		UnityARSessionNativeInterface.GetARSessionNativeInterface ().AddUserAnchor (anchor);
+
+	}
+
+	public void adjustWallHeight (float height)
+	{
+		debugText.text = "height: " + height;
+		currentWallHeight = height;
+		foreach (GameObject wall in wallsCreated) {
+			MeshFilter meshFilter = wall.GetComponent (typeof(MeshFilter)) as MeshFilter;
+			Mesh wallMesh = meshFilter.mesh;
+			Vector3[] vertices = wallMesh.vertices; 
+			wallMesh.SetVertices (
+				new List<Vector3> () {
+					Vector3.zero, 
+					vertices [1],
+					vertices [1] + Vector3.up * height,
+					Vector3.up * height
+				});
+		}
+	}
 }
