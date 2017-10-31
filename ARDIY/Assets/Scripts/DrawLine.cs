@@ -15,6 +15,7 @@ public class DrawLine : MonoBehaviour {
   public Text debugText;
 
   public List<GameObject> wallsCreated;
+  float currentWallHeight = 1;
 
   /*
   Find the touch point on the screen and draw a wall between two consecutive points
@@ -122,11 +123,10 @@ public class DrawLine : MonoBehaviour {
 		wallMesh.vertices = new Vector3[] {
       Vector3.zero, 
       (point2 - point1),
-      (point2 - point1) + Vector3.up,
-      Vector3.up
+      (point2 - point1) + Vector3.up * currentWallHeight,
+      Vector3.up * currentWallHeight
     };
     //point1, point2, point2.xyz, point1.xyz
-
     wallMesh.triangles = new int[] { 0, 1, 2, 0, 2, 3 };
   }
 
@@ -140,6 +140,7 @@ public class DrawLine : MonoBehaviour {
 
 public void adjustWallHeight (float height) {
     debugText.text = "height: " + height;
+    currentWallHeight = height;
     foreach (GameObject wall in wallsCreated) {
       MeshFilter meshFilter = wall.GetComponent (typeof(MeshFilter)) as MeshFilter;
       Mesh wallMesh = meshFilter.mesh;
