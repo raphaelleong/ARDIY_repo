@@ -12,8 +12,9 @@ public class CUIColorPicker : MonoBehaviour
 		
 
 	public void toggle() {
-
+		
 		objs = GameObject.FindGameObjectsWithTag ("colourPalette");
+
 		if (isVisible) {
 			foreach (GameObject obj in objs) {
 				obj.transform.localScale = new Vector3 (0, 0, 0);
@@ -21,7 +22,7 @@ public class CUIColorPicker : MonoBehaviour
 			isVisible = false;
 		} else {
 			foreach (GameObject obj in objs) {
-				obj.transform.localScale = new Vector3 (1.5f, 1.5f, 1.5f);
+				obj.transform.localScale = new Vector3 (1f, 1f, 1f);
 			}
 			isVisible = true;
 		}
