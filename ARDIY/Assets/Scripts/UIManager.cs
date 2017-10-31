@@ -11,7 +11,8 @@ public class UIManager : MonoBehaviour {
 		picker = this.gameObject.GetComponentInChildren<CUIColorPicker> (true);
         if (ButtonManager.isPreview)
         {
-            GameObject instructions = GameObject.Find("InstructionsUI");
+			
+			GameObject instructions = GameObject.Find("InstructionsUI");
             instructions.SetActive(false);
         } else
         {
