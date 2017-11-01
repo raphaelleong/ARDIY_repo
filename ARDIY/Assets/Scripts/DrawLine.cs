@@ -8,17 +8,20 @@ using UnityEngine.EventSystems;
 
 public class DrawLine : MonoBehaviour
 {
-	// determines the previous coordinate that was saved
+	/* determines the previous coordinate that was saved */
 	Vector3? lastCoordinate;
 
-	// The first coordinate that was saved
+	/* The first coordinate that was saved */
 	Vector3 origin;
 
 	public GameObject wallPrefab;
 	public Text measurement;
 	public float cumulativeArea;
+  public float cumulativePaintRequired;
 
 	public List<GameObject> wallsCreated;
+
+  /* initial wall height  */
 	float currentWallHeight = 1;
 
 	void Start ()
@@ -117,7 +120,7 @@ public class DrawLine : MonoBehaviour
 			float height = currentWallHeight;
 			cumulativeArea += Measure.findArea(height, width);
 
-			measurement.text = width.ToString();
+			//measurement.text = width.ToString();
 		} else {
 			origin = currentCoordinate;
 			anchorPosition ();
@@ -154,7 +157,7 @@ public class DrawLine : MonoBehaviour
 
 	public void adjustWallHeight (float height)
 	{
-		currentWallHeight = height;
+		//currentWallHeight = height;
 		foreach (GameObject wall in wallsCreated) {
 			MeshFilter meshFilter = wall.GetComponent (typeof(MeshFilter)) as MeshFilter;
 			Mesh wallMesh = meshFilter.mesh;
@@ -167,5 +170,8 @@ public class DrawLine : MonoBehaviour
 					Vector3.up * height
 				});
 		}
+
+    currentWallHeight = Measure.findDistance(Vector3.up * height, Vector3.zero);
+    //measurement.text = currentWallHeight.ToString();
 	}
 }

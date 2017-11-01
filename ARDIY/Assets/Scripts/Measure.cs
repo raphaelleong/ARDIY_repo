@@ -22,18 +22,22 @@ public class Measure : MonoBehaviour {
 		return height * width;
 	}
 
-  public static double paintPerMSq(PaintType type, float area) {
+  public static float paintPerMSq(PaintType type) {
     switch(type) {
     case PaintType.OilBased:
-      return 4.2123;
+      return 4.23f;
     case PaintType.HighGloss:
-      return 3.3123;
+      return 3.33f;
     case PaintType.Emulsion:
-      return 1.2334;
+      return 1.24f;
     case PaintType.Satin:
-      return 4.1205;
+      return 4.12f;
     }
 
-    return 0;
+    return 0f;
+  }
+
+  public static float findPaintRequired(PaintType type, float area) {
+    return paintPerMSq(type) * area;
   }
 }
