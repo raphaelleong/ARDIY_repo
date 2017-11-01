@@ -11,6 +11,7 @@ using UnityEngine.EventSystems;
 // - rename this class to DrawManager.cs
 // - merge with ysk115-UI
 // - leave in anchorPosition
+// - create getter methods for private var.
 
 public class DrawLine : MonoBehaviour
 {
@@ -22,13 +23,18 @@ public class DrawLine : MonoBehaviour
 
 	public GameObject wallPrefab;
 	public Text measurement;
-	public float cumulativeArea;
-  public float cumulativePaintRequired;
 
+  private float cumulativeArea;
 	public List<GameObject> wallsCreated;
 
+  /* keeps track of total width */
+  private float cumulativeWidth;
+
   /* initial wall height  */
-	float currentWallHeight = 1;
+	private float currentWallHeight = 1;
+
+  /* selected paint type (choice within button menu, requires discussion) */
+  private PaintType paintType = PaintType.OilBased;
 
 	void Start ()
 	{
@@ -122,8 +128,11 @@ public class DrawLine : MonoBehaviour
 		if (lastCoordinate != null) {
 			drawWall (lastCoordinate.Value, currentCoordinate);
 			drawWall (currentCoordinate, lastCoordinate.Value);
+
+      /* Update var. */
 			float width = Measure.findDistance(lastCoordinate.Value, currentCoordinate);
-			float height = currentWallHeight;
+      cumulativeWidth += width;
+      float height = currentWallHeight;
 			cumulativeArea += Measure.findArea(height, width);
 
 			//measurement.text = width.ToString();
@@ -180,4 +189,8 @@ public class DrawLine : MonoBehaviour
     currentWallHeight = Measure.findDistance(Vector3.up * height, Vector3.zero);
     //measurement.text = currentWallHeight.ToString();
 	}
+
+  public float getTotalPaintRequired() {
+    return Measure.findPaintRequired(paintType, cumulativeArea);
+  }
 }
