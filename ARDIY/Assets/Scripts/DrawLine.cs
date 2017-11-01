@@ -22,10 +22,14 @@ public class DrawLine : MonoBehaviour
 	Vector3 origin;
 
 	public GameObject wallPrefab;
-	public Text measurement;
+  public List<GameObject> wallsCreated;
+
+	public Text measurementW;
+  public Text measurementH;
+  public Text measurementA;
+  public Text measurementP;
 
   private float cumulativeArea;
-	public List<GameObject> wallsCreated;
 
   /* keeps track of total width */
   private float cumulativeWidth;
@@ -38,7 +42,15 @@ public class DrawLine : MonoBehaviour
 
 	void Start ()
 	{
-		measurement = GameObject.Find("Measurement").GetComponent<Text>();
+		measurementW = GameObject.Find("MeasurementWidth").GetComponent<Text>();
+    measurementH = GameObject.Find("MeasurementHeight").GetComponent<Text>();
+    measurementA = GameObject.Find("MeasurementArea").GetComponent<Text>();
+    measurementP = GameObject.Find("MeasurementPaint").GetComponent<Text>();
+
+    measurementW.text = "Width: " + cumulativeWidth.ToString("n3") + " m";
+    measurementH.text = "Height: " + currentWallHeight.ToString("n3") + " m";
+    measurementA.text = "Area: " + cumulativeArea.ToString("n3") + " sq. m";
+    measurementP.text = "Paint: " + getTotalPaintRequired().ToString("n3") + " litres";
 	}
 
 	/*
@@ -132,10 +144,7 @@ public class DrawLine : MonoBehaviour
       /* Update var. */
 			float width = Measure.findDistance(lastCoordinate.Value, currentCoordinate);
       cumulativeWidth += width;
-      float height = currentWallHeight;
-			cumulativeArea += Measure.findArea(height, width);
-
-			//measurement.text = width.ToString();
+      updateAreaAndPaint();
 		} else {
 			origin = currentCoordinate;
 			anchorPosition ();
@@ -187,8 +196,20 @@ public class DrawLine : MonoBehaviour
 		}
 
     currentWallHeight = Measure.findDistance(Vector3.up * height, Vector3.zero);
-    //measurement.text = currentWallHeight.ToString();
+    updateAreaAndPaint();
 	}
+
+  public void updateAreaAndPaint() {
+    float width = cumulativeWidth;
+    float height = currentWallHeight;
+
+    cumulativeArea += Measure.findArea(height, width);
+
+    measurementW.text = "Width: " + cumulativeWidth.ToString("n3") + " m";
+    measurementH.text = "Height: " + currentWallHeight.ToString("n3") + " m";
+    measurementA.text = "Area: " + cumulativeArea.ToString("n3") + " sq. m";
+    measurementP.text = "Paint: " + getTotalPaintRequired().ToString("n3") + " litres";
+  }
 
   public float getTotalPaintRequired() {
     return Measure.findPaintRequired(paintType, cumulativeArea);
