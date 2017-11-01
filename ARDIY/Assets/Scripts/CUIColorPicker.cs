@@ -21,7 +21,7 @@ public class CUIColorPicker : MonoBehaviour
 			isVisible = false;
 		} else {
 			foreach (GameObject obj in objs) {
-				obj.transform.localScale = new Vector3 (1.5f, 1.5f, 1.5f);
+				obj.transform.localScale = new Vector3 (1f, 1f, 1f);
 			}
 			isVisible = true;
 		}
@@ -34,6 +34,7 @@ public class CUIColorPicker : MonoBehaviour
         _onValueChange = onValueChange;
 
     }
+
     private Color _color = Color.red;
     private Action<Color> _onValueChange;
     private Action _update;
@@ -204,7 +205,14 @@ public class CUIColorPicker : MonoBehaviour
     }
 
     void Update()
-    {
+	{
         _update();
     }
+
+	private void setWallColour(Color c) {
+		foreach (GameObject wall in DrawLine.WallsCreated) {
+			Material wallMaterial = wall.GetComponent<Renderer>().material;
+			wallMaterial.color = c;
+		}
+	}
 }

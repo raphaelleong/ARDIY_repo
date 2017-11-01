@@ -16,7 +16,7 @@ public class DrawLine : MonoBehaviour
 	public Text debugText;
 	public Text measurement;
 
-	public List<GameObject> wallsCreated;
+	private static List<GameObject> wallsCreated;
 	float currentWallHeight = 1;
 
 	void Start ()
@@ -55,7 +55,7 @@ public class DrawLine : MonoBehaviour
 			}
 
 		}
-
+			
 	}
   
 	/*
@@ -122,6 +122,7 @@ public class DrawLine : MonoBehaviour
 		wallsCreated.Add (wall);
 		wall.transform.position = point1;
 
+
 		MeshFilter meshFilter = wall.GetComponent (typeof(MeshFilter)) as MeshFilter;
 		Mesh wallMesh = meshFilter.mesh;
 		wallMesh.vertices = new Vector3[] {
@@ -158,6 +159,12 @@ public class DrawLine : MonoBehaviour
 					vertices [1] + Vector3.up * height,
 					Vector3.up * height
 				});
+		}
+	}
+
+	public static List<GameObject> WallsCreated {
+		get {
+			return wallsCreated;
 		}
 	}
 }
