@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour {
 	// Use this for initialization
-	bool palette; 
-	CUIColorPicker picker;
+	//bool palette; 
+	//CUIColorPicker picker;
 	void Start () {
-		palette = false; 
-		picker = this.gameObject.GetComponentInChildren<CUIColorPicker> (true);
+		//palette = false; 
+		//picker = this.gameObject.GetComponentInChildren<CUIColorPicker> (true);
         if (ButtonManager.isPreview)
         {
 			
