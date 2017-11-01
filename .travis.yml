@@ -7,79 +7,24 @@ branches:
   - master
   - ryl15-ci-cd
 before_install:
-#install unity
-#compile unity -> .proj file
-#.proj file build into ios app
-#deploy ios app (.ipa?)
 - chmod a+x ./scripts/install.sh
 - chmod a+x ./scripts/build.sh
-
 - softwareupdate -l
 - brew update && brew uninstall xctool && brew install xctool --build-from-source
-- gem update --system --no-document && gem update --no-document && gem uninstall -ax cocoapods && gem install --no-document cocoapods && gem cleanup
+- gem update --system --no-document && gem update --no-document && gem uninstall -ax
+  cocoapods && gem install --no-document cocoapods && gem cleanup
 - pod --version
 - brew --version
 - xctool -version
 - xcodebuild -version -sdk
-
 install:
-- ./scripts/install.sh
-
+- "./scripts/install.sh"
 script:
-- ./scripts/build.sh 
-#TODO check what build.sh outputs :) Builds/iOS/ zip file
-#- xcodebuild -project {project}.xcodeproj -target {target} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-deploy:
-#s3 bucket
-#heroku
-#teamcity
-#hockeyapp
-
+- "./scripts/build.sh"
+deploy: 
 env:
   global:
   - APP_NAME="WallPaintAR"
-  - 'DEVELOPER_NAME="iPhone Distribution: {your_name} ({code})"' 
-  # not sure what details should be provided
+  - 'DEVELOPER_NAME="iPhone Distribution: {your_name} ({code})"'
   - PROFILE_NAME="WallPaintAR"
-#==================================================================
-# TODO
-# add:
-#   profile provisions
-#   certificates
-#   encodings
-#   add-key.sh
-#   set-bundle.sh
-#   install-provisioning-profile.sh
-#   clean.sh (necessary ?)
-#   sign-build.sh
-#before_script:
-#- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/verbtravis.mobileprovision.enc
-#  -d -a -out scripts/profile/verbtravis.mobileprovision
-#- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a
-#  -out scripts/certs/dist.cer
-#- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a
-#  -out scripts/certs/dist.p12
-#- "./scripts/add-key.sh"
-#- "./scripts/set-bundle.sh"
-#- "./scripts/install-provisioning-profile.sh"
-#script:
-#- "./scripts/build.sh"
-#after_script:
-#- "./scripts/cleanup.sh"
-#after_success:
-#- "./scripts/sign-build.sh"
-#env:
-#  global:
-#  - APP_NAME="Verb"
-#  - BUNDLE_DISPLAY_NAME="Verb Travis"
-#  - INFO_PLIST="Verb/Info.plist"
-#  - APP_KEYCHAIN="/tmp/ios-Verb-build.keychain"
-#  - 'DEVELOPER_NAME="iPhone Distribution: William Porta (52KRCFBNVN)"'
-#  - PROFILE_NAME="verbtravis"
-#  - TESTFLIGHT_DISTRIBUTION_LIST="verb-dev"
-#  - secure: BW7OnSwBmbhj31/eqBDquxEzcnD0ChtlHzLBFJ9lfVnfmCN331LRpvIuKjSu0ppc5ZUJtdxo8f5lXkVm3Uks20HeuDENwOWwU+squbKTJAZuKSJviyx2TZMSGFIGc+M+hRMN4ZCs/gIuyNDWMVbNpJe+oVl925nSVE/XVAVb2yQ=
-#  - secure: LtNBu6jGqM/3fTscPx7/3jOzV+CX8kyyNL5uGeGuxYaXBBVqwL3Zlp45MUP5xi+j4S8Czr1HlIhDsJzdQ5vCZdPvpAZzv7L/N+/Vqh+LNbQv4uGIYO+pnNLXp4PDhtM4mXl4YWBEWk4Zko6P5R09L2fW4YBhJ3SDQdOvUwM7+bg=
-#  - secure: OzvfltBFHpJSzzdYHaYgp9XeJa8hOUiBUlFmZ8+ZAnXXhn6oCiHVgm4xCbnUAGl8+xR9yCAzEqPM1DQwUchOCnKW+ZYV84HOzvbqx09ZCjCQUFhvtfYZ3DRbxO1ocXHCoE2Mlp/FPfw5ltvg/PfzhMKkGW4IgVrPmX6Qhqo+dM8=
-#  - secure: Co8sckC7ubGPHkkI1FTBwzV4esrAFOuOlscc9z8IuKyXm6mQ+3zB469VjGQFzYGtb+/OP00ZppsI06nWHc7Nq60GgI/ljhACLl+/lYMpxd3SR6RjPmxilL6Jn26uUp/2q+7F1TKWm+rH7BQxf+jOxq5DIjE/UI8Y+H0EcofB5Xw=
-#  - secure: XlttOGRGCyIcgHxlUppF3z+161HvIftNMPai4+teXKsTCGpGIamUxlE22NJY/igXaqarN39tsly3m1E63UuEbqEH54GJM87IuDs/lNk4nRg331yUgcCiHnaD/KV72blS2+VXpADdEYw4Mris64O1WCBNapN8NSaXmbgjeoNBxGk=
-#  - secure: b1O1mmhvz4ShN4p46KTu0chKZn/QTvu1xCFZkEaYV4dOgV/vwFqJMNO5WrzVXEy5odJB9gKSRQDPjdq0kFP3aJGF8gqfVOw4AISKG5MbzLlPHbzAOEDG5x7gf2nYzDDl1vZXi+2+L2UnNYT3G83Uc3eeOevz7VXMW1QxG7x6GYc=
+  - secure: JXbyyftTqB3dOUNJNyG+uvRuo3D8bTsu0N86xXVZxpoankTAeo3z0t2JPh6svgNK+9e3z1j1+HFkD3jH6BS11Fg5Av2Xwl73OeK9WjkZnBkkgxgFV+oiAyygOAs/XtnVnuQ1w2OMsCQ7ij1Rf+33vmaPjt//wZ6NLGKp/A/p6naMzBcTyf1Di45TtIzE5xXxHZUoLMX+K5aPo3w44dvPBxpAhmLnMqhS5p/8Xv+ROk7aGW3yWaVfIE+h7qAfroHAZkDKskCSUKmlGmG/d/Oj7MeMhFEJs25q0C/e/OGOKCZkMOe33auGceivguj7vaz8bJVZsEgRItUHNWbHWThZrBsgqAy9i1hmV6zk8O6KaMvXEH2ovVHiXvWSoTFUARSuMaISY+Rf8Cxi2ViTDy4pwFuJJBO7lD160+Jv4L33u9dURy9g+mdafJaeCmgvllvbPYOhMqStVlBI5yuArHaHwtp7Z412OgDs2WTpyBL2mn7NyUv1d6QdKqrvhP2Q+7T6KBhmUzTo/Ow4EyQ4XZP+liyxpYnn4CiE/1W6mqOP+LQtCKTmiv06K1pi6MKR5RSAAnIK9FCxNi/2rfco5+v1lFvWULFPHyBOCtq/AZY80wB/K3j8WaxTo4TJ3x09+DYL03aEadiAThsEUcHeFnux8WugylqoX6rdpYXQProggm0=
