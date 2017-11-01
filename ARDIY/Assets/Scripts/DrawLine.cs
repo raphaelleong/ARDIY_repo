@@ -23,7 +23,7 @@ public class DrawLine : MonoBehaviour
 
 	void Start ()
 	{
-		//measurement = GameObject.Find("Measurement").GetComponent<Text>();
+		measurement = GameObject.Find("Measurement").GetComponent<Text>();
 	}
 
 	/*
@@ -113,11 +113,11 @@ public class DrawLine : MonoBehaviour
 		if (lastCoordinate != null) {
 			drawWall (lastCoordinate.Value, currentCoordinate);
 			drawWall (currentCoordinate, lastCoordinate.Value);
-			//float width = Measure.findDistance(lastCoordinate.Value, currentCoordinate);
-			//float height = width;
-			//cumulativeArea = Measure.findArea(height, width);
+			float width = Measure.findDistance(lastCoordinate.Value, currentCoordinate);
+			float height = currentWallHeight;
+			cumulativeArea += Measure.findArea(height, width);
 
-			//measurement.text = width.ToString();
+			measurement.text = width.ToString();
 		} else {
 			origin = currentCoordinate;
 			anchorPosition ();
