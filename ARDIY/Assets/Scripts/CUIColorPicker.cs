@@ -6,6 +6,7 @@ public class CUIColorPicker : MonoBehaviour
 {
     public Color Color { get { return _color; } set { Setup( value ); } }
 	public GameObject button;
+	public GameObject wallManager;
 
 	private bool isVisible = false;
 	[SerializeField]
@@ -219,6 +220,12 @@ public class CUIColorPicker : MonoBehaviour
 		cb.normalColor = this.Color;
 		b.colors = cb;
 
+		wallManager.GetComponent<WallManager>().changeColor (this.Color);
+
         _update();
     }
+
+	void changeWallColor(Color color) {
+		wallManager.GetComponent<WallManager>().changeColor (color);
+	}
 }

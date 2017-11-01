@@ -21,9 +21,12 @@ public class DrawLine : MonoBehaviour
 	public List<GameObject> wallsCreated;
 	float currentWallHeight = 1;
 
+	WallManager wallManager;
+
 	void Start ()
 	{
 		//measurement = GameObject.Find("Measurement").GetComponent<Text>();
+		wallManager = GameObject.Find("WallManager").GetComponent<WallManager>();
 	}
 
 	/*
@@ -128,6 +131,7 @@ public class DrawLine : MonoBehaviour
 	void drawWall (Vector3 point1, Vector3 point2)
 	{
 		GameObject wall = Instantiate (wallPrefab);
+		wallManager.addChild (wall);
 		wallsCreated.Add (wall);
 		wall.transform.position = point1;
 
