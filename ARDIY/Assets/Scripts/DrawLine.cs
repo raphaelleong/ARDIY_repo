@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.iOS;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class DrawLine : MonoBehaviour
 {
@@ -29,10 +30,11 @@ public class DrawLine : MonoBehaviour
 	*/
 	void Update ()
 	{
-		if (Input.touchCount > 0) {
-			var touch = Input.GetTouch (0);
-			if (touch.phase == TouchPhase.Began) {
-				var screenPosition = Camera.main.ScreenToViewportPoint (new Vector3(Screen.width/2, Screen.height/2, Camera.main.nearClipPlane));
+		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+		{
+			// Check if finger is over a UI element
+			if (!EventSystem.current.IsPointerOverGameObject (Input.GetTouch (0).fingerId)) {
+				var screenPosition = Camera.main.ScreenToViewportPoint (new Vector3 (Screen.width / 2, Screen.height / 2, Camera.main.nearClipPlane));
 				ARPoint point = new ARPoint {
 					x = screenPosition.x,
 					y = screenPosition.y
@@ -51,6 +53,7 @@ public class DrawLine : MonoBehaviour
 				while (i < resultTypes.Length && !foundPointInPlane (point, resultTypes [i])) {
 					i++;
 				}
+
 
 			}
 

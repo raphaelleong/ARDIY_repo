@@ -16,7 +16,7 @@ public class textEdit : MonoBehaviour {
         {
             GameObject newInstr = Instantiate(instructionObject, contentObject.transform.position, Quaternion.identity);
             newInstr.transform.SetParent(contentObject.transform);
-            Text text = newInstr.transform.GetChild(0).GetComponent(typeof(Text)) as Text;
+			Text text = newInstr.transform.GetChild(0).GetComponent<Text>();
             text.text = instr;
         }
     }

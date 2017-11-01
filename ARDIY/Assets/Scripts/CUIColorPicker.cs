@@ -5,10 +5,12 @@ using UnityEngine.UI;
 public class CUIColorPicker : MonoBehaviour
 {
     public Color Color { get { return _color; } set { Setup( value ); } }
+	public GameObject button;
 
 	private bool isVisible = false;
 	[SerializeField]
 	private GameObject[] objs;
+
 		
 
 	public void toggle() {
@@ -193,7 +195,7 @@ public class CUIColorPicker : MonoBehaviour
 
     void Awake()
     {
-		Color = Color.red;
+		Color = Color.white;
 		objs = GameObject.FindGameObjectsWithTag ("colourPalette");
 			
 			foreach (GameObject obj in objs) {
@@ -205,6 +207,18 @@ public class CUIColorPicker : MonoBehaviour
 
     void Update()
     {
+		//Button btn = button.GetComponent<Button> ();
+		//btn.colors.normalColor = this.Color;
+
+
+		Button b = button.GetComponent<Button>(); 
+		ColorBlock cb = b.colors;
+		cb.disabledColor = this.Color; 
+		cb.highlightedColor = this.Color; 
+		cb.pressedColor = this.Color; 
+		cb.normalColor = this.Color;
+		b.colors = cb;
+
         _update();
     }
 }
