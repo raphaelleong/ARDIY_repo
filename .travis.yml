@@ -37,7 +37,10 @@ deploy:
 
 env:
   global:
-
+  - APP_NAME="WallPaintAR"
+  - 'DEVELOPER_NAME="iPhone Distribution: {your_name} ({code})"' 
+  # not sure what details should be provided
+  - PROFILE_NAME="WallPaintAR"
 #==================================================================
 # TODO
 # add:
