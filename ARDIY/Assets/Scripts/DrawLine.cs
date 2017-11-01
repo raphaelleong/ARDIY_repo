@@ -8,7 +8,7 @@ public class DrawLine : MonoBehaviour
 {
 	// determines the previous coordinate that was saved
 	Vector3? lastCoordinate;
-	Vector3 currentCoordinate;
+
 	// The first coordinate that was saved
 	Vector3 origin;
 
@@ -32,7 +32,7 @@ public class DrawLine : MonoBehaviour
 		if (Input.touchCount > 0) {
 			var touch = Input.GetTouch (0);
 			if (touch.phase == TouchPhase.Began) {
-				var screenPosition = Camera.main.ScreenToViewportPoint (new Vector3(Screen.width/2, Screen.height/2, Camera.main.nearClipPlane));
+				var screenPosition = Camera.main.ScreenToViewportPoint (touch.position/*new Vector3(Screen.width/2, Screen.height/2, Camera.main.nearClipPlane)*/);
 				ARPoint point = new ARPoint {
 					x = screenPosition.x,
 					y = screenPosition.y
@@ -72,6 +72,7 @@ public class DrawLine : MonoBehaviour
 			Vector3 currentCoordinate = getFurthestPoint(corners);
 			drawCube (currentCoordinate);
 			lastCoordinate = currentCoordinate;
+//			measurement.text = lastCoordinate;
 			return true;
 		}
 
