@@ -6,6 +6,12 @@ using UnityEngine.XR.iOS;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+//TODO:
+// - move functions to Draw.cs
+// - rename this class to DrawManager.cs
+// - merge with ysk115-UI
+// - leave in anchorPosition
+
 public class DrawLine : MonoBehaviour
 {
 	/* determines the previous coordinate that was saved */
