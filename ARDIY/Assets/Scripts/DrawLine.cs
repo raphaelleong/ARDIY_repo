@@ -40,17 +40,12 @@ public class DrawLine : MonoBehaviour
   /* selected paint type (choice within button menu, requires discussion) */
   private PaintType paintType = PaintType.OilBased;
 
+	WallManager wallManager;
+
 	void Start ()
 	{
-		measurementW = GameObject.Find("MeasurementWidth").GetComponent<Text>();
-    measurementH = GameObject.Find("MeasurementHeight").GetComponent<Text>();
-    measurementA = GameObject.Find("MeasurementArea").GetComponent<Text>();
-    measurementP = GameObject.Find("MeasurementPaint").GetComponent<Text>();
-
-    measurementW.text = "Width: " + cumulativeWidth.ToString("n3") + " m";
-    measurementH.text = "Height: " + currentWallHeight.ToString("n3") + " m";
-    measurementA.text = "Area: " + cumulativeArea.ToString("n3") + " sq. m";
-    measurementP.text = "Paint: " + getTotalPaintRequired().ToString("n3") + " litres";
+		//measurement = GameObject.Find("Measurement").GetComponent<Text>();
+		wallManager = GameObject.Find("WallManager").GetComponent<WallManager>();
 	}
 
 	/*
@@ -155,6 +150,7 @@ public class DrawLine : MonoBehaviour
 	void drawWall (Vector3 point1, Vector3 point2)
 	{
 		GameObject wall = Instantiate (wallPrefab);
+		wallManager.addChild (wall);
 		wallsCreated.Add (wall);
 		wall.transform.position = point1;
 

@@ -6,6 +6,7 @@ public class CUIColorPicker : MonoBehaviour
 {
     public Color Color { get { return _color; } set { Setup( value ); } }
 	public GameObject button;
+	public GameObject wallManager;
 
 	private bool isVisible = false;
 	[SerializeField]
@@ -182,6 +183,7 @@ public class CUIColorPicker : MonoBehaviour
             }
         };
         _update = idle;
+		SetOnValueChangeCallback (changeWallColor);
     }
 
     public void SetRandomColor()
@@ -211,6 +213,14 @@ public class CUIColorPicker : MonoBehaviour
 		//btn.colors.normalColor = this.Color;
 
 
+
+
+		//wallManager.GetComponent<WallManager>().changeColor (this.Color);
+
+        _update();
+    }
+
+	void changeWallColor(Color color) {
 		Button b = button.GetComponent<Button>(); 
 		ColorBlock cb = b.colors;
 		cb.disabledColor = this.Color; 
@@ -218,7 +228,6 @@ public class CUIColorPicker : MonoBehaviour
 		cb.pressedColor = this.Color; 
 		cb.normalColor = this.Color;
 		b.colors = cb;
-
-        _update();
-    }
+		wallManager.GetComponent<WallManager>().changeColor (color);
+	}
 }

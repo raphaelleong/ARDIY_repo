@@ -7,7 +7,7 @@ public class textEdit : MonoBehaviour {
 
     public GameObject contentObject;
     public GameObject instructionObject;
-	string[] instructions = new string[16];
+  string[] instructions = new string[16];
 
 	// Use this for initialization
 	void Start () {
@@ -15,9 +15,11 @@ public class textEdit : MonoBehaviour {
         foreach (string instr in instructions)
         {
             GameObject newInstr = Instantiate(instructionObject, contentObject.transform.position, Quaternion.identity);
-            newInstr.transform.SetParent(contentObject.transform);
+			newInstr.SetActive (true);
+			newInstr.transform.SetParent(contentObject.transform);
 			Text text = newInstr.transform.GetChild(0).GetComponent<Text>();
             text.text = instr;
+      newInstr.transform.localScale = Vector3.one;
         }
     }
 
