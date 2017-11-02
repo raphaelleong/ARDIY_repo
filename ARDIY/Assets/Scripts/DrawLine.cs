@@ -49,10 +49,7 @@ public class DrawLine : MonoBehaviour
     measurementA = GameObject.Find("MeasurementArea").GetComponent<Text>();
     measurementP = GameObject.Find("MeasurementPaint").GetComponent<Text>();
 
-    measurementW.text = "Width: " + cumulativeWidth.ToString("n3") + " m";
-    measurementH.text = "Height: " + currentWallHeight.ToString("n3") + " m";
-    measurementA.text = "Area: " + cumulativeArea.ToString("n3") + " sq. m";
-    measurementP.text = "Paint: " + getTotalPaintRequired().ToString("n3") + " litres";
+    displayMeasurements ();
 
     wallManager = GameObject.Find("WallManager").GetComponent<WallManager>();
 	}
@@ -210,13 +207,17 @@ public class DrawLine : MonoBehaviour
 
     cumulativeArea = Measure.findArea(height, width);
 
-    measurementW.text = "Width: " + cumulativeWidth.ToString("n3") + " m";
-    measurementH.text = "Height: " + currentWallHeight.ToString("n3") + " m";
-    measurementA.text = "Area: " + cumulativeArea.ToString("n3") + " sq. m";
-    measurementP.text = "Paint: " + getTotalPaintRequired().ToString("n3") + " litres";
+    displayMeasurements ();
   }
 
   public float getTotalPaintRequired() {
     return Measure.findPaintRequired(paintType, cumulativeArea);
+  }
+
+  private void displayMeasurements() {
+    measurementW.text = "Width: " + cumulativeWidth.ToString("n3") + " m";
+    measurementH.text = "Height: " + currentWallHeight.ToString("n3") + " m";
+    measurementA.text = "Area: " + cumulativeArea.ToString("n3") + " sq. m";
+    measurementP.text = "Paint: " + getTotalPaintRequired().ToString("n3") + " litres of " + paintType.ToString() + " paint";
   }
 }
