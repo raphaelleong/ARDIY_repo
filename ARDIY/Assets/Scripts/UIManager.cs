@@ -31,6 +31,15 @@ public class UIManager : MonoBehaviour {
 			recorder.SetActive(false); 
 			GameObject slider = GameObject.Find("Slider");
 			slider.SetActive(false); 
+			GameObject width = GameObject.Find("MeasurementWidth");
+			width.SetActive(false);
+			GameObject height = GameObject.Find("MeasurementHeight");
+			height.SetActive(false);
+			GameObject area = GameObject.Find("MeasurementArea");
+			area.SetActive(false);
+			GameObject paint = GameObject.Find("MeasurementPaint");
+			paint.SetActive(false);
+
         }
 	}
 
