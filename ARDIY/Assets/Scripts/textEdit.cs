@@ -15,10 +15,10 @@ public class textEdit : MonoBehaviour {
         foreach (string instr in instructions)
         {
             GameObject newInstr = Instantiate(instructionObject, contentObject.transform.position, Quaternion.identity);
-			newInstr.SetActive (true);
-			newInstr.transform.SetParent(contentObject.transform);
-			Text text = newInstr.transform.GetChild(0).GetComponent<Text>();
+            newInstr.transform.SetParent(contentObject.transform);
+            Text text = newInstr.transform.GetChild(0).GetComponent(typeof(Text)) as Text;
             text.text = instr;
+			newInstr.transform.localScale = Vector3.one;
         }
     }
 
