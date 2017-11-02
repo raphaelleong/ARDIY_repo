@@ -44,8 +44,17 @@ public class DrawLine : MonoBehaviour
 
 	void Start ()
 	{
-		//measurement = GameObject.Find("Measurement").GetComponent<Text>();
-		wallManager = GameObject.Find("WallManager").GetComponent<WallManager>();
+    measurementW = GameObject.Find("MeasurementWidth").GetComponent<Text>();
+    measurementH = GameObject.Find("MeasurementHeight").GetComponent<Text>();
+    measurementA = GameObject.Find("MeasurementArea").GetComponent<Text>();
+    measurementP = GameObject.Find("MeasurementPaint").GetComponent<Text>();
+
+    measurementW.text = "Width: " + cumulativeWidth.ToString("n3") + " m";
+    measurementH.text = "Height: " + currentWallHeight.ToString("n3") + " m";
+    measurementA.text = "Area: " + cumulativeArea.ToString("n3") + " sq. m";
+    measurementP.text = "Paint: " + getTotalPaintRequired().ToString("n3") + " litres";
+
+    wallManager = GameObject.Find("WallManager").GetComponent<WallManager>();
 	}
 
 	/*
@@ -199,7 +208,7 @@ public class DrawLine : MonoBehaviour
     float width = cumulativeWidth;
     float height = currentWallHeight;
 
-    cumulativeArea += Measure.findArea(height, width);
+    cumulativeArea = Measure.findArea(height, width);
 
     measurementW.text = "Width: " + cumulativeWidth.ToString("n3") + " m";
     measurementH.text = "Height: " + currentWallHeight.ToString("n3") + " m";
