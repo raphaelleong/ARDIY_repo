@@ -12,6 +12,7 @@ using UnityEngine.EventSystems;
 // - merge with ysk115-UI
 // - leave in anchorPosition
 // - create getter methods for private var.
+// - get rid of "UI" and other strings - put in a static-filled class so we can access like SceneNames.MainPage etccc
 
 public class DrawLine : MonoBehaviour
 {
