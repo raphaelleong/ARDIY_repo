@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 23225559103804838}
   - component: {fileID: 114058189748196068}
   - component: {fileID: 64136879826731184}
-  - component: {fileID: 114535646908383680}
+  - component: {fileID: 114930273381469232}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b30988b40ea24e02b23cf579c38415f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114535646908383680
+--- !u!114 &114930273381469232
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -148,11 +148,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1275446157945102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7920a8fe5888c4d398a75c74e6d538d1, type: 3}
+  m_Script: {fileID: 11500000, guid: e491f2b509ccb43b28bbbd26974fe862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstCorner: {x: 0, y: 0, z: 0}
-  secondCorner: {x: 0, y: 0, z: 0}
 --- !u!120 &120528633707468656
 LineRenderer:
   m_ObjectHideFlags: 1
