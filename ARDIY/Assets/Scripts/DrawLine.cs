@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -193,7 +192,7 @@ public class DrawLine : MonoBehaviour
 	public void adjustWallHeight (float height)
 	{
 		//currentWallHeight = height;
-		WallManager.adjustWallHeight (height);
+		wallManager.adjustWallHeight (height);
 
 		currentWallHeight = Measure.findDistance (Vector3.up * height, Vector3.zero);
 		updateAreaAndPaint ();
@@ -223,15 +222,11 @@ public class DrawLine : MonoBehaviour
 	}
 
 	/* Removes last wall that was placed */
-	public void removeLastWall ()
+	public void removeLastWallCoordinates ()
 	{
-		if (coordinates.Count > 1) {
-
-			WallManager.removeWall ();
-
-			coordinates.RemoveFirst();
-			/* reverts to prev. set of coordinates */
-			lastCoordinate = coordinates.First;
-		}
+		coordinates.RemoveFirst();
+		/* reverts to prev. set of coordinates */
+		Vector3 coor = coordinates.First.Value;
+		lastCoordinate = coor;
 	}
 }

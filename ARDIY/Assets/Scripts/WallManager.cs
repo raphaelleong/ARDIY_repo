@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WallManager : MonoBehaviour {
-
-	private LinkedList<GameObject> wallsCreated = new LinkedList<GameObject>();
+	//TODO unsure of behaviour of DrawLine, probably needs modifying
+	private DrawLine drawline;
 	private Color currentColor;
+	private int numOfWalls = 0;
+
 	// Use this for initialization
 	void Start () {
 
@@ -29,24 +31,25 @@ public class WallManager : MonoBehaviour {
 	}
 
 	public void addWall(GameObject wall) {
-		wallsCreated.AddFirst(wall);
-		addChild(wall);
+		wall.transform.SetParent (this.transform);
+		wall.GetComponent<Wall>().changeColor (currentColor);	
+		numOfWalls++;
 	}
 
 	public void removeWall() {
-		GameObject prevWall = wallsCreated.First;
+		Wall[] walls = this.GetComponentsInChildren<Wall> ();
+
+		Wall prevWall = walls[numOfWalls - 1];
 		//prevWall.transform.DetachFromParent();
 		Destroy(prevWall);
-		wallsCreated.RemoveFirst();
-	}
-
-	public void addChild(GameObject wall) {
-		wall.transform.SetParent (this.transform);
-		wall.GetComponent<Wall>().changeColor (currentColor);
+		drawline.removeLastWallCoordinates();
+		numOfWalls--;
 	}
 
 	public void adjustWallHeight(float height) {
-		foreach (GameObject wall in wallsCreated) {
+		Wall[] walls = this.GetComponentsInChildren<Wall> ();
+
+		foreach (Wall wall in walls) {
 			MeshFilter meshFilter = wall.GetComponent (typeof(MeshFilter)) as MeshFilter;
 			Mesh wallMesh = meshFilter.mesh;
 			Vector3[] vertices = wallMesh.vertices;
@@ -59,5 +62,4 @@ public class WallManager : MonoBehaviour {
 				});
 		}
 	}
-
 }

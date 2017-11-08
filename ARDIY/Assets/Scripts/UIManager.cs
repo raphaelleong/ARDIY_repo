@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour {
 	private GameObject infoPanel;
 	private bool infoDisplayed; 
 	private GameObject wallRemove;
+	private WallManager wallManager;
 
 	void Start () {
 		palette = false; 
@@ -82,6 +83,6 @@ public class UIManager : MonoBehaviour {
 	public void Remove_OnClick()
 	{
 		//TODO Possibly highlight/fade button when able to remove last wall during preview
-		DrawLine.removeLastWall ();
+		wallManager.removeWall();
 	}
  }
