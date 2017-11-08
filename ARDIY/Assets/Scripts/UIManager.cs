@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour {
 	private GameObject colour;
 	private GameObject infoPanel;
 	private bool infoDisplayed; 
+	private GameObject wallRemove;
 
 	void Start () {
 		palette = false; 
@@ -53,6 +54,9 @@ public class UIManager : MonoBehaviour {
 //			area.SetActive(false);
 //			GameObject paint = GameObject.Find("MeasurementPaint");
 //			paint.SetActive(false);
+
+			wallRemove = GameObject.Find ("Remove Button");
+			wallRemove.SetActive (false);
         }
 	}
 
@@ -73,5 +77,11 @@ public class UIManager : MonoBehaviour {
 	{
 		infoPanel.SetActive (!infoDisplayed);
 		infoDisplayed = !infoDisplayed;
+	}
+
+	public void Remove_OnClick()
+	{
+		//TODO Possibly highlight/fade button when able to remove last wall during preview
+		DrawLine.removeLastWall ();
 	}
  }

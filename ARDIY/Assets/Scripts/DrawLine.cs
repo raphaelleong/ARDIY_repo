@@ -19,40 +19,45 @@ public class DrawLine : MonoBehaviour
 	/* determines the previous coordinate that was saved */
 	Vector3? lastCoordinate;
 
+	/* tracks history of prev. coordinates */
+	private LinkedList<Vector3> coordinates;
+
 	/* The first coordinate that was saved */
 	Vector3 origin;
 
 	public GameObject wallPrefab;
-  public List<GameObject> wallsCreated;
+
+	//TODO remove?
+	//public List<GameObject> wallsCreated;
 
 	public Text measurementW;
-  public Text measurementH;
-  public Text measurementA;
-  public Text measurementP;
+	public Text measurementH;
+	public Text measurementA;
+	public Text measurementP;
 
-  private float cumulativeArea;
+	private float cumulativeArea;
 
-  /* keeps track of total width */
-  private float cumulativeWidth;
+	/* keeps track of total width */
+	private float cumulativeWidth;
 
-  /* initial wall height  */
+	/* initial wall height  */
 	private float currentWallHeight = 1;
 
-  /* selected paint type (choice within button menu, requires discussion) */
-  private PaintType paintType = PaintType.OilBased;
+	/* selected paint type (choice within button menu, requires discussion) */
+	private PaintType paintType = PaintType.OilBased;
 
 	WallManager wallManager;
 
 	void Start ()
 	{
-    measurementW = GameObject.Find("MeasurementWidth").GetComponent<Text>();
-    measurementH = GameObject.Find("MeasurementHeight").GetComponent<Text>();
-    measurementA = GameObject.Find("MeasurementArea").GetComponent<Text>();
-    measurementP = GameObject.Find("MeasurementPaint").GetComponent<Text>();
+		measurementW = GameObject.Find ("MeasurementWidth").GetComponent<Text> ();
+		measurementH = GameObject.Find ("MeasurementHeight").GetComponent<Text> ();
+		measurementA = GameObject.Find ("MeasurementArea").GetComponent<Text> ();
+		measurementP = GameObject.Find ("MeasurementPaint").GetComponent<Text> ();
 
-    displayMeasurements ();
+		displayMeasurements ();
 
-    wallManager = GameObject.Find("WallManager").GetComponent<WallManager>();
+		wallManager = GameObject.Find ("WallManager").GetComponent<WallManager> ();
 	}
 
 	/*
@@ -60,13 +65,12 @@ public class DrawLine : MonoBehaviour
 	*/
 	void Update ()
 	{
-		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-		{
+		if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) {
 			// Check if finger is over a UI element
 			if (!EventSystem.current.IsPointerOverGameObject (Input.GetTouch (0).fingerId)) {
-				
+
 				var touch = Input.GetTouch (0);
-				var screenPosition = Camera.main.ScreenToViewportPoint (new Vector3(Screen.width/2, Screen.height/2, Camera.main.nearClipPlane));
+				var screenPosition = Camera.main.ScreenToViewportPoint (new Vector3 (Screen.width / 2, Screen.height / 2, Camera.main.nearClipPlane));
 				ARPoint point = new ARPoint {
 					x = screenPosition.x,
 					y = screenPosition.y
@@ -103,8 +107,9 @@ public class DrawLine : MonoBehaviour
 		List<ARHitTestResult> corners = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, resultType);
 
 		if (corners.Count > 0) {
-			Vector3 currentCoordinate = getFurthestPoint(corners);
+			Vector3 currentCoordinate = getFurthestPoint (corners);
 			drawCube (currentCoordinate);
+			coordinates.AddFirst (currentCoordinate);
 			lastCoordinate = currentCoordinate;
 			//			measurement.text = lastCoordinate;
 			return true;
@@ -114,12 +119,13 @@ public class DrawLine : MonoBehaviour
 	}
 
 	/* Get the furthest point from the screen where it is tapped */
-	Vector3 getFurthestPoint(List<ARHitTestResult> corners) {
+	Vector3 getFurthestPoint (List<ARHitTestResult> corners)
+	{
 		Vector3 furthestPoint = Camera.main.transform.position;
 		foreach (ARHitTestResult corner in corners) {
 			Vector3 realWorldPoint = UnityARMatrixOps.GetPosition (corner.worldTransform);
 			if (Vector3.Distance (Camera.main.transform.position, realWorldPoint) >
-				Vector3.Distance (Camera.main.transform.position, furthestPoint)) {
+			    Vector3.Distance (Camera.main.transform.position, furthestPoint)) {
 				furthestPoint = realWorldPoint;
 			}
 		}
@@ -128,7 +134,8 @@ public class DrawLine : MonoBehaviour
 	}
 
 	/* Place a cube in the specify coordinate and draw a wall if cube is not the first cube placed */
-	void drawCube (Vector3 currentCoordinate) {
+	void drawCube (Vector3 currentCoordinate)
+	{
 		if (lastCoordinate != null && Vector3.Distance (currentCoordinate, origin) < 0.1) {
 			//if close to the first point then take it as the first point
 			currentCoordinate = origin;
@@ -143,10 +150,10 @@ public class DrawLine : MonoBehaviour
 			drawWall (lastCoordinate.Value, currentCoordinate);
 			drawWall (currentCoordinate, lastCoordinate.Value);
 
-      /* Update var. */
-			float width = Measure.findDistance(lastCoordinate.Value, currentCoordinate);
-      cumulativeWidth += width;
-      updateAreaAndPaint();
+			/* Update var. */
+			float width = Measure.findDistance (lastCoordinate.Value, currentCoordinate);
+			cumulativeWidth += width;
+			updateAreaAndPaint ();
 		} else {
 			origin = currentCoordinate;
 			anchorPosition ();
@@ -157,8 +164,9 @@ public class DrawLine : MonoBehaviour
 	void drawWall (Vector3 point1, Vector3 point2)
 	{
 		GameObject wall = Instantiate (wallPrefab);
-		wallManager.addChild (wall);
-		wallsCreated.Add (wall);
+		wallManager.addWall (wall);
+		//TODO unsure whether to remove this as list is now implemented in WallManager.cs
+		//wallsCreated.Add (wall);
 		wall.transform.position = point1;
 
 		MeshFilter meshFilter = wall.GetComponent (typeof(MeshFilter)) as MeshFilter;
@@ -185,40 +193,45 @@ public class DrawLine : MonoBehaviour
 	public void adjustWallHeight (float height)
 	{
 		//currentWallHeight = height;
-		foreach (GameObject wall in wallsCreated) {
-			MeshFilter meshFilter = wall.GetComponent (typeof(MeshFilter)) as MeshFilter;
-			Mesh wallMesh = meshFilter.mesh;
-			Vector3[] vertices = wallMesh.vertices;
-			wallMesh.SetVertices (
-				new List<Vector3> () {
-					Vector3.zero,
-					vertices [1],
-					vertices [1] + Vector3.up * height,
-					Vector3.up * height
-				});
-		}
+		WallManager.adjustWallHeight (height);
 
-    currentWallHeight = Measure.findDistance(Vector3.up * height, Vector3.zero);
-    updateAreaAndPaint();
+		currentWallHeight = Measure.findDistance (Vector3.up * height, Vector3.zero);
+		updateAreaAndPaint ();
 	}
 
-  public void updateAreaAndPaint() {
-    float width = cumulativeWidth;
-    float height = currentWallHeight;
+	public void updateAreaAndPaint ()
+	{
+		float width = cumulativeWidth;
+		float height = currentWallHeight;
 
-    cumulativeArea = Measure.findArea(height, width);
+		cumulativeArea = Measure.findArea (height, width);
 
-    displayMeasurements ();
-  }
+		displayMeasurements ();
+	}
 
-  public float getTotalPaintRequired() {
-    return Measure.findPaintRequired(paintType, cumulativeArea);
-  }
+	public float getTotalPaintRequired ()
+	{
+		return Measure.findPaintRequired (paintType, cumulativeArea);
+	}
 
-  private void displayMeasurements() {
-    measurementW.text = "Width: " + cumulativeWidth.ToString("n3") + " m";
-    measurementH.text = "Height: " + currentWallHeight.ToString("n3") + " m";
-    measurementA.text = "Area: " + cumulativeArea.ToString("n3") + " sq. m";
-    measurementP.text = "Paint: " + getTotalPaintRequired().ToString("n3") + " litres of " + paintType.ToString() + " paint";
-  }
+	private void displayMeasurements ()
+	{
+		measurementW.text = "Width: " + cumulativeWidth.ToString ("n3") + " m";
+		measurementH.text = "Height: " + currentWallHeight.ToString ("n3") + " m";
+		measurementA.text = "Area: " + cumulativeArea.ToString ("n3") + " sq. m";
+		measurementP.text = "Paint: " + getTotalPaintRequired ().ToString ("n3") + " litres of " + paintType.ToString () + " paint";
+	}
+
+	/* Removes last wall that was placed */
+	public void removeLastWall ()
+	{
+		if (coordinates.Count > 1) {
+
+			WallManager.removeWall ();
+
+			coordinates.RemoveFirst();
+			/* reverts to prev. set of coordinates */
+			lastCoordinate = coordinates.First;
+		}
+	}
 }
