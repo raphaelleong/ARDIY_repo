@@ -11,26 +11,48 @@ public class UIManager : MonoBehaviour {
 	CUIColorPicker picker;
 	private GameObject home; 
 	private GameObject colour;
+	private GameObject infoPanel;
+	private bool infoDisplayed; 
 
 	void Start () {
 		palette = false; 
 		picker = this.gameObject.GetComponentInChildren<CUIColorPicker> (true);
 
 		home = GameObject.Find ("Home Button");
+		infoPanel = GameObject.Find ("Info Pop Up");
+		Debug.Log (infoPanel);
+		infoDisplayed = false; 
 		//colour = GameObject.Find ("Colour Palette");
 
         if (ButtonManager.isPreview)
         {
 			GameObject instructions = GameObject.Find("InstructionsUI");
             instructions.SetActive(false);
+			infoPanel.SetActive (false);
         } else
         {
             GameObject colourPicker = GameObject.Find("ColourUI");
             colourPicker.SetActive(false);
+			GameObject colourButton = GameObject.Find("Colour Palette");
+			colourButton.SetActive (false);
+			GameObject infoButton = GameObject.Find("Info Button");
+			infoButton.SetActive (false);
+
+
 			GameObject recorder = GameObject.Find("Recorder");
 			recorder.SetActive(false); 
 			GameObject slider = GameObject.Find("Slider");
 			slider.SetActive(false); 
+
+			infoPanel.SetActive (false);
+//			GameObject width = GameObject.Find("MeasurementWidth");
+//			width.SetActive(false);
+//			GameObject height = GameObject.Find("MeasurementHeight");
+//			height.SetActive(false);
+//			GameObject area = GameObject.Find("MeasurementArea");
+//			area.SetActive(false);
+//			GameObject paint = GameObject.Find("MeasurementPaint");
+//			paint.SetActive(false);
         }
 	}
 
@@ -45,5 +67,11 @@ public class UIManager : MonoBehaviour {
 		SceneManager.LoadScene("UI");
 		Debug.Log("Home pressed");
 		//go to the home screen
+	}
+
+	public void Info_OnClick()
+	{
+		infoPanel.SetActive (!infoDisplayed);
+		infoDisplayed = !infoDisplayed;
 	}
  }

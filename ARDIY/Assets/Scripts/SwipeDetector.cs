@@ -107,13 +107,16 @@ public class SwipeDetector : MonoBehaviour
     void OnSwipeUp()
     {
         showPanel();
-    indicator.GetComponent<RectTransform> ().rotation = Quaternion.Euler(new Vector3 (0, 0, 0));
+		indicator.SetActive (false);
+    //indicator.GetComponent<RectTransform> ().rotation = Quaternion.Euler(new Vector3 (0, 0, 0));
+		//indicator.GetComponent<RectTransform> ().position = new Vector3 (0, -150, 0);
         Debug.Log("Swipe UP");
     }
 
     void OnSwipeDown()
     {
         hidePanel();
+		indicator.SetActive (true);
         indicator.GetComponent<RectTransform> ().rotation = Quaternion.Euler(new Vector3 (0, 0, 180));
         Debug.Log("Swipe Down");
     }
