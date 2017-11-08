@@ -58,8 +58,11 @@ public class SelectCutoutArea : MonoBehaviour {
 
     if (Input.GetKeyDown (KeyCode.Space)) {
       if (secondCornerPlaced) {
-        cutoutMesh.Cutout (new Vector3[4]{ firstCorner, otherCornerA, secondCorner, otherCornerB });
-        lineRenderer.enabled = false;
+        //cutoutMesh.Cutout (new Vector3[4]{ firstCorner, otherCornerA, secondCorner, otherCornerB });
+        cutoutMesh.Cutout (firstCorner, secondCorner);
+        firstCornerPlaced = false;
+        secondCornerPlaced = false;
+        lineRenderer.positionCount = 0;
         Destroy (cube);
       } else {
         Debug.Log ("points not selected");

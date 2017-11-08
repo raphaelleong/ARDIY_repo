@@ -6,19 +6,23 @@ public class CutoutMesh : MonoBehaviour {
 
   Mesh mesh;
 
+  public GameObject cutoutPrefab;
+
 	// Use this for initialization
 	void Start () {
     mesh = GetComponent<MeshFilter> ().mesh;
 	}
 	
+  /*
   public void Cutout (Vector3[] cutoutVertices) {
     /* to simulate what would happen in the real program */
+    /*
     Vector3[] temp_vertices = mesh.vertices;
     Vector3 temp = temp_vertices [1];
     temp_vertices [1] = temp_vertices [2];
     temp_vertices [2] = temp;
     mesh.vertices = temp_vertices;
-    /*    */
+    
     Vector3[] vertices = mesh.vertices;
     int closestPointIdx = getClosestPointIdx (cutoutVertices, vertices [0]);
     Vector3[] newVertices = new Vector3[8];
@@ -42,6 +46,20 @@ public class CutoutMesh : MonoBehaviour {
     mesh.triangles = newTriangles;
 
     mesh.RecalculateNormals();
+  }
+
+*/
+
+  public void Cutout (Vector3 corner1, Vector3 corner2) {
+  
+    Vector3 otherCorner1 = new Vector3 (corner1.x, corner2.y, corner1.z);
+    Vector3 otherCorner2 = new Vector3 (corner2.x, corner1.y, corner2.z);
+
+    GameObject cutout = Instantiate (cutoutPrefab, this.transform);
+    float width = Vector3.Distance(corner1, otherCorner2);
+    float height = Vector3.Distance(corner1, otherCorner1);
+    cutout.transform.localScale = new Vector3 (width, height, 1);
+    cutout.transform.position = corner1 + (corner2 - corner1) / 2;
   }
 
   void CreateCube (Vector3 pos, Color col) {
