@@ -15,7 +15,8 @@ public class Wall : MonoBehaviour {
 		renderer = this.GetComponent<MeshRenderer> ();
 		material = renderer.material;
 		Debug.Log ("material" + material.Equals (null));
-
+    meshFilter = this.GetComponent (typeof(MeshFilter)) as MeshFilter;
+    mesh = meshFilter.mesh;
 	}
 	
 	// Update is called once per frame
@@ -35,4 +36,34 @@ public class Wall : MonoBehaviour {
 		//renderer.material = material; 
 		//mesh.RecalculateBounds ();
 	}
+
+
+
+  public void drawWall(Vector3 point1, Vector3 point2, float currentWallHeight) {
+    this.transform.position = point1;
+
+    MeshFilter meshFilter = this.GetComponent (typeof(MeshFilter)) as MeshFilter;
+    Mesh wallMesh = meshFilter.mesh;
+    wallMesh.vertices = new Vector3[] {
+      Vector3.zero,
+      (point2 - point1),
+      (point2 - point1) + Vector3.up * currentWallHeight,
+      Vector3.up * currentWallHeight
+    };
+    //point1, point2, point2.xyz, point1.xyz
+    wallMesh.triangles = new int[] { 0, 1, 2, 0, 2, 3 };
+  }
+
+  public void setHeight(float height) {
+    MeshFilter meshFilter = this.GetComponent (typeof(MeshFilter)) as MeshFilter;
+    Mesh wallMesh = meshFilter.mesh;
+    Vector3[] vertices = wallMesh.vertices;
+    wallMesh.SetVertices (
+      new List<Vector3> () {
+        Vector3.zero,
+        vertices [1],
+        vertices [1] + Vector3.up * height,
+        Vector3.up * height
+      });
+  }
 }

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class WallManager : MonoBehaviour {
 
-	private Color currentColor; 
+	private Color currentColor;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,7 +17,6 @@ public class WallManager : MonoBehaviour {
 	}
 
 	public void changeColor(Color color) {
-		
 			currentColor = color; 
 
 			Wall[] walls = this.GetComponentsInChildren<Wall> ();
@@ -34,4 +34,18 @@ public class WallManager : MonoBehaviour {
 		wall.GetComponent<Wall>().changeColor (currentColor);
 	}
 		
+  public void setWallHeights(float height) {
+    Wall[] walls = this.GetComponentsInChildren<Wall> ();
+    foreach (Wall w in walls) {
+      w.setHeight (height);
+    }
+  }
+
+  public static Wall getWall(GameObject wall) {
+    return wall.GetComponent<Wall> ();
+  }
+
+  public static WallManager getWallManager() {
+    return GameObject.Find ("WallManager").GetComponent<WallManager> ();
+  }
 }
