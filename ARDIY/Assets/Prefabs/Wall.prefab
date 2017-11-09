@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 23225559103804838}
   - component: {fileID: 114058189748196068}
   - component: {fileID: 64136879826731184}
+  - component: {fileID: 114310806337061226}
   - component: {fileID: 114930273381469232}
   m_Layer: 0
   m_Name: Wall
@@ -54,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1228469214749428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.023}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4465782381143002}
@@ -67,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1275446157945102}
   m_LocalRotation: {x: -0, y: -0.262313, z: -0, w: 0.96498287}
-  m_LocalPosition: {x: -0.011643866, y: 0, z: -0.0031651761}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4103918911208588}
@@ -140,6 +141,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b30988b40ea24e02b23cf579c38415f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114310806337061226
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1275446157945102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c700f2e9b1d04d7cac79e1fdf57069a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutoutPrefab: {fileID: 1418342322448552, guid: 4d173c93d7e0f4da5aff78efb9d5d8e9,
+    type: 2}
 --- !u!114 &114930273381469232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -165,7 +179,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10756, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 783a012fb6f2f4334afacff8ef43426e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
