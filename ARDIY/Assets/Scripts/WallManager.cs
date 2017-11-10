@@ -46,6 +46,6 @@ public class WallManager : MonoBehaviour {
   }
 
   public static WallManager getWallManager() {
-    return GameObject.Find ("WallManager").GetComponent<WallManager> ();
+    return GameObject.Find (GameObjectNames.WallManager).GetComponent<WallManager> ();
   }
 }

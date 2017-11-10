@@ -17,10 +17,10 @@ public class MeasurementManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-    measurementW = GameObject.Find("MeasurementWidth").GetComponent<Text>();
-    measurementH = GameObject.Find("MeasurementHeight").GetComponent<Text>();
-    measurementA = GameObject.Find("MeasurementArea").GetComponent<Text>();
-    measurementP = GameObject.Find("MeasurementPaint").GetComponent<Text>();
+    measurementW = GameObject.Find(GameObjectNames.MeasurementWidth).GetComponent<Text>();
+    measurementH = GameObject.Find(GameObjectNames.MeasurementHeight).GetComponent<Text>();
+    measurementA = GameObject.Find(GameObjectNames.MeasurementArea).GetComponent<Text>();
+    measurementP = GameObject.Find(GameObjectNames.MeasurementPaint).GetComponent<Text>();
 	}
 	
 	// Update is called once per frame
@@ -29,7 +29,7 @@ public class MeasurementManager : MonoBehaviour {
 	}
 
   public static MeasurementManager getMeasurementManager() {
-    return GameObject.Find ("MeasurementManager").GetComponent<MeasurementManager> ();
+    return GameObject.Find (GameObjectNames.MeasurementManager).GetComponent<MeasurementManager> ();
   }
 
   public void displayMeasurements() {
