@@ -141,4 +141,11 @@ public class DrawLine : MonoBehaviour
     wallManager.setWallHeights (height);
     measurer.setHeight(height);
   }
+
+  public void clickDisjointWall()
+  {
+		measurer.setCurrentWidth (0);
+		lastCoordinate = null;    
+
+  }
 }
