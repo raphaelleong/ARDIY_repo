@@ -12,8 +12,7 @@ public class CutoutMesh : MonoBehaviour {
 	void Start () {
     mesh = GetComponent<MeshFilter> ().mesh;
 	}
-	
-  /*
+	/*
   public void Cutout (Vector3[] cutoutVertices) {
     /* to simulate what would happen in the real program */
     /*
@@ -47,9 +46,7 @@ public class CutoutMesh : MonoBehaviour {
 
     mesh.RecalculateNormals();
   }
-
-*/
-
+  */
   public void Cutout (Vector3 corner1, Vector3 corner2) {
   
     Vector3 otherCorner1 = new Vector3 (corner1.x, corner2.y, corner1.z);
@@ -61,7 +58,7 @@ public class CutoutMesh : MonoBehaviour {
     cutout.transform.localScale = new Vector3 (width, height, 1);
     cutout.transform.position = corner1 + (corner2 - corner1) / 2;
   }
-
+  
   void CreateCube (Vector3 pos, Color col) {
     GameObject cube = GameObject.CreatePrimitive (PrimitiveType.Cube);
     cube.transform.position = pos;
