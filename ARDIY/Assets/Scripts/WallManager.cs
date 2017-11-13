@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WallManager : MonoBehaviour {
 
+ public GameObject wallPrefab;
 	private Color currentColor;
+  private Wall[] walls;
 
 	// Use this for initialization
 	void Start () {
@@ -13,20 +16,16 @@ public class WallManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+    walls = this.GetComponentsInChildren<Wall> ();
 	}
 
 	public void changeColor(Color color) {
 			currentColor = color; 
 
-			Wall[] walls = this.GetComponentsInChildren<Wall> ();
-		Debug.Log ("1");
 			foreach (Wall w in walls) {
-			Debug.Log ("wall" + w == null);
+			
 				w.changeColor (color);
 			}
-		Debug.Log ("2");
-
 	}
 
 	public void addChild(GameObject wall) {
@@ -35,7 +34,6 @@ public class WallManager : MonoBehaviour {
 	}
 		
   public void setWallHeights(float height) {
-    Wall[] walls = this.GetComponentsInChildren<Wall> ();
     foreach (Wall w in walls) {
       w.setHeight (height);
     }
@@ -48,4 +46,23 @@ public class WallManager : MonoBehaviour {
   public static WallManager getWallManager() {
     return GameObject.Find ("WallManager").GetComponent<WallManager> ();
   }
+
+  public void removeLastWall() {
+    Text t = GameObject.Find ("Text").GetComponent<Text> ();
+    t.text = walls.Length.ToString();
+
+    Wall lastWall = walls [walls.Length - 1];
+    Vector3 point2 = lastWall.transform.position;
+
+    float radius = 0.1f;
+    // Get the cube sitting at our location
+    Collider[] cubes = Physics.OverlapSphere (point2, radius);
+    foreach (Collider cube in cubes) {
+      Destroy (cube);
+    }
+
+    Destroy (lastWall.gameObject);
+    Destroy (walls [walls.Length - 2].gameObject);
+  }
+
 }

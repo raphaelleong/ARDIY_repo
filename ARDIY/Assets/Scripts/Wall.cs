@@ -7,7 +7,7 @@ public class Wall : MonoBehaviour {
 
 	MeshRenderer renderer; 
 	MeshFilter meshFilter;
-	Mesh mesh;
+//	Mesh mesh;
 	Material material;
 	//public Text debugText;
 	// Use this for initialization
@@ -16,7 +16,7 @@ public class Wall : MonoBehaviour {
 		material = renderer.material;
 		Debug.Log ("material" + material.Equals (null));
     meshFilter = this.GetComponent (typeof(MeshFilter)) as MeshFilter;
-    mesh = meshFilter.mesh;
+//    mesh = meshFilter.mesh;
 	}
 	
 	// Update is called once per frame
@@ -36,8 +36,6 @@ public class Wall : MonoBehaviour {
 		//renderer.material = material; 
 		//mesh.RecalculateBounds ();
 	}
-
-
 
   public void drawWall(Vector3 point1, Vector3 point2, float currentWallHeight) {
     this.transform.position = point1;

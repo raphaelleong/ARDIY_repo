@@ -32,8 +32,6 @@ public class DrawLine : MonoBehaviour
     if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) {
       // Check if finger is over a UI element
       if (!EventSystem.current.IsPointerOverGameObject (Input.GetTouch (0).fingerId)) {
-				
-        var touch = Input.GetTouch (0);
         var screenPosition = Camera.main.ScreenToViewportPoint (new Vector3 (Screen.width / 2, Screen.height / 2, Camera.main.nearClipPlane));
         ARPoint point = new ARPoint {
           x = screenPosition.x,
