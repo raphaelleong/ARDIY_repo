@@ -55,6 +55,7 @@ public class DrawLine : MonoBehaviour
 		measurementP = GameObject.Find ("MeasurementPaint").GetComponent<Text> ();
 
 		displayMeasurements ();
+		coordinates = new LinkedList<Vector3>();
 
 		wallManager = GameObject.Find ("WallManager").GetComponent<WallManager> ();
 	}
@@ -227,6 +228,7 @@ public class DrawLine : MonoBehaviour
 		coordinates.RemoveFirst();
 		/* reverts to prev. set of coordinates */
 		Vector3 coor = coordinates.First.Value;
-		lastCoordinate = coor;
+		lastCoordinate = coor;	
 	}
 }
+ 

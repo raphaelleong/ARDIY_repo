@@ -40,8 +40,10 @@ public class WallManager : MonoBehaviour {
 		Wall[] walls = this.GetComponentsInChildren<Wall> ();
 
 		Wall prevWall = walls[numOfWalls - 1];
+		Wall prevWall2 = walls[numOfWalls - 2];
 		//prevWall.transform.DetachFromParent();
 		Destroy(prevWall);
+		Destroy (prevWall2);
 		drawline.removeLastWallCoordinates();
 		numOfWalls--;
 	}
