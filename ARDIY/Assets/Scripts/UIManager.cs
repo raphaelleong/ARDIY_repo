@@ -39,6 +39,8 @@ public class UIManager : MonoBehaviour {
 			colourButton.SetActive (false);
 			GameObject infoButton = GameObject.Find("Info Button");
 			infoButton.SetActive (false);
+			GameObject disjointButton = GameObject.Find("DisjointButton");
+			disjointButton.SetActive (false); 
 
 
 			GameObject recorder = GameObject.Find("Recorder");
