@@ -382,7 +382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &148775518
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2173,7 +2173,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &939886158
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2314,12 +2314,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1989560750547906, guid: 1ee52196592764542bf9f9aec24928ea,
     type: 2}
   m_PrefabInternal: {fileID: 781105246}
---- !u!114 &1024443796 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114556526512759842, guid: 1ee52196592764542bf9f9aec24928ea,
-    type: 2}
-  m_PrefabInternal: {fileID: 781105246}
-  m_Script: {fileID: 11500000, guid: 3bcdd61fa9e7d4671a243e3c807eb742, type: 3}
 --- !u!1 &1044505314
 GameObject:
   m_ObjectHideFlags: 0
@@ -2396,7 +2390,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1024443796}
+      - m_Target: {fileID: 1094825117}
         m_MethodName: removeLastWall
         m_Mode: 1
         m_Arguments:
@@ -2428,7 +2422,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 8d3d73c629a8144f983e21d7860cc38f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4dd62eaf45a64e6092a453bcdc2b923, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

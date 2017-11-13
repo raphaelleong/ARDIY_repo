@@ -69,7 +69,6 @@ public class DrawLine : MonoBehaviour
       Vector3 currentCoordinate = getFurthestPoint (corners);
       drawCube (currentCoordinate);
       lastCoordinate = currentCoordinate;
-      //			measurement.text = lastCoordinate;
       return true;
     }
 
@@ -95,10 +94,12 @@ public class DrawLine : MonoBehaviour
   /* Place a cube in the specify coordinate and draw a wall if cube is not the first cube placed */
   void drawCube (Vector3 currentCoordinate)
   {
+//    Vector3 origin = wallManager.getOrigin ();
+    //Vector3? lastCoordinate = wallManager.getLastWallCoordinate ();
+
     if (lastCoordinate != null && Vector3.Distance (currentCoordinate, origin) < 0.1) {
       //if close to the first point then take it as the first point
       currentCoordinate = origin;
-
     } else {
       //otherwise create a new cube in the correct position with correct size
       GameObject cube = GameObject.CreatePrimitive (PrimitiveType.Cube);
@@ -114,6 +115,8 @@ public class DrawLine : MonoBehaviour
       /* Update width. */
       measurer.updateWidth (lastCoordinate.Value, currentCoordinate);
     } else {
+      Text t = GameObject.Find ("Text").GetComponent<Text> ();
+      t.text = currentCoordinate.ToString ();
       origin = currentCoordinate;
     }
   }
@@ -138,5 +141,9 @@ public class DrawLine : MonoBehaviour
   {
     wallManager.setWallHeights (height);
     measurer.setHeight(height);
+  }
+
+  public void removeLastWall () {
+    lastCoordinate = wallManager.removeLastWall ();
   }
 }
