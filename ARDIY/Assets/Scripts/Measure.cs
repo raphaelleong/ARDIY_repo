@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Measure : MonoBehaviour {
-
+	private static PaintType paintType;
 	// Use this for initialization
 	void Start () {
-
+		paintType = PaintType.Instance;
 	}
 
 	// Update is called once per frame
@@ -21,23 +21,8 @@ public class Measure : MonoBehaviour {
 	public static float findArea(float height, float width) {
 		return height * width;
 	}
-
-  public static float paintPerMSq(PaintType type) {
-    switch(type) {
-    case PaintType.OilBased:
-      return 4.23f;
-    case PaintType.HighGloss:
-      return 3.33f;
-    case PaintType.Emulsion:
-      return 1.24f;
-    case PaintType.Satin:
-      return 4.12f;
-    }
-
-    return 0f;
-  }
-
-  public static float findPaintRequired(PaintType type, float area) {
-    return paintPerMSq(type) * area;
+		
+  public static float findPaintRequired(float area) {
+    return ((float) paintType.getPaintPerSqM()) * area;
   }
 }
