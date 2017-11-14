@@ -114,9 +114,7 @@ public class DrawLine : MonoBehaviour
 
       /* Update width. */
       measurer.updateWidth (lastCoordinate.Value, currentCoordinate);
-    } else {
-      Text t = GameObject.Find ("Text").GetComponent<Text> ();
-      t.text = currentCoordinate.ToString ();
+    } else {     
       origin = currentCoordinate;
     }
   }

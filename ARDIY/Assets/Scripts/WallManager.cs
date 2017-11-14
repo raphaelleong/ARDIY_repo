@@ -57,7 +57,6 @@ public class WallManager : MonoBehaviour
 
   public Vector3? removeLastWall ()
   {
-    Text t = GameObject.Find ("Text").GetComponent<Text> ();
     Wall lastWall = walls [walls.Count - 1];
     Vector3 point2 = lastWall.transform.position;
 
@@ -72,7 +71,6 @@ public class WallManager : MonoBehaviour
     Destroy (lastWall.gameObject);
 
     if (walls.Count == 0) {
-      t.text += point1;
       destroyCube (point1);
       destroyCube (point2);
 
