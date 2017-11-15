@@ -52,6 +52,7 @@ public class Wall : MonoBehaviour {
     };
     //point1, point2, point2.xyz, point1.xyz
     wallMesh.triangles = new int[] { 0, 1, 2, 0, 2, 3 };
+	wallMesh.RecalculateBounds ();
   }
 
   public void setHeight(float height) {
@@ -65,5 +66,6 @@ public class Wall : MonoBehaviour {
         vertices [1] + Vector3.up * height,
         Vector3.up * height
       });
+	wallMesh.RecalculateBounds ();
   }
 }
