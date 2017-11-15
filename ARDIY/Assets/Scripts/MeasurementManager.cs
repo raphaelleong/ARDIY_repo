@@ -18,15 +18,16 @@ public class MeasurementManager : MonoBehaviour
   /* initial wall height  */
   private PaintType paintType;
 
-  // Use this for initialization
-  void Start ()
-  {
-    paintType = PaintType.Instance;
-    measurementW = GameObject.Find (GameObjectNames.MeasurementWidth).GetComponent<Text> ();
-    measurementH = GameObject.Find (GameObjectNames.MeasurementHeight).GetComponent<Text> ();
-    measurementA = GameObject.Find (GameObjectNames.MeasurementArea).GetComponent<Text> ();
-    measurementP = GameObject.Find (GameObjectNames.MeasurementPaint).GetComponent<Text> ();
-  }
+
+	// Use this for initialization
+	void Start () {
+    //measurementW = GameObject.Find(GameObjectNames.MeasurementWidth).GetComponent<Text>();
+    measurementH = GameObject.Find(GameObjectNames.MeasurementHeight).GetComponent<Text>();
+		Debug.Log (measurementH);
+//    measurementA = GameObject.Find(GameObjectNames.MeasurementArea).GetComponent<Text>();
+    measurementP = GameObject.Find(GameObjectNames.MeasurementPaint).GetComponent<Text>();
+		Debug.Log (measurementP);
+	}
 	
   // Update is called once per frame
   void Update ()
@@ -40,13 +41,14 @@ public class MeasurementManager : MonoBehaviour
 
   }
 
-  public void displayMeasurements ()
-  {
-    //Made a change here
-    measurementW.text = "Width: " + currentWidth.ToString ("n3") + " m";
-    measurementH.text = "Height: " + currentWallHeight.ToString ("n3") + " m";
-    measurementA.text = "Area: " + cumulativeArea.ToString ("n3") + " sq. m";
-    measurementP.text = "Paint: " + getTotalPaintRequired ().ToString ("n3") + " litres of " + paintType.ToString () + " paint";
+
+  public void displayMeasurements() {
+		//Made a change here
+//    measurementW.text = "Width: " + currentWidth.ToString("n3") + " m";
+    measurementH.text = currentWallHeight.ToString("n3") + " m";
+ //   measurementA.text = "Area: " + cumulativeArea.ToString("n3") + " sq. m";
+    measurementP.text = "Paint: " + getTotalPaintRequired().ToString("n3") + " litres of " + paintType.ToString() + " paint";
+
   }
 
   private void updateAreaAndPaint ()
