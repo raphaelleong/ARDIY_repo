@@ -1,8 +1,9 @@
 ﻿using System;
+using UnityEngine;
 
 public class PaintType
 {
-	private static readonly int totalPaintTypes = 4; 
+	private static readonly int totalPaintTypes = 3; 
 	private static PaintType instance;
 
 	private int paintTypeVal; //value representing the correct indexes
@@ -38,17 +39,18 @@ public class PaintType
 		return instance.paintPerSqM[paintTypeVal];
 	}
 
+  /*The following numbers are from DIY book
+   * litre of paint needed to cover 1 sqm*/
 	private void initialisePaintPerSqM() {
-		instance.paintPerSqM[0] = 0.8;
-		instance.paintPerSqM[1] = 2;
-		instance.paintPerSqM[2] = 0.5;
-		instance.paintPerSqM[3] = 1.2;
+		this.paintPerSqM[0] = 0.0714;
+		this.paintPerSqM[1] = 0.1000;
+		this.paintPerSqM[2] = 0.0833;
 	}
 
 	private void initialisePaintNames() {
-		instance.paintNames[0] = "Oil Based";
-		instance.paintNames[1] = "Emulsion";
-		instance.paintNames[2] = "Gloss";
-		instance.paintNames[3] = "Something Else";
+		this.paintNames[0] = "Oil Based";
+		this.paintNames[1] = "Emulsion";
+		this.paintNames[2] = "Non-Drip Gloss";
 	}
+    
 }
