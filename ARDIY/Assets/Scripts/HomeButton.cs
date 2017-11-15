@@ -15,11 +15,11 @@ public class HomeButton : MonoBehaviour {
 		
 	}
 
-    public void Home_onClick()
+    /*public void Home_onClick()
     {
         //ButtonManager.isPreview = false; 
         SceneManager.LoadScene("UI");
         Debug.Log("Home pressed");
         //go to the home screen
-    }
+    }*/
 }

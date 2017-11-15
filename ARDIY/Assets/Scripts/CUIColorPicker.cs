@@ -5,11 +5,16 @@ using UnityEngine.UI;
 public class CUIColorPicker : MonoBehaviour
 {
     public Color Color { get { return _color; } set { Setup( value ); } }
+	public GameObject button;
+	public WallManager wallManager; //TODO changed from GameObject - NEEDS TEST
 
 	private bool isVisible = false;
 	[SerializeField]
 	private GameObject[] objs;
-		
+
+	void Start () {
+		wallManager = WallManager.getWallManager ();
+	}
 
 	public void toggle() {
 
@@ -180,6 +185,7 @@ public class CUIColorPicker : MonoBehaviour
             }
         };
         _update = idle;
+		SetOnValueChangeCallback (changeWallColor);
     }
 
     public void SetRandomColor()
@@ -193,7 +199,7 @@ public class CUIColorPicker : MonoBehaviour
 
     void Awake()
     {
-		Color = Color.red;
+		Color = Color.white;
 		objs = GameObject.FindGameObjectsWithTag ("colourPalette");
 			
 			foreach (GameObject obj in objs) {
@@ -205,6 +211,25 @@ public class CUIColorPicker : MonoBehaviour
 
     void Update()
     {
+		//Button btn = button.GetComponent<Button> ();
+		//btn.colors.normalColor = this.Color;
+
+
+
+
+		//wallManager.GetComponent<WallManager>().changeColor (this.Color);
+
         _update();
     }
+
+	void changeWallColor(Color color) {
+		Button b = button.GetComponent<Button>(); 
+		ColorBlock cb = b.colors;
+		cb.disabledColor = this.Color; 
+		cb.highlightedColor = this.Color; 
+		cb.pressedColor = this.Color; 
+		cb.normalColor = this.Color;
+		b.colors = cb;
+		wallManager.changeColor (color); // TODO needs testing - was wM.GetComp.ChangeCol
+	}
 }
