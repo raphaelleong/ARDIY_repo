@@ -8,7 +8,7 @@ public class InstructionPicker : MonoBehaviour {
 	private int pickedInstr;
 	public GameObject instrDropdown;
   private List<string[]> allInstr = new List<string[]>();
-	private Dropdown dropdown;
+
 
   public GameObject contentObject;
   public GameObject instructionObject;
@@ -20,7 +20,7 @@ public class InstructionPicker : MonoBehaviour {
 
     Debug.Log ("Start");
     pickedInstr = 0;
-    dropdown =  GameObject.Find("StepsDropdown").GetComponent<Dropdown>();
+
 		initialiseWallInstr (); //        0
 		initialiseDoorInstr (); //        1
 		initialiseDoorFrameInstr (); //   2
@@ -41,7 +41,9 @@ public class InstructionPicker : MonoBehaviour {
       }
       count++;
     }
-      
+
+		this.GetComponent<CanvasScaler>().referenceResolution = new Vector2(1335,750);
+
 	}
 	
 	// Update is called once per frame
@@ -94,13 +96,14 @@ public class InstructionPicker : MonoBehaviour {
 		allInstr.Add (instructions);
 	}
 
-	public void changedDropdown() {
-		int index = dropdown.value;
 
-    instructionSets [pickedInstr].SetActive(false);
+	public void changedDropdown(int newVal) {
 
-    instructionSets [index].SetActive (true);
+	    instructionSets [pickedInstr].SetActive(false);
 
-    pickedInstr = index;
+	    instructionSets [newVal].SetActive (true);
+
+	    pickedInstr = newVal;
+
 	}
 }

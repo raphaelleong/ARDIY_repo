@@ -10,9 +10,9 @@ public class MeasurementManager : MonoBehaviour
   private Text measurementA;
   private Text measurementP;
 
-  private float cumulativeArea;
-  private float cumulativeWidth;
-  private float currentWidth;
+  private float cumulativeArea = 0;
+  private float cumulativeWidth = 0;
+  private float currentWidth = 0;
 
   private float currentWallHeight = 1;
   /* initial wall height  */
@@ -33,10 +33,11 @@ public class MeasurementManager : MonoBehaviour
   {
     
   }
-
+    
   public static MeasurementManager getMeasurementManager ()
   {
     return GameObject.Find (GameObjectNames.MeasurementManager).GetComponent<MeasurementManager> ();
+
   }
 
   public void displayMeasurements ()
