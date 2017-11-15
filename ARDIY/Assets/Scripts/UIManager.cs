@@ -43,9 +43,7 @@ public class UIManager : MonoBehaviour {
 			GameObject infoButton = GameObject.Find("Info Button");
 			infoButton.SetActive (false);
 			GameObject disjointButton = GameObject.Find("DisjointButton");
-			disjointButton.SetActive (false); 
-      GameObject paintTypeButton = GameObject.Find ("PaintTypeButton");
-      paintTypeButton.SetActive (false);
+			disjointButton.SetActive (false);
 			GameObject undoButton = GameObject.Find("Remove Button");
 			undoButton.SetActive (false);
 			GameObject addButton = GameObject.Find("Add Corner Button");
@@ -81,12 +79,12 @@ public class UIManager : MonoBehaviour {
 		Debug.Log("Home pressed");
 		//go to the home screen
 	}
-
+  /*
 	public void Info_OnClick()
 	{
 		infoPanel.SetActive (!infoDisplayed);
 		infoDisplayed = !infoDisplayed;
-	}
+	}*/
 
 	public void Menu_OnClick()
 	{

@@ -10,7 +10,7 @@ public class MeasurementManager : MonoBehaviour
   private Text measurementA;
   private Text measurementP;
 
-  private float cumulativeArea = 0;
+  private static float cumulativeArea = 0;
   private float cumulativeWidth = 0;
   private float currentWidth = 0;
 
@@ -44,9 +44,6 @@ public class MeasurementManager : MonoBehaviour
 
 
   public void displayMeasurements() {
-    Debug.Log ("GetTotalPaintRequired" + getTotalPaintRequired ());
-    Debug.Log ("paintType = " + paintType);
-    Debug.Log ("currentWallHeight" + currentWallHeight);
 		//Made a change here
 //    measurementW.text = "Width: " + currentWidth.ToString("n3") + " m";
     measurementH.text = currentWallHeight.ToString("n3") + " m";
@@ -65,7 +62,7 @@ public class MeasurementManager : MonoBehaviour
     displayMeasurements ();
   }
 
-  public float getTotalPaintRequired ()
+  public static float getTotalPaintRequired ()
   {
     return Measure.findPaintRequired (cumulativeArea);
   }
