@@ -9,18 +9,19 @@ public class MeasurementManager : MonoBehaviour {
   private Text measurementA;
   private Text measurementP;
 
-  private float cumulativeArea;
-  private float cumulativeWidth;
+  private float cumulativeArea = 0;
+  private float cumulativeWidth = 0;
+  private float currentWidth = 0;
 
   private float currentWallHeight = 1; /* initial wall height  */
   private PaintType paintType = PaintType.OilBased;/* selected paint type (choice within button menu, TODO requires discussion) */
 
 	// Use this for initialization
 	void Start () {
-    measurementW = GameObject.Find("MeasurementWidth").GetComponent<Text>();
-    measurementH = GameObject.Find("MeasurementHeight").GetComponent<Text>();
-    measurementA = GameObject.Find("MeasurementArea").GetComponent<Text>();
-    measurementP = GameObject.Find("MeasurementPaint").GetComponent<Text>();
+    measurementW = GameObject.Find(GameObjectNames.MeasurementWidth).GetComponent<Text>();
+    measurementH = GameObject.Find(GameObjectNames.MeasurementHeight).GetComponent<Text>();
+    measurementA = GameObject.Find(GameObjectNames.MeasurementArea).GetComponent<Text>();
+    measurementP = GameObject.Find(GameObjectNames.MeasurementPaint).GetComponent<Text>();
 	}
 	
 	// Update is called once per frame
@@ -29,11 +30,12 @@ public class MeasurementManager : MonoBehaviour {
 	}
 
   public static MeasurementManager getMeasurementManager() {
-    return GameObject.Find ("MeasurementManager").GetComponent<MeasurementManager> ();
+		return GameObject.Find (GameObjectNames.MeasurementManager).GetComponent<MeasurementManager> ();
   }
 
   public void displayMeasurements() {
-    measurementW.text = "Width: " + cumulativeWidth.ToString("n3") + " m";
+		//Made a change here
+    measurementW.text = "Width: " + currentWidth.ToString("n3") + " m";
     measurementH.text = "Height: " + currentWallHeight.ToString("n3") + " m";
     measurementA.text = "Area: " + cumulativeArea.ToString("n3") + " sq. m";
     measurementP.text = "Paint: " + getTotalPaintRequired().ToString("n3") + " litres of " + paintType.ToString() + " paint";
@@ -54,12 +56,18 @@ public class MeasurementManager : MonoBehaviour {
 
   public void updateWidth(Vector3 lastCoordinate, Vector3 currentCoordinate) {
     cumulativeWidth += Measure.findDistance (lastCoordinate, currentCoordinate);
+	currentWidth += Measure.findDistance (lastCoordinate, currentCoordinate);
     updateAreaAndPaint ();
   }
 
   public void setHeight(float h) {
     currentWallHeight = Measure.findDistance (Vector3.up * h, Vector3.zero);
     updateAreaAndPaint ();
+  }
+
+  public void setCurrentWidth(float h) {
+	currentWidth = h;
+	updateAreaAndPaint ();
   }
 
   public float getWallHeight() {

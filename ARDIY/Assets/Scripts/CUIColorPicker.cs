@@ -6,13 +6,15 @@ public class CUIColorPicker : MonoBehaviour
 {
     public Color Color { get { return _color; } set { Setup( value ); } }
 	public GameObject button;
-	public GameObject wallManager;
+	public WallManager wallManager; //TODO changed from GameObject - NEEDS TEST
 
 	private bool isVisible = false;
 	[SerializeField]
 	private GameObject[] objs;
 
-		
+	void Start () {
+		wallManager = WallManager.getWallManager ();
+	}
 
 	public void toggle() {
 
@@ -228,6 +230,6 @@ public class CUIColorPicker : MonoBehaviour
 		cb.pressedColor = this.Color; 
 		cb.normalColor = this.Color;
 		b.colors = cb;
-		wallManager.GetComponent<WallManager>().changeColor (color);
+		wallManager.changeColor (color); // TODO needs testing - was wM.GetComp.ChangeCol
 	}
 }

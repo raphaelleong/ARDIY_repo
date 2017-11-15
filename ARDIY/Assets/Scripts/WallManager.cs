@@ -24,9 +24,7 @@ public class WallManager : MonoBehaviour
   public void changeColor (Color color)
   {
     currentColor = color; 
-    Text t = GameObject.Find ("Text").GetComponent<Text> ();
     foreach (Wall w in walls) {
-			
       w.changeColor (color);
     }
   }

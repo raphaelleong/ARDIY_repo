@@ -20,8 +20,6 @@ public class DrawLine : MonoBehaviour
   {
     wallManager = WallManager.getWallManager ();
     measurer = MeasurementManager.getMeasurementManager ();
-
-    measurer.displayMeasurements ();
   }
 
   /*
@@ -143,5 +141,12 @@ public class DrawLine : MonoBehaviour
 
   public void removeLastWall () {
     lastCoordinate = wallManager.removeLastWall ();
+  }
+
+  public void clickDisjointWall()
+  {
+		measurer.setCurrentWidth (0);
+		lastCoordinate = null;    
+
   }
 }
