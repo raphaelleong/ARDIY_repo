@@ -50,7 +50,7 @@ public class Wall : MonoBehaviour {
   }
 		
 	void CreateWallMesh(Vector3 point, float height) {
-		MeshFilter meshFilter = this.GetComponent (typeof(MeshFilter)) as MeshFilter;
+		MeshFilter meshFilter = GetComponent (typeof(MeshFilter)) as MeshFilter;
 		Mesh wallMesh = meshFilter.mesh;
 		wallMesh.SetVertices (
 			new List<Vector3> () {
@@ -59,7 +59,9 @@ public class Wall : MonoBehaviour {
 				point + Vector3.up * height,
 				Vector3.up * height
 			});
-		wallMesh.triangles = new int[] { 0, 1, 2, 0, 2, 3 };
+		wallMesh.triangles = new int[] { 0, 1, 2, 0, 2, 3, 2, 1, 0, 3, 2, 0};
 		wallMesh.RecalculateBounds ();
+    MeshCollider meshCollider = GetComponent<MeshCollider> ();
+    meshCollider.sharedMesh = wallMesh;
 	}
 }

@@ -39,7 +39,6 @@ GameObject:
   - component: {fileID: 23225559103804838}
   - component: {fileID: 114058189748196068}
   - component: {fileID: 64136879826731184}
-  - component: {fileID: 114310806337061226}
   - component: {fileID: 114930273381469232}
   m_Layer: 0
   m_Name: Wall
@@ -124,7 +123,7 @@ MeshCollider:
   m_GameObject: {fileID: 1275446157945102}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Convex: 0
   m_InflateMesh: 0
@@ -141,26 +140,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b30988b40ea24e02b23cf579c38415f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114310806337061226
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1275446157945102}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c700f2e9b1d04d7cac79e1fdf57069a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cutoutPrefab: {fileID: 1418342322448552, guid: 4d173c93d7e0f4da5aff78efb9d5d8e9,
-    type: 2}
 --- !u!114 &114930273381469232
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1275446157945102}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e491f2b509ccb43b28bbbd26974fe862, type: 3}
   m_Name: 
@@ -202,7 +188,7 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.03
+    widthMultiplier: 0.003
     widthCurve:
       serializedVersion: 2
       m_Curve:

@@ -108,7 +108,7 @@ public class DrawLine : MonoBehaviour
 
     if (lastCoordinate != null) {
       drawWall (lastCoordinate.Value, currentCoordinate);
-      drawWall (currentCoordinate, lastCoordinate.Value);
+      //drawWall (currentCoordinate, lastCoordinate.Value);
 
       /* Update width. */
       measurer.updateWidth (lastCoordinate.Value, currentCoordinate);

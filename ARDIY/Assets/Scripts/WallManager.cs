@@ -87,5 +87,4 @@ public class WallManager : MonoBehaviour
       Destroy (cube.gameObject);
     }
   }
-
 }
