@@ -23,9 +23,11 @@ public class CutoutManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
       
+    //if (Input.GetMouseButton(0)) {
     if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began || firstCornerPlaced) {
       RaycastHit hit;
       Ray ray = Camera.main.ScreenPointToRay (new Vector3 (Screen.width / 2, Screen.height / 2, 0.0f));
+      //Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 
       // if the mouse ray has intersected with anything
       if (Physics.Raycast (ray, out hit, 100.0f)) {
@@ -71,23 +73,34 @@ public class CutoutManager : MonoBehaviour {
       }
     }
 
+    //if (Input.GetKeyDown (KeyCode.Space)) {
     if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began && secondCornerPlaced) {
-      Cutout (selectedWall, firstCorner, secondCorner);
+      Cutout (selectedWall, firstCorner, otherCornerA, secondCorner, otherCornerB);
       firstCornerPlaced = false;
       secondCornerPlaced = false;
       selectedLineRenderer.positionCount = 0;
     }
   }
 
-  public void Cutout (GameObject wall, Vector3 corner1, Vector3 corner2) {
-
-    Vector3 otherCorner1 = new Vector3 (corner1.x, corner2.y, corner1.z);
-    Vector3 otherCorner2 = new Vector3 (corner2.x, corner1.y, corner2.z);
+  public void Cutout (GameObject wall, Vector3 corner1, Vector3 otherCorner1, Vector3 corner2, Vector3 otherCorner2) {
 
     GameObject cutout = Instantiate (cutoutPrefab, wall.transform);
-    float width = Vector3.Distance(corner1, otherCorner2);
-    float height = Vector3.Distance(corner1, otherCorner1);
-    cutout.transform.localScale = new Vector3 (width, height, 1);
-    cutout.transform.position = corner1 + (corner2 - corner1) / 2;
+    MeshFilter meshFilter = cutout.GetComponent (typeof(MeshFilter)) as MeshFilter;
+    Mesh cutoutMesh = meshFilter.mesh;
+
+    Vector3 localCorner1 = wall.transform.InverseTransformPoint (corner1);
+    Vector3 localOtherCorner1 = wall.transform.InverseTransformPoint (otherCorner1);
+    Vector3 localCorner2 = wall.transform.InverseTransformPoint (corner2);
+    Vector3 localOtherCorner2 = wall.transform.InverseTransformPoint (otherCorner2);
+
+    cutoutMesh.SetVertices (
+      new List<Vector3> () {
+        localCorner1,
+        localOtherCorner1,
+        localCorner2,
+        localOtherCorner2
+      });
+    cutoutMesh.triangles = new int[] { 0, 1, 2, 0, 2, 3, 2, 1, 0, 3, 2, 0};
+    cutoutMesh.RecalculateBounds ();
   }
 }

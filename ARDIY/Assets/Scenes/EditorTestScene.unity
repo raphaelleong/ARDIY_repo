@@ -3197,6 +3197,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2139105520}
+        m_MethodName: setTransparent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1044505317
@@ -5566,5 +5577,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 382765044}
   wallManager: {fileID: 148775518}
-  alpha: 0.8
+  alpha: 1
   objs: []

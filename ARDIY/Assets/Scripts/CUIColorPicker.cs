@@ -235,4 +235,12 @@ public class CUIColorPicker : MonoBehaviour
     color.a = alpha;
 		wallManager.changeColor (color); // TODO needs testing - was wM.GetComp.ChangeCol
 	}
+
+  public void setOpaque () {
+    alpha = 1.0f;
+  }
+
+  public void setTransparent () {
+    alpha = 0.8f;
+  }
 }

@@ -121,7 +121,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4465782381143002, guid: 76c31aa8417c948658b756a531eca110, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.32
       objectReference: {fileID: 0}
     - target: {fileID: 4465782381143002, guid: 76c31aa8417c948658b756a531eca110, type: 2}
       propertyPath: m_LocalPosition.y
@@ -133,23 +133,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4465782381143002, guid: 76c31aa8417c948658b756a531eca110, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4465782381143002, guid: 76c31aa8417c948658b756a531eca110, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.262313
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4465782381143002, guid: 76c31aa8417c948658b756a531eca110, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4465782381143002, guid: 76c31aa8417c948658b756a531eca110, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.96498287
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4465782381143002, guid: 76c31aa8417c948658b756a531eca110, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4465782381143002, guid: 76c31aa8417c948658b756a531eca110, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76c31aa8417c948658b756a531eca110, type: 2}
@@ -230,6 +234,7 @@ GameObject:
   - component: {fileID: 2134072001}
   - component: {fileID: 2134072000}
   - component: {fileID: 2134071999}
+  - component: {fileID: 2134072003}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -299,3 +304,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 26.93, y: -0.62, z: 0}
+--- !u!114 &2134072003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2134071998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2cdfe9ea7302429db40421780f3eddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutoutPrefab: {fileID: 1418342322448552, guid: 4d173c93d7e0f4da5aff78efb9d5d8e9,
+    type: 2}
