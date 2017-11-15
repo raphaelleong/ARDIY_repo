@@ -23,61 +23,59 @@ public class CutoutManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
       
-    RaycastHit hit;
-    Ray ray = Camera.main.ScreenPointToRay (new Vector3 (Screen.width / 2, Screen.height / 2, 0.0f));
+    if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began || firstCornerPlaced) {
+      RaycastHit hit;
+      Ray ray = Camera.main.ScreenPointToRay (new Vector3 (Screen.width / 2, Screen.height / 2, 0.0f));
 
-    // if the mouse ray has intersected with anything
-    if (Physics.Raycast (ray, out hit, 100.0f)) {
-     
-      // check you have hit a wall and not another object
-      if (hit.transform.gameObject.GetComponent<Wall> () != null) {
+      // if the mouse ray has intersected with anything
+      if (Physics.Raycast (ray, out hit, 100.0f)) {
+       
+        // check you have hit a wall and not another object
+        if (hit.transform.gameObject.GetComponent<Wall> () != null) {
 
-        GameObject currentWall = hit.transform.gameObject;
+          GameObject currentWall = hit.transform.gameObject;
 
-        Vector3 hitPoint = hit.point;
+          Vector3 hitPoint = hit.point;
 
-        if (!firstCornerPlaced) {
+          if (!firstCornerPlaced) {
 
-          selectedWall = currentWall;
-          selectedLineRenderer = currentWall.transform.GetChild (0).GetComponent<LineRenderer> ();
+            selectedWall = currentWall;
+            selectedLineRenderer = currentWall.transform.GetChild (0).GetComponent<LineRenderer> ();
 
-          firstCorner = hitPoint;
-          firstCornerPlaced = true;
+            firstCorner = hitPoint;
+            firstCornerPlaced = true;
 
-        } else {
-          // we are placing the other corner
-          // check it's the same wall as the first point
-          if (currentWall.Equals(selectedWall)) {
+          } else {
+            // we are placing the other corner
+            // check it's the same wall as the first point
+            if (currentWall.Equals (selectedWall)) {
 
-            secondCorner = hitPoint;
+              secondCorner = hitPoint;
 
-            // get other corners
-            otherCornerA = new Vector3 (firstCorner.x, secondCorner.y, firstCorner.z);
-            otherCornerB = new Vector3 (secondCorner.x, firstCorner.y, secondCorner.z);
+              // get other corners
+              otherCornerA = new Vector3 (firstCorner.x, secondCorner.y, firstCorner.z);
+              otherCornerB = new Vector3 (secondCorner.x, firstCorner.y, secondCorner.z);
 
-            selectedLineRenderer.positionCount = 4;
-            Vector3[] relativePositions = new Vector3[4]{ firstCorner, otherCornerA, secondCorner, otherCornerB };
-            Vector3[] worldPositions = new Vector3[4];
-            for (int i = 0; i < 4; i++) {
-              worldPositions [i] = relativePositions [i] - hit.transform.position;
+              selectedLineRenderer.positionCount = 4;
+              Vector3[] relativePositions = new Vector3[4]{ firstCorner, otherCornerA, secondCorner, otherCornerB };
+              Vector3[] worldPositions = new Vector3[4];
+              for (int i = 0; i < 4; i++) {
+                worldPositions [i] = relativePositions [i] - hit.transform.position;
+              }
+              selectedLineRenderer.SetPositions (worldPositions);
+              selectedLineRenderer.loop = true;
+              secondCornerPlaced = true;
             }
-            selectedLineRenderer.SetPositions (worldPositions);
-            selectedLineRenderer.loop = true;
-            secondCornerPlaced = true;
           }
         }
       }
     }
 
-    if (Input.GetKeyDown (KeyCode.Space)) {
-      if (secondCornerPlaced) {
-        Cutout (selectedWall, firstCorner, secondCorner);
-        firstCornerPlaced = false;
-        secondCornerPlaced = false;
-        selectedLineRenderer.positionCount = 0;
-      } else {
-        Debug.Log ("points not selected");
-      }
+    if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began && secondCornerPlaced) {
+      Cutout (selectedWall, firstCorner, secondCorner);
+      firstCornerPlaced = false;
+      secondCornerPlaced = false;
+      selectedLineRenderer.positionCount = 0;
     }
   }
 
