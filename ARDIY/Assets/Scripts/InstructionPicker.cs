@@ -39,6 +39,8 @@ public class InstructionPicker : MonoBehaviour {
       }
       count++;
     }
+
+		this.GetComponent<CanvasScaler>().referenceResolution = new Vector2(1335,750);
       
 	}
 	
