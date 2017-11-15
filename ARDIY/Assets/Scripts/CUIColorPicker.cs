@@ -8,6 +8,8 @@ public class CUIColorPicker : MonoBehaviour
 	public GameObject button;
 	public WallManager wallManager; //TODO changed from GameObject - NEEDS TEST
 
+  public float alpha = 0.8f;
+
 	private bool isVisible = false;
 	[SerializeField]
 	private GameObject[] objs;
@@ -230,6 +232,7 @@ public class CUIColorPicker : MonoBehaviour
 		cb.pressedColor = this.Color; 
 		cb.normalColor = this.Color;
 		b.colors = cb;
+    color.a = alpha;
 		wallManager.changeColor (color); // TODO needs testing - was wM.GetComp.ChangeCol
 	}
 }
