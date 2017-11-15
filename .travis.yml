@@ -25,6 +25,6 @@ deploy:
 env:
   global:
   - APP_NAME="WallPaintAR"
-  - 'DEVELOPER_NAME="iPhone Distribution: {your_name} ({code})"'
+  - 'DEVELOPER_NAME="iPhone Distribution: Raphael Leong"'
   - PROFILE_NAME="WallPaintAR"
   - secure: JXbyyftTqB3dOUNJNyG+uvRuo3D8bTsu0N86xXVZxpoankTAeo3z0t2JPh6svgNK+9e3z1j1+HFkD3jH6BS11Fg5Av2Xwl73OeK9WjkZnBkkgxgFV+oiAyygOAs/XtnVnuQ1w2OMsCQ7ij1Rf+33vmaPjt//wZ6NLGKp/A/p6naMzBcTyf1Di45TtIzE5xXxHZUoLMX+K5aPo3w44dvPBxpAhmLnMqhS5p/8Xv+ROk7aGW3yWaVfIE+h7qAfroHAZkDKskCSUKmlGmG/d/Oj7MeMhFEJs25q0C/e/OGOKCZkMOe33auGceivguj7vaz8bJVZsEgRItUHNWbHWThZrBsgqAy9i1hmV6zk8O6KaMvXEH2ovVHiXvWSoTFUARSuMaISY+Rf8Cxi2ViTDy4pwFuJJBO7lD160+Jv4L33u9dURy9g+mdafJaeCmgvllvbPYOhMqStVlBI5yuArHaHwtp7Z412OgDs2WTpyBL2mn7NyUv1d6QdKqrvhP2Q+7T6KBhmUzTo/Ow4EyQ4XZP+liyxpYnn4CiE/1W6mqOP+LQtCKTmiv06K1pi6MKR5RSAAnIK9FCxNi/2rfco5+v1lFvWULFPHyBOCtq/AZY80wB/K3j8WaxTo4TJ3x09+DYL03aEadiAThsEUcHeFnux8WugylqoX6rdpYXQProggm0=
