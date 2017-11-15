@@ -12,7 +12,9 @@ public class UIManager : MonoBehaviour {
 	private GameObject home; 
 	private GameObject colour;
 	private GameObject infoPanel;
+	private GameObject menu; 
 	private bool infoDisplayed; 
+	private bool menuDisplayed; 
 
 	void Start () {
 		palette = false; 
@@ -20,8 +22,11 @@ public class UIManager : MonoBehaviour {
 
 		home = GameObject.Find ("Home Button");
 		infoPanel = GameObject.Find ("Info Pop Up");
+		menu = GameObject.Find("Menu");
 		Debug.Log (infoPanel);
 		infoDisplayed = false; 
+		menuDisplayed = false; 
+		menu.SetActive (menuDisplayed);
 		//colour = GameObject.Find ("Colour Palette");
 
         if (ButtonManager.isPreview)
@@ -39,6 +44,10 @@ public class UIManager : MonoBehaviour {
 			infoButton.SetActive (false);
 			GameObject disjointButton = GameObject.Find("DisjointButton");
 			disjointButton.SetActive (false); 
+			GameObject undoButton = GameObject.Find("Remove Button");
+			undoButton.SetActive (false);
+			GameObject addButton = GameObject.Find("Add Corner Button");
+			addButton.SetActive (false); 
 
 
 			GameObject recorder = GameObject.Find("Recorder");
@@ -75,5 +84,11 @@ public class UIManager : MonoBehaviour {
 	{
 		infoPanel.SetActive (!infoDisplayed);
 		infoDisplayed = !infoDisplayed;
+	}
+
+	public void Menu_OnClick()
+	{
+		menu.SetActive (!menuDisplayed);
+		menuDisplayed = !menuDisplayed;
 	}
  }

@@ -18,10 +18,12 @@ public class MeasurementManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-    measurementW = GameObject.Find(GameObjectNames.MeasurementWidth).GetComponent<Text>();
+    //measurementW = GameObject.Find(GameObjectNames.MeasurementWidth).GetComponent<Text>();
     measurementH = GameObject.Find(GameObjectNames.MeasurementHeight).GetComponent<Text>();
-    measurementA = GameObject.Find(GameObjectNames.MeasurementArea).GetComponent<Text>();
+		Debug.Log (measurementH);
+//    measurementA = GameObject.Find(GameObjectNames.MeasurementArea).GetComponent<Text>();
     measurementP = GameObject.Find(GameObjectNames.MeasurementPaint).GetComponent<Text>();
+		Debug.Log (measurementP);
 	}
 	
 	// Update is called once per frame
@@ -35,9 +37,9 @@ public class MeasurementManager : MonoBehaviour {
 
   public void displayMeasurements() {
 		//Made a change here
-    measurementW.text = "Width: " + currentWidth.ToString("n3") + " m";
-    measurementH.text = "Height: " + currentWallHeight.ToString("n3") + " m";
-    measurementA.text = "Area: " + cumulativeArea.ToString("n3") + " sq. m";
+//    measurementW.text = "Width: " + currentWidth.ToString("n3") + " m";
+    measurementH.text = currentWallHeight.ToString("n3") + " m";
+ //   measurementA.text = "Area: " + cumulativeArea.ToString("n3") + " sq. m";
     measurementP.text = "Paint: " + getTotalPaintRequired().ToString("n3") + " litres of " + paintType.ToString() + " paint";
   }
 
