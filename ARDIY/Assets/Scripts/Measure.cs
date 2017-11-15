@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Measure : MonoBehaviour {
-	private static PaintType paintType;
+  private static PaintType paintType = PaintType.Instance;
 	// Use this for initialization
 	void Start () {
-		paintType = PaintType.Instance;
+//    paintType = PaintType.Instance;
+  
 	}
 
 	// Update is called once per frame
@@ -23,6 +24,8 @@ public class Measure : MonoBehaviour {
 	}
 		
   public static float findPaintRequired(float area) {
+    Debug.Log ("paintType = " + paintType);
     return ((float) paintType.getPaintPerSqM()) * area;
+   
   }
 }

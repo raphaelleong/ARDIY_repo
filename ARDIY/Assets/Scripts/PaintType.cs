@@ -42,15 +42,15 @@ public class PaintType
   /*The following numbers are from DIY book
    * litre of paint needed to cover 1 sqm*/
 	private void initialisePaintPerSqM() {
-		this.paintPerSqM[0] = 0.0714;
-		this.paintPerSqM[1] = 0.1000;
-		this.paintPerSqM[2] = 0.0833;
+		paintPerSqM[0] = 0.0714;
+		paintPerSqM[1] = 0.1000;
+		paintPerSqM[2] = 0.0833;
 	}
 
 	private void initialisePaintNames() {
-		this.paintNames[0] = "Oil Based";
-		this.paintNames[1] = "Emulsion";
-		this.paintNames[2] = "Non-Drip Gloss";
+		paintNames[0] = "Oil Based";
+		paintNames[1] = "Emulsion";
+		paintNames[2] = "Non-Drip Gloss";
 	}
     
 }

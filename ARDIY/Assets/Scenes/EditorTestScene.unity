@@ -4791,9 +4791,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1357510748}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f07f991ebef64e448531d23a768ee80, type: 3}
+  m_Script: {fileID: 11500000, guid: 17c084cfd2a9d4962856b2b6b2641c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instrDropdown: {fileID: 0}
+  contentObject: {fileID: 1251619271}
+  instructionObject: {fileID: 1530895620649730, guid: 7f8aefe77731442c081ababad2bb54fd,
+    type: 2}
+  instructionSets:
+  - {fileID: 1251619271}
+  - {fileID: 390226212}
+  - {fileID: 1338696042}
+  - {fileID: 231097680}
+  - {fileID: 1048961307}
 --- !u!1 &1358272166
 GameObject:
   m_ObjectHideFlags: 0

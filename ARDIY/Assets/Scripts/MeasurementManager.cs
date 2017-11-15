@@ -21,6 +21,7 @@ public class MeasurementManager : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
+    paintType = PaintType.Instance;
     //measurementW = GameObject.Find(GameObjectNames.MeasurementWidth).GetComponent<Text>();
     measurementH = GameObject.Find(GameObjectNames.MeasurementHeight).GetComponent<Text>();
 		Debug.Log (measurementH);
@@ -43,6 +44,9 @@ public class MeasurementManager : MonoBehaviour
 
 
   public void displayMeasurements() {
+    Debug.Log ("GetTotalPaintRequired" + getTotalPaintRequired ());
+    Debug.Log ("paintType = " + paintType);
+    Debug.Log ("currentWallHeight" + currentWallHeight);
 		//Made a change here
 //    measurementW.text = "Width: " + currentWidth.ToString("n3") + " m";
     measurementH.text = currentWallHeight.ToString("n3") + " m";
