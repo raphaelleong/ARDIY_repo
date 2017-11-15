@@ -201,14 +201,15 @@ public class CUIColorPicker : MonoBehaviour
 
     void Awake()
     {
-		Color = Color.white;
+    Color = Color.white;
+
 		objs = GameObject.FindGameObjectsWithTag ("colourPalette");
 			
 			foreach (GameObject obj in objs) {
 				obj.transform.localScale = new Vector3 (0, 0, 0);
 			}
 	
-
+    setOpaque ();
     }
 
     void Update()
@@ -238,9 +239,11 @@ public class CUIColorPicker : MonoBehaviour
 
   public void setOpaque () {
     alpha = 1.0f;
+    changeWallColor (this.Color);
   }
 
   public void setTransparent () {
     alpha = 0.8f;
+    changeWallColor (this.Color);
   }
 }
