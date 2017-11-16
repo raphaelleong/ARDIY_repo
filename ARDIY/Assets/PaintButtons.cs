@@ -7,9 +7,9 @@ public class PaintButtons : MonoBehaviour {
 
   private static PaintType paintType;
 
-  private GameObject oilBased;
-  private GameObject emulsion;
-  private GameObject nonDrip;
+  public GameObject oilBased;
+  public GameObject emulsion;
+  public GameObject nonDrip;
   private bool clicked;
 
   public GameObject infoPanel;
@@ -24,15 +24,12 @@ public class PaintButtons : MonoBehaviour {
     clicked = false;
     paintType = PaintType.Instance;
 
-    oilBased = GameObject.Find ("OilBasedButton");
-    emulsion = GameObject.Find ("EmulsionButton");
-    nonDrip = GameObject.Find ("NonDripButton");
     oilBased.SetActive (false);
     emulsion.SetActive (false);
     nonDrip.SetActive (false);
 
     //infoPanel = GameObject.Find ("Info Pop Up");
-    GameObject infoButton = GameObject.Find("Info Button");
+//    GameObject infoButton = GameObject.Find("Info Button");
 
     //measurementP = GameObject.Find(GameObjectNames.MeasurementPaint).GetComponent<Text>();
     measurementP = measurementGameObjectP.GetComponent<Text>();

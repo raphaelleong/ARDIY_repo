@@ -6,7 +6,7 @@ public class CUIColorPicker : MonoBehaviour
 {
     public Color Color { get { return _color; } set { Setup( value ); } }
 	public GameObject button;
-	public WallManager wallManager; //TODO changed from GameObject - NEEDS TEST
+	public WallManager wallManager;
 
   public float alpha = 1.0f;
 
@@ -15,7 +15,6 @@ public class CUIColorPicker : MonoBehaviour
 	private GameObject[] objs;
 
 	void Start () {
-		wallManager = WallManager.getWallManager ();
 	}
 
 	public void toggle() {

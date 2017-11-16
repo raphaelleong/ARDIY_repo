@@ -39,14 +39,15 @@ public class Wall : MonoBehaviour {
 
   public void drawWall(Vector3 point1, Vector3 point2, float currentWallHeight) {
     this.transform.position = point1;
-	CreateWallMesh (point2 - point1, currentWallHeight);
+
+	  CreateWallMesh (point2 - point1, currentWallHeight);
   }
 
   public void setHeight(float height) {
-	MeshFilter meshFilter = this.GetComponent (typeof(MeshFilter)) as MeshFilter;
-	Mesh wallMesh = meshFilter.mesh;
+  	MeshFilter meshFilter = this.GetComponent (typeof(MeshFilter)) as MeshFilter;
+  	Mesh wallMesh = meshFilter.mesh;
     Vector3[] vertices = wallMesh.vertices;
-	CreateWallMesh (vertices [1], height);
+  	CreateWallMesh (vertices [1], height);
   }
 		
 	void CreateWallMesh(Vector3 point, float height) {

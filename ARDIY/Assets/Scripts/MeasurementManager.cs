@@ -41,13 +41,6 @@ public class MeasurementManager : MonoBehaviour
   {
     
   }
-    
-  public static MeasurementManager getMeasurementManager ()
-  {
-    return GameObject.Find (GameObjectNames.MeasurementManager).GetComponent<MeasurementManager> ();
-
-  }
-
 
   public void displayMeasurements() {
 		//Made a change here
