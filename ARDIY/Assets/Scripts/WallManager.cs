@@ -8,11 +8,13 @@ public class WallManager : MonoBehaviour
 
   private Color currentColor;
   private List<Wall> walls;
+  private List<Vector3> disjointOrigins;
 
   // Use this for initialization
   void Start ()
   {
     walls = new List<Wall> ();
+    disjointOrigins = new List<Vector3>();
   }
 	
   // Update is called once per frame
@@ -35,7 +37,7 @@ public class WallManager : MonoBehaviour
   {
     wall.transform.SetParent (this.transform);
     walls.Add (getWall (wall));
-    wall.GetComponent<Wall> ().changeColor (currentColor);
+    getWall(wall).changeColor (currentColor);
   }
 
   public void setWallHeights (float height)
@@ -50,35 +52,26 @@ public class WallManager : MonoBehaviour
     return wall.GetComponent<Wall> ();
   }
 
-  public static WallManager getWallManager ()
-  {
-    return GameObject.Find ("WallManager").GetComponent<WallManager> ();
-  }
-
   public Vector3? removeLastWall ()
   {
     Wall lastWall = walls [walls.Count - 1];
-    Vector3 point2 = lastWall.transform.position;
-
+    Vector3 lastCoordinate = lastWall.transform.position;
+    Vector3 currentCoordinate = lastCoordinate + lastWall.GetComponent<MeshFilter> ().mesh.vertices[1];
 
     walls.Remove (lastWall);
     Destroy (lastWall.gameObject);
+   
+    Vector3 mostRecentOrigin = disjointOrigins [disjointOrigins.Count - 1];
+    if (lastCoordinate.Equals (mostRecentOrigin)) {
+      destroyCube (lastCoordinate);
+      destroyCube (currentCoordinate);
 
-    //remove the second last wall as well since walls are drawn twice 
-    lastWall = walls [walls.Count - 1];
-    Vector3 point1 = lastWall.transform.position;
-    walls.Remove (lastWall);
-    Destroy (lastWall.gameObject);
-
-    if (walls.Count == 0) {
-      destroyCube (point1);
-      destroyCube (point2);
-
+      disjointOrigins.Remove (mostRecentOrigin);
       return null;
     }
 
-    destroyCube (point2);
-    return walls [walls.Count - 1].transform.position;
+    destroyCube (currentCoordinate);
+    return lastCoordinate;
   }
 
   private void destroyCube (Vector3 point) {
@@ -88,5 +81,9 @@ public class WallManager : MonoBehaviour
     foreach (Collider cube in cubes) {
       Destroy (cube.gameObject);
     }
+  }
+
+  public void addOrigin(Vector3 newOrigin) {
+    disjointOrigins.Add (newOrigin);
   }
 }

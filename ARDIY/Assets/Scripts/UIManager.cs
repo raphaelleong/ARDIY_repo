@@ -9,10 +9,21 @@ public class UIManager : MonoBehaviour {
 	// Use this for initialization
 	bool palette; 
 	CUIColorPicker picker;
-	private GameObject home; 
-	private GameObject colour;
-	private GameObject infoPanel;
-	private GameObject menu; 
+	public GameObject home; 
+  public GameObject colour;
+  public GameObject infoPanel;
+  public GameObject menu; 
+  public GameObject instructions;
+  public GameObject colourPicker;
+
+  public GameObject colourButton;
+  public GameObject infoButton;
+  public GameObject disjointButton;
+  public GameObject undoButton;
+  public GameObject addButton;
+  public GameObject recorder;
+  public GameObject slider;
+
 	private bool infoDisplayed; 
 	private bool menuDisplayed; 
 
@@ -20,9 +31,9 @@ public class UIManager : MonoBehaviour {
 		palette = false; 
 		picker = this.gameObject.GetComponentInChildren<CUIColorPicker> (true);
 
-		home = GameObject.Find ("Home Button");
-		infoPanel = GameObject.Find ("Info Pop Up");
-		menu = GameObject.Find("Menu");
+//		home = GameObject.Find ("Home Button");
+//		infoPanel = GameObject.Find ("Info Pop Up");
+//		menu = GameObject.Find("Menu");
 		Debug.Log (infoPanel);
 		infoDisplayed = false; 
 		menuDisplayed = false; 
@@ -31,28 +42,28 @@ public class UIManager : MonoBehaviour {
 
         if (ButtonManager.isPreview)
         {
-			GameObject instructions = GameObject.Find("InstructionsUI");
+//			GameObject instructions = GameObject.Find("InstructionsUI");
             instructions.SetActive(false);
 			infoPanel.SetActive (false);
         } else
         {
-            GameObject colourPicker = GameObject.Find("ColourUI");
+//            GameObject colourPicker = GameObject.Find("ColourUI");
             colourPicker.SetActive(false);
-			GameObject colourButton = GameObject.Find("Colour Palette");
+//			GameObject colourButton = GameObject.Find("Colour Palette");
 			colourButton.SetActive (false);
-			GameObject infoButton = GameObject.Find("Info Button");
+//			GameObject infoButton = GameObject.Find("Info Button");
 			infoButton.SetActive (false);
-			GameObject disjointButton = GameObject.Find("DisjointButton");
+//			GameObject disjointButton = GameObject.Find("DisjointButton");
 			disjointButton.SetActive (false);
-			GameObject undoButton = GameObject.Find("Remove Button");
+//			GameObject undoButton = GameObject.Find("Remove Button");
 			undoButton.SetActive (false);
-			GameObject addButton = GameObject.Find("Add Corner Button");
+//			GameObject addButton = GameObject.Find("Add Corner Button");
 			addButton.SetActive (false); 
 
 
-			GameObject recorder = GameObject.Find("Recorder");
+//			GameObject recorder = GameObject.Find("Recorder");
 			recorder.SetActive(false); 
-			GameObject slider = GameObject.Find("Slider");
+//			GameObject slider = GameObject.Find("Slider");
 			slider.SetActive(false); 
 
 			infoPanel.SetActive (false);

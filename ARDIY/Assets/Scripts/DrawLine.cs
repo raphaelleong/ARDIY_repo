@@ -14,14 +14,12 @@ public class DrawLine : MonoBehaviour
   /* determines the previous coordinate that was saved */
   private Vector3 origin;
   /* The first coordinate that was saved */
-  private WallManager wallManager;
-  private MeasurementManager measurer;
+  public WallManager wallManager;
+  public MeasurementManager measurer;
 	ARPoint point; 
 
   void Start ()
   {
-    wallManager = WallManager.getWallManager ();
-    measurer = MeasurementManager.getMeasurementManager ();
   }
 
 	public void addPoint() {
@@ -107,12 +105,12 @@ public class DrawLine : MonoBehaviour
 
     if (lastCoordinate != null) {
       drawWall (lastCoordinate.Value, currentCoordinate);
-      //drawWall (currentCoordinate, lastCoordinate.Value);
 
       /* Update width. */
       measurer.updateWidth (lastCoordinate.Value, currentCoordinate);
     } else {     
       origin = currentCoordinate;
+      wallManager.addOrigin (origin);
     }
   }
 
@@ -146,6 +144,5 @@ public class DrawLine : MonoBehaviour
   {
 		measurer.setCurrentWidth (0);
 		lastCoordinate = null;    
-
   }
 }
