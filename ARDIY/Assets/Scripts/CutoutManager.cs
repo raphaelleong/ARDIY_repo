@@ -7,6 +7,10 @@ public class CutoutManager : MonoBehaviour {
 
   public GameObject cutoutPrefab;
 
+  public MeasurementManager measurementManager;
+
+  List<GameObject> cutouts = new List<GameObject>();
+
   bool firstCornerPlaced = false;
   bool secondCornerPlaced = false;
 
@@ -20,6 +24,11 @@ public class CutoutManager : MonoBehaviour {
   Vector3 otherCornerB;
 
   GameObject cube;
+
+  void Start () {
+
+
+  }
 	
 	// Update is called once per frame
 	void Update () {
@@ -102,6 +111,7 @@ public class CutoutManager : MonoBehaviour {
   public void Cutout (GameObject wall, Vector3 corner1, Vector3 otherCorner1, Vector3 corner2, Vector3 otherCorner2) {
 
     GameObject cutout = Instantiate (cutoutPrefab, wall.transform);
+    cutouts.Add (cutout);
     MeshFilter meshFilter = cutout.GetComponent (typeof(MeshFilter)) as MeshFilter;
     Mesh cutoutMesh = meshFilter.mesh;
 
@@ -109,6 +119,11 @@ public class CutoutManager : MonoBehaviour {
     Vector3 localOtherCorner1 = wall.transform.InverseTransformPoint (otherCorner1);
     Vector3 localCorner2 = wall.transform.InverseTransformPoint (corner2);
     Vector3 localOtherCorner2 = wall.transform.InverseTransformPoint (otherCorner2);
+
+    float width = Vector3.Distance (localCorner1, localOtherCorner1);
+    float height = Vector3.Distance (localCorner1, localOtherCorner2);
+
+    measurementManager.updateCutoutsArea (width, height);
 
     cutoutMesh.SetVertices (
       new List<Vector3> () {

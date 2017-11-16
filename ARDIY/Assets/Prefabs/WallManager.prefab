@@ -138,6 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cutoutPrefab: {fileID: 1418342322448552, guid: 4d173c93d7e0f4da5aff78efb9d5d8e9,
     type: 2}
+  measurementManager: {fileID: 0}
 --- !u!114 &114736945703239992
 MonoBehaviour:
   m_ObjectHideFlags: 1

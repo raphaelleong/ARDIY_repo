@@ -16,6 +16,8 @@ public class MeasurementManager : MonoBehaviour
   private float cumulativeWidth = 0;
   private float currentWidth = 0;
 
+  private float cumulativeCutoutArea = 0;
+
   private float currentWallHeight = 1;
   /* initial wall height  */
   private PaintType paintType;
@@ -62,6 +64,7 @@ public class MeasurementManager : MonoBehaviour
     float height = currentWallHeight;
 
     cumulativeArea = Measure.findArea (height, width);
+    cumulativeArea -= cumulativeCutoutArea;
 
     displayMeasurements ();
   }
@@ -75,6 +78,12 @@ public class MeasurementManager : MonoBehaviour
   {
     cumulativeWidth += Measure.findDistance (lastCoordinate, currentCoordinate);
     currentWidth += Measure.findDistance (lastCoordinate, currentCoordinate);
+    updateAreaAndPaint ();
+  }
+
+  public void updateCutoutsArea (float width, float height)
+  {
+    cumulativeCutoutArea += Measure.findArea (height, width);
     updateAreaAndPaint ();
   }
 
