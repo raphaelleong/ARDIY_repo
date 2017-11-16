@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CutoutManager : MonoBehaviour {
 
@@ -24,7 +25,7 @@ public class CutoutManager : MonoBehaviour {
 	void Update () {
       
     //if (Input.GetMouseButton(0)) {
-    if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began || firstCornerPlaced) {
+    if (firstCornerPlaced) {
       RaycastHit hit;
       Ray ray = Camera.main.ScreenPointToRay (new Vector3 (Screen.width / 2, Screen.height / 2, 0.0f));
       //Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
@@ -39,42 +40,58 @@ public class CutoutManager : MonoBehaviour {
 
           Vector3 hitPoint = hit.point;
 
-          if (!firstCornerPlaced) {
+          // we are placing the other corner
+          // check it's the same wall as the first point
+          if (currentWall.Equals (selectedWall)) {
 
-            selectedWall = currentWall;
-            selectedLineRenderer = currentWall.transform.GetChild (0).GetComponent<LineRenderer> ();
+            secondCorner = hitPoint;
 
-            firstCorner = hitPoint;
-            firstCornerPlaced = true;
+            // get other corners
+            otherCornerA = new Vector3 (firstCorner.x, secondCorner.y, firstCorner.z);
+            otherCornerB = new Vector3 (secondCorner.x, firstCorner.y, secondCorner.z);
 
-          } else {
-            // we are placing the other corner
-            // check it's the same wall as the first point
-            if (currentWall.Equals (selectedWall)) {
-
-              secondCorner = hitPoint;
-
-              // get other corners
-              otherCornerA = new Vector3 (firstCorner.x, secondCorner.y, firstCorner.z);
-              otherCornerB = new Vector3 (secondCorner.x, firstCorner.y, secondCorner.z);
-
-              selectedLineRenderer.positionCount = 4;
-              Vector3[] relativePositions = new Vector3[4]{ firstCorner, otherCornerA, secondCorner, otherCornerB };
-              Vector3[] worldPositions = new Vector3[4];
-              for (int i = 0; i < 4; i++) {
-                worldPositions [i] = relativePositions [i] - hit.transform.position;
-              }
-              selectedLineRenderer.SetPositions (worldPositions);
-              selectedLineRenderer.loop = true;
-              secondCornerPlaced = true;
+            selectedLineRenderer.positionCount = 4;
+            Vector3[] relativePositions = new Vector3[4]{ firstCorner, otherCornerA, secondCorner, otherCornerB };
+            Vector3[] worldPositions = new Vector3[4];
+            for (int i = 0; i < 4; i++) {
+              worldPositions [i] = relativePositions [i] - hit.transform.position;
             }
+            selectedLineRenderer.SetPositions (worldPositions);
+            selectedLineRenderer.loop = true;
+            secondCornerPlaced = true;
           }
+
+        }
+      }
+    }
+  }
+
+  public void OnClick () {
+    if (!firstCornerPlaced) {
+      RaycastHit hit;
+      Ray ray = Camera.main.ScreenPointToRay (new Vector3 (Screen.width / 2, Screen.height / 2, 0.0f));
+      //Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+
+      // if the mouse ray has intersected with anything
+      if (Physics.Raycast (ray, out hit, 100.0f)) {
+
+        // check you have hit a wall and not another object
+        if (hit.transform.gameObject.GetComponent<Wall> () != null) {
+
+          GameObject currentWall = hit.transform.gameObject;
+
+          Vector3 hitPoint = hit.point;
+
+          selectedWall = currentWall;
+          selectedLineRenderer = currentWall.transform.GetChild (0).GetComponent<LineRenderer> ();
+
+          firstCorner = hitPoint;
+          firstCornerPlaced = true;
         }
       }
     }
 
-    //if (Input.GetKeyDown (KeyCode.Space)) {
-    if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began && secondCornerPlaced) {
+    if (secondCornerPlaced) {
       Cutout (selectedWall, firstCorner, otherCornerA, secondCorner, otherCornerB);
       firstCornerPlaced = false;
       secondCornerPlaced = false;

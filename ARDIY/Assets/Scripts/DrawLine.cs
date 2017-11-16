@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 public class DrawLine : MonoBehaviour
 {
   public GameObject wallPrefab;
+  public CutoutButton cutoutButton;
   
   private Vector3? lastCoordinate;
   /* determines the previous coordinate that was saved */
@@ -15,6 +16,7 @@ public class DrawLine : MonoBehaviour
   /* The first coordinate that was saved */
   private WallManager wallManager;
   private MeasurementManager measurer;
+	ARPoint point; 
 
   void Start ()
   {
@@ -22,35 +24,32 @@ public class DrawLine : MonoBehaviour
     measurer = MeasurementManager.getMeasurementManager ();
   }
 
-  /*
-	  Find the touch point on the screen and draw a wall between two consecutive points
-	*/
-  void Update ()
-  {
-    if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) {
-      // Check if finger is over a UI element
-      if (!EventSystem.current.IsPointerOverGameObject (Input.GetTouch (0).fingerId)) {
-        var screenPosition = Camera.main.ScreenToViewportPoint (new Vector3 (Screen.width / 2, Screen.height / 2, Camera.main.nearClipPlane));
-        ARPoint point = new ARPoint {
-          x = screenPosition.x,
-          y = screenPosition.y
-        };
+	public void addPoint() {
+    if (!cutoutButton.cutoutMode) {
+      var screenPosition = Camera.main.ScreenToViewportPoint (new Vector3 (Screen.width / 2, Screen.height / 2, Camera.main.nearClipPlane));
+      point = new ARPoint {
+        x = screenPosition.x,
+        y = screenPosition.y
+      };
 
-        UnityARSessionNativeInterface.GetARSessionNativeInterface ().RunWithConfig (new ARKitWorldTrackingSessionConfiguration ());
-        // prioritize result types
-        ARHitTestResultType[] resultTypes = {
-          ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent,
-          // if you want to use infinite planes use this:
-          ARHitTestResultType.ARHitTestResultTypeExistingPlane,
-          ARHitTestResultType.ARHitTestResultTypeHorizontalPlane,
-        };
+      UnityARSessionNativeInterface.GetARSessionNativeInterface ().RunWithConfig (new ARKitWorldTrackingSessionConfiguration ());
+      // prioritize result types
+      ARHitTestResultType[] resultTypes = {
+        ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent,
+        // if you want to use infinite planes use this:
+        ARHitTestResultType.ARHitTestResultTypeExistingPlane,
+        ARHitTestResultType.ARHitTestResultTypeHorizontalPlane,
+      };
 
-        int i = 0;
-        while (i < resultTypes.Length && !foundPointInPlane (point, resultTypes [i])) {
-          i++;
-        }
+      int i = 0;
+      while (i < resultTypes.Length && !foundPointInPlane (point, resultTypes [i])) {
+        i++;
       }
     }
+	}
+//	  Find the touch point on the screen and draw a wall between two consecutive points
+  void Update ()
+  {
   }
 
   /*
