@@ -29,10 +29,10 @@ public class CutoutManager : MonoBehaviour {
 
 
   }
-	
-	// Update is called once per frame
-	void Update () {
-      
+
+  // Update is called once per frame
+  void Update () {
+
     //if (Input.GetMouseButton(0)) {
     if (firstCornerPlaced) {
       RaycastHit hit;
@@ -41,7 +41,7 @@ public class CutoutManager : MonoBehaviour {
 
       // if the mouse ray has intersected with anything
       if (Physics.Raycast (ray, out hit, 100.0f)) {
-       
+
         // check you have hit a wall and not another object
         if (hit.transform.gameObject.GetComponent<Wall> () != null) {
 

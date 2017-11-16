@@ -1732,6 +1732,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0e614e0c56641f48b537ac4d023f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oilBased: {fileID: 1459360372307846}
+  emulsion: {fileID: 1496447890405728}
+  nonDrip: {fileID: 1141539133454802}
   infoPanel: {fileID: 1518947814005766}
   measurementGameObjectP: {fileID: 1037684046368360}
 --- !u!114 &114234997474797062
@@ -2942,6 +2945,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallPrefab: {fileID: 1275446157945102, guid: 76c31aa8417c948658b756a531eca110, type: 2}
   cutoutButton: {fileID: 114018549748151904}
+  wallManager: {fileID: 0}
+  measurer: {fileID: 0}
 --- !u!114 &114682734081064880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3378,6 +3383,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15e6ec87bb17964499669bd8deff813f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  home: {fileID: 1765232915162088}
+  colour: {fileID: 0}
+  infoPanel: {fileID: 1518947814005766}
+  menu: {fileID: 1444379643247120}
+  instructions: {fileID: 1822362157497192}
+  colourPicker: {fileID: 1567778114247782}
+  colourButton: {fileID: 1375800475774144}
+  infoButton: {fileID: 1278635614774258}
+  disjointButton: {fileID: 1492058231881612}
+  undoButton: {fileID: 1588110429536560}
+  addButton: {fileID: 1767854096630680}
+  recorder: {fileID: 1995818639827358}
+  slider: {fileID: 1307765502280582}
 --- !u!114 &114827992812190812
 MonoBehaviour:
   m_ObjectHideFlags: 1
