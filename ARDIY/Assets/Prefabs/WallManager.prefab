@@ -38,6 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4878796002042078}
   - component: {fileID: 114556526512759842}
+  - component: {fileID: 114691259650147012}
   m_Layer: 0
   m_Name: WallManager
   m_TagString: Untagged
@@ -124,6 +125,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bcdd61fa9e7d4671a243e3c807eb742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114691259650147012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1989560750547906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2cdfe9ea7302429db40421780f3eddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutoutPrefab: {fileID: 1418342322448552, guid: 4d173c93d7e0f4da5aff78efb9d5d8e9,
+    type: 2}
 --- !u!114 &114736945703239992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -135,4 +149,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b30988b40ea24e02b23cf579c38415f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugText: {fileID: 0}
