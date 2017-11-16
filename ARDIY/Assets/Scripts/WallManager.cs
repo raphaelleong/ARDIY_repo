@@ -24,8 +24,10 @@ public class WallManager : MonoBehaviour
   public void changeColor (Color color)
   {
     currentColor = color; 
-    foreach (Wall w in walls) {
-      w.changeColor (color);
+    if (walls != null) {
+      foreach (Wall w in walls) {
+        w.changeColor (color);
+      }
     }
   }
 

@@ -8,7 +8,7 @@ public class CUIColorPicker : MonoBehaviour
 	public GameObject button;
 	public WallManager wallManager; //TODO changed from GameObject - NEEDS TEST
 
-  public float alpha = 0.8f;
+  public float alpha = 1.0f;
 
 	private bool isVisible = false;
 	[SerializeField]
