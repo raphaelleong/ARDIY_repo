@@ -18,7 +18,8 @@ before_install:
 - xctool -version
 - xcodebuild -version -sdk
 install:
-- "./scripts/install.sh"
+- echo "stopping install"
+#"./scripts/install.sh"
 script:
 - echo "Stopping build temporarily"
 #- "./scripts/build.sh"
