@@ -20,7 +20,8 @@ before_install:
 install:
 - "./scripts/install.sh"
 script:
-- "./scripts/build.sh"
+- echo "Stopping build temporarily"
+#- "./scripts/build.sh"
 deploy: 
 env:
   global:
