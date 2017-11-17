@@ -9,10 +9,10 @@ branches:
 before_install:
 - chmod a+x ./scripts/install.sh
 - chmod a+x ./scripts/build.sh
-- softwareupdate -l
-- brew update && brew uninstall xctool && brew install xctool --build-from-source
-- gem update --system --no-document && gem update --no-document && gem uninstall -ax
-  cocoapods && gem install --no-document cocoapods && gem cleanup
+#- softwareupdate -l
+#- brew update && brew uninstall xctool && brew install xctool --build-from-source
+#- gem update --system --no-document && gem update --no-document && gem uninstall -ax
+#  cocoapods && gem install --no-document cocoapods && gem cleanup
 - pod --version
 - brew --version
 - xctool -version
