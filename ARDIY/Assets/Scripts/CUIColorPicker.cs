@@ -5,11 +5,17 @@ using UnityEngine.UI;
 public class CUIColorPicker : MonoBehaviour
 {
     public Color Color { get { return _color; } set { Setup( value ); } }
+	public GameObject button;
+	public WallManager wallManager;
+
+  public float alpha = 1.0f;
 
 	private bool isVisible = false;
 	[SerializeField]
 	private GameObject[] objs;
-		
+
+	void Start () {
+	}
 
 	public void toggle() {
 
@@ -21,7 +27,7 @@ public class CUIColorPicker : MonoBehaviour
 			isVisible = false;
 		} else {
 			foreach (GameObject obj in objs) {
-				obj.transform.localScale = new Vector3 (1, 1, 1);
+				obj.transform.localScale = new Vector3 (1.5f, 1.5f, 1.5f);
 			}
 			isVisible = true;
 		}
@@ -180,6 +186,7 @@ public class CUIColorPicker : MonoBehaviour
             }
         };
         _update = idle;
+		SetOnValueChangeCallback (changeWallColor);
     }
 
     public void SetRandomColor()
@@ -193,18 +200,49 @@ public class CUIColorPicker : MonoBehaviour
 
     void Awake()
     {
-		Color = Color.red;
+    Color = Color.white;
+
 		objs = GameObject.FindGameObjectsWithTag ("colourPalette");
 			
 			foreach (GameObject obj in objs) {
 				obj.transform.localScale = new Vector3 (0, 0, 0);
 			}
 	
-
+    setOpaque ();
     }
 
     void Update()
     {
+		//Button btn = button.GetComponent<Button> ();
+		//btn.colors.normalColor = this.Color;
+
+
+
+
+		//wallManager.GetComponent<WallManager>().changeColor (this.Color);
+
         _update();
     }
+
+	void changeWallColor(Color color) {
+		Button b = button.GetComponent<Button>(); 
+		ColorBlock cb = b.colors;
+		cb.disabledColor = this.Color; 
+		cb.highlightedColor = this.Color; 
+		cb.pressedColor = this.Color; 
+		cb.normalColor = this.Color;
+		b.colors = cb;
+    color.a = alpha;
+		wallManager.changeColor (color); // TODO needs testing - was wM.GetComp.ChangeCol
+	}
+
+  public void setOpaque () {
+    alpha = 1.0f;
+    changeWallColor (this.Color);
+  }
+
+  public void setTransparent () {
+    alpha = 0.8f;
+    changeWallColor (this.Color);
+  }
 }

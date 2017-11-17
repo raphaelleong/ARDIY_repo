@@ -7,7 +7,7 @@ PlayerSettings:
   productGUID: 6f1c150c1d09e34438d8b828344ac6d5
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 3
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -151,7 +151,7 @@ PlayerSettings:
     Android: com.Company.ProductName
     Standalone: unity.Unity Technologies.Native Rendering Plugin Example
     Tizen: com.Company.ProductName
-    iOS: com.unity.arkitscene
+    iOS: com.donamphuong.arkit
     tvOS: com.Company.ProductName
   buildNumber:
     iOS: 0
@@ -597,7 +597,9 @@ PlayerSettings:
   webGLUseEmbeddedResources: 0
   webGLUseWasm: 0
   webGLCompressionFormat: 1
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: 
+    4: 
   platformArchitecture:
     iOS: 2
   scriptingBackend:
@@ -726,9 +728,9 @@ PlayerSettings:
     Unity_Ads: 0
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 35741297-43cf-4a39-bc67-1e21a8d370c1
-  projectName: Unity ARKit Plugin
-  organizationId: donamphuong
+  cloudProjectId: 5279757d-66ca-4882-9599-a6c5d6a6f06e
+  projectName: Unity ARKit Plugin (1)
+  organizationId: amandakys
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
