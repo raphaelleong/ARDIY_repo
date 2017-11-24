@@ -24,6 +24,9 @@ public class UIManager : MonoBehaviour {
   public GameObject recorder;
   public GameObject slider;
 
+  public GameObject onboarding;
+  public GameObject windows;
+
 	private bool infoDisplayed; 
 	private bool menuDisplayed; 
 
@@ -67,6 +70,9 @@ public class UIManager : MonoBehaviour {
 			slider.SetActive(false); 
 
 			infoPanel.SetActive (false);
+
+      onboarding.SetActive (false);
+      windows.SetActive (false);
 //			GameObject width = GameObject.Find("MeasurementWidth");
 //			width.SetActive(false);
 //			GameObject height = GameObject.Find("MeasurementHeight");
