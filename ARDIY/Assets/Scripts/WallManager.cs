@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class WallManager : MonoBehaviour
 {
 
   private Color currentColor;
   private List<Wall> walls;
-  private List<Vector3> disjointOrigins;
+	private List<Vector3> disjointOrigins;
 
   // Use this for initialization
   void Start ()
   {
     walls = new List<Wall> ();
-    disjointOrigins = new List<Vector3>();
+		disjointOrigins = new List<Vector3> ();
+	
+
   }
 	
   // Update is called once per frame
@@ -60,17 +63,23 @@ public class WallManager : MonoBehaviour
 
     walls.Remove (lastWall);
     Destroy (lastWall.gameObject);
-   
-    Vector3 mostRecentOrigin = disjointOrigins [disjointOrigins.Count - 1];
-    if (lastCoordinate.Equals (mostRecentOrigin)) {
-      destroyCube (lastCoordinate);
-      destroyCube (currentCoordinate);
 
-      disjointOrigins.Remove (mostRecentOrigin);
+	Vector3 mostRecentOrigin = disjointOrigins.Last();
+
+	if (lastCoordinate.Equals (mostRecentOrigin)) {
+
+	  destroyCube (lastCoordinate);
+      destroyCube (currentCoordinate);
+		
+	  disjointOrigins.Remove (mostRecentOrigin);
+
       return null;
     }
 
-    destroyCube (currentCoordinate);
+	if (!currentCoordinate.Equals (mostRecentOrigin)) {
+		destroyCube (currentCoordinate);
+	}
+    
     return lastCoordinate;
   }
 
@@ -84,6 +93,6 @@ public class WallManager : MonoBehaviour
   }
 
   public void addOrigin(Vector3 newOrigin) {
-    disjointOrigins.Add (newOrigin);
+	disjointOrigins.Add (newOrigin);
   }
 }
