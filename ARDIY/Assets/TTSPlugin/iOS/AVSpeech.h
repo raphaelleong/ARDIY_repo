@@ -1,12 +1,15 @@
 #import <Foundation/Foundation.h>
 
-@interface NetServiceBrowserDelegate : NSObject
+@protocol AVSpeechDelegate <NSObject>
+- (void)
+
+@interface AVSpeech : NSObject
 {
-  NSString* utterance; 
++ NSString* utterance; 
 }
 
 
-- (void) utterSpeech:(NSString *) string;
++ (void) utterSpeech:(NSString *) string;
 
 
 @end
