@@ -19,7 +19,8 @@ public class ButtonManager : MonoBehaviour {
         SceneManager.LoadScene("EditorTestScene");
     }
 
-	public void ComingSoonFeature() {
+	public void OpenTools() {
+    SceneManager.LoadScene ("ToolsScene");
 
 	}
 }
