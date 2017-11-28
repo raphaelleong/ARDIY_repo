@@ -9,6 +9,7 @@ public class DrawLine : MonoBehaviour
 {
   public GameObject wallPrefab;
   public CutoutButton cutoutButton;
+	public Button addCornerButton;
   
   private Vector3? lastCoordinate;
   /* determines the previous coordinate that was saved */
@@ -22,29 +23,31 @@ public class DrawLine : MonoBehaviour
   {
   }
 
-	public void addPoint() {
-    if (!cutoutButton.cutoutMode) {
-      var screenPosition = Camera.main.ScreenToViewportPoint (new Vector3 (Screen.width / 2, Screen.height / 2, Camera.main.nearClipPlane));
-      point = new ARPoint {
-        x = screenPosition.x,
-        y = screenPosition.y
-      };
+  public void addPoint() {
+		if (addCornerButton.GetComponent<Image> ().fillAmount == 1) {
+			if (!cutoutButton.cutoutMode) {
+				var screenPosition = Camera.main.ScreenToViewportPoint (new Vector3 (Screen.width / 2, Screen.height / 2, Camera.main.nearClipPlane));
+				point = new ARPoint {
+					x = screenPosition.x,
+					y = screenPosition.y
+				};
 
-      UnityARSessionNativeInterface.GetARSessionNativeInterface ().RunWithConfig (new ARKitWorldTrackingSessionConfiguration ());
-      // prioritize result types
-      ARHitTestResultType[] resultTypes = {
-        ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent,
-        // if you want to use infinite planes use this:
-        ARHitTestResultType.ARHitTestResultTypeExistingPlane,
-        ARHitTestResultType.ARHitTestResultTypeHorizontalPlane,
-      };
+				UnityARSessionNativeInterface.GetARSessionNativeInterface ().RunWithConfig (new ARKitWorldTrackingSessionConfiguration ());
+				// prioritize result types
+				ARHitTestResultType[] resultTypes = {
+					ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent,
+					// if you want to use infinite planes use this:
+					ARHitTestResultType.ARHitTestResultTypeExistingPlane,
+					ARHitTestResultType.ARHitTestResultTypeHorizontalPlane,
+				};
 
-      int i = 0;
-      while (i < resultTypes.Length && !foundPointInPlane (point, resultTypes [i])) {
-        i++;
-      }
-    }
-	}
+				int i = 0;
+				while (i < resultTypes.Length && !foundPointInPlane (point, resultTypes [i])) {
+					i++;
+				}
+			}
+		}
+  }
 //	  Find the touch point on the screen and draw a wall between two consecutive points
   void Update ()
   {

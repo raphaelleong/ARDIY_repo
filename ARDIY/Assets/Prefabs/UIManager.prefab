@@ -416,6 +416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4800960437661694}
   - component: {fileID: 114826863166022420}
+  - component: {fileID: 114338494111553662}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -1082,6 +1083,8 @@ GameObject:
   - component: {fileID: 222311214323217260}
   - component: {fileID: 114415698815080966}
   - component: {fileID: 114488442851023610}
+  - component: {fileID: 114742591465016238}
+  - component: {fileID: 114883341532953058}
   m_Layer: 5
   m_Name: Add Corner Button
   m_TagString: Untagged
@@ -2687,6 +2690,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Height: 1.000m'
+--- !u!114 &114338494111553662
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1309331661658892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d85cce163a344289c9bd381a4f9128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onboard: {fileID: 1034916067256126}
 --- !u!114 &114348933479029636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3055,11 +3070,11 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 8d3d73c629a8144f983e21d7860cc38f, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
+  m_Type: 3
+  m_PreserveAspect: 1
   m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillMethod: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
 --- !u!114 &114419838152668858
@@ -3853,6 +3868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallPrefab: {fileID: 1275446157945102, guid: 76c31aa8417c948658b756a531eca110, type: 2}
   cutoutButton: {fileID: 114018549748151904}
+  addCornerButton: {fileID: 114488442851023610}
   wallManager: {fileID: 0}
   measurer: {fileID: 0}
 --- !u!114 &114670794518054658
@@ -4030,6 +4046,20 @@ MonoBehaviour:
   - {fileID: 1289357841238702}
   - {fileID: 1565362153357482}
   - {fileID: 1945706598550542}
+--- !u!114 &114742591465016238
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1767854096630680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6feaf95c12c4c4b8ebed9d415148df8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: {fileID: 114415698815080966}
+  unityARGeneratePlane: {fileID: 0}
+  waitTime: 30
 --- !u!114 &114744920830767320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4845,6 +4875,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114883341532953058
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1767854096630680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6feaf95c12c4c4b8ebed9d415148df8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: {fileID: 114415698815080966}
+  unityARGeneratePlane: {fileID: 0}
+  waitTime: 30
 --- !u!114 &114888354078375160
 MonoBehaviour:
   m_ObjectHideFlags: 1
