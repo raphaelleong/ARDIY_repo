@@ -36,10 +36,10 @@ public class TTSPlugin : MonoBehaviour {
 	public void Begin(string text) {
 
 		// This part only runs if environment is ios and not the editor
-		#if UNITY_IPHONE && !UNITY_EDITOR
+		//#if UNITY_IPHONE && !UNITY_EDITOR
 		BeginSpeaking (text, "Aaron");
 		_isSpeaking = true;
-		#endif
+		//#endif
 	}
 
 	// All functions below are called from objc plugin via UnitySendMessage

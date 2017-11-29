@@ -60,6 +60,16 @@ public class Wall : MonoBehaviour {
 				point + Vector3.up * height,
 				Vector3.up * height
 			});
+
+    Vector2[] uvs = new Vector2[4];
+
+    uvs[0] = new Vector2(0, 0);
+    uvs[1] = new Vector2(1, 0);
+    uvs[2] = new Vector2(1, 1);
+    uvs[3] = new Vector2(0, 1);
+
+    wallMesh.uv = uvs;
+
 		wallMesh.triangles = new int[] { 0, 1, 2, 0, 2, 3, 2, 1, 0, 3, 2, 0};
 		wallMesh.RecalculateBounds ();
     MeshCollider meshCollider = GetComponent<MeshCollider> ();

@@ -41,7 +41,7 @@ void BeginSpeaking(char* text, char* voice) {
     }
 
     NSString *utf8String = [NSString stringWithCString:text encoding:NSUTF8StringEncoding];
-    NSString *utf8Voice = [NSString stringWithCString:voice encoding:NSUTF8StringEncoding];
+    NSString *utf8Voice  = [NSString stringWithCString:voice encoding:NSUTF8StringEncoding];
     [pluginInstance beginSpeakingWithString:utf8String withVoice:utf8Voice];
 }
 
