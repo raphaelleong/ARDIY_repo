@@ -63,6 +63,10 @@ namespace UnityEngine.XR.iOS
 		{
 			return planeAnchorMap.Values.ToList ();
 		}
+
+		public Dictionary<string, ARPlaneAnchorGameObject> getPlaneAnchorMap() {
+			return planeAnchorMap;
+		}
 	}
 }
 
