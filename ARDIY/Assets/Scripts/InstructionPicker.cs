@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InstructionPicker : MonoBehaviour
 {
 
-  private int pickedInstr;
+  private int pickedInstr; //index to instruction set
   public GameObject instrDropdown;
   private List<string[]> allInstr = new List<string[]> ();
 
@@ -168,7 +168,7 @@ public class InstructionPicker : MonoBehaviour
   }
 
 
-  public void changedDropdown (int newVal)
+  public void changeInstructionSet (int newVal)
   {
 
     hssSets [pickedInstr].SetActive(false);
