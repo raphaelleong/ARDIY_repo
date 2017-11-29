@@ -66,10 +66,10 @@ void BeginSpeaking(char* text, char* voice) {
 - (void)beginSpeakingWithString: (NSString*)textString withVoice: (NSString*)voiceName {
 
     AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:textString];
-    utterance.preUtteranceDelay = 0.6f;
-    utterance.postUtteranceDelay = 0.6f;
-    utterance.pitchMultiplier = 0.3f;
-    utterance.rate = 0.4f;
+    utterance.preUtteranceDelay = 0.1f;
+    utterance.postUtteranceDelay = 0.1f;
+    utterance.pitchMultiplier = 1.0f;
+    utterance.rate = 0.45f;
 
     // Finds the requested voice name, if succeeds, sets it. Else it just uses the default one
 

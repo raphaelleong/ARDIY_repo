@@ -37,7 +37,7 @@ public class TTSPlugin : MonoBehaviour {
 
 		// This part only runs if environment is ios and not the editor
 		//#if UNITY_IPHONE && !UNITY_EDITOR
-		BeginSpeaking (text, "Aaron");
+		BeginSpeaking (text, "Karen");
 		_isSpeaking = true;
 		//#endif
 	}

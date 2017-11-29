@@ -1104,6 +1104,7 @@ GameObject:
   - component: {fileID: 114742591465016238}
   - component: {fileID: 114883341532953058}
   - component: {fileID: 114137109793593826}
+  - component: {fileID: 114798804522048246}
   m_Layer: 5
   m_Name: Add Corner Button
   m_TagString: Untagged
@@ -4496,6 +4497,20 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114798804522048246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1767854096630680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6feaf95c12c4c4b8ebed9d415148df8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: {fileID: 114415698815080966}
+  unityARGeneratePlane: {fileID: 0}
+  waitTime: 30
 --- !u!114 &114805480133582578
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5401,9 +5416,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 5989fff90ce39854282ce229a540b994, type: 3}
-        m_MethodName: 
-        m_Mode: 5
+      - m_Target: {fileID: 114592327437205894}
+        m_MethodName: beginSpeechSynthesize
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
