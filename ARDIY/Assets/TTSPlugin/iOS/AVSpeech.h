@@ -1,16 +1,17 @@
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 
-@protocol AVSpeechDelegate <NSObject>
-- (void)
 
 @interface AVSpeech : NSObject
 {
-+ NSString* utterance; 
++ NSString* utterance;
+- AVSpeechSynthesizer *speechSynthesizer;
 }
 
 
 + (void) utterSpeech:(NSString *) string;
-
++ (void) stopSpeech;
++ (NSString*) checkUtterance;
 
 @end
 
