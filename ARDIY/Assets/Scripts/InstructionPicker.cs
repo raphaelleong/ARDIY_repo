@@ -9,7 +9,7 @@ public class InstructionPicker : MonoBehaviour
   private int pickedInstr;
   public GameObject instrDropdown;
   private List<string[]> allInstr = new List<string[]> ();
-
+  private TextToSpeechManager tts;
 
   public GameObject contentObject;
   public GameObject instructionObject;
@@ -22,7 +22,8 @@ public class InstructionPicker : MonoBehaviour
 
     Debug.Log ("Start");
     pickedInstr = 0;
-
+    tts = new TextToSpeechManager();
+    tts.setUtterance(findInstruction());
     initialiseWallInstr (); //        0
     initialiseDoorInstr (); //        1
     initialiseDoorFrameInstr (); //   2
@@ -183,5 +184,19 @@ public class InstructionPicker : MonoBehaviour
 
 
     pickedInstr = newVal;
+    tts.changeInstructionSet(newVal);
+    tts.setUtterance(findInstruction());
+  }
+
+  public void updateInstr(bool flag) {
+    tts.updateCurrentInstruction(flag);
+    tts.setUtterance(findInstruction());
+  }
+
+  public string findInstruction() {
+    int instrSet = tts.getSet();
+    int instrIndex = tts.getInstr();
+
+    return allInstr[instrSet][instrIndex];
   }
 }
