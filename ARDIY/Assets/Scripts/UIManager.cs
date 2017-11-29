@@ -19,10 +19,14 @@ public class UIManager : MonoBehaviour {
   public GameObject colourButton;
   public GameObject infoButton;
   public GameObject disjointButton;
+  public GameObject onboardingButton;
   public GameObject undoButton;
   public GameObject addButton;
   public GameObject recorder;
   public GameObject slider;
+
+  public GameObject onboarding;
+  public GameObject windows;
 
 	private bool infoDisplayed; 
 	private bool menuDisplayed; 
@@ -60,6 +64,8 @@ public class UIManager : MonoBehaviour {
 //			GameObject addButton = GameObject.Find("Add Corner Button");
 			addButton.SetActive (false); 
 
+      onboardingButton.SetActive (false);
+
 
 //			GameObject recorder = GameObject.Find("Recorder");
 			recorder.SetActive(false); 
@@ -67,6 +73,9 @@ public class UIManager : MonoBehaviour {
 			slider.SetActive(false); 
 
 			infoPanel.SetActive (false);
+
+      onboarding.SetActive (false);
+      windows.SetActive (false);
 //			GameObject width = GameObject.Find("MeasurementWidth");
 //			width.SetActive(false);
 //			GameObject height = GameObject.Find("MeasurementHeight");

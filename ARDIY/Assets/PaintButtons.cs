@@ -7,6 +7,7 @@ public class PaintButtons : MonoBehaviour {
 
   private static PaintType paintType;
 
+  public GameObject primer;
   public GameObject oilBased;
   public GameObject emulsion;
   public GameObject nonDrip;
@@ -21,17 +22,17 @@ public class PaintButtons : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-    clicked = false;
+    clicked = true; //TODO was false
     paintType = PaintType.Instance;
 
+    /*
     oilBased.SetActive (false);
     emulsion.SetActive (false);
     nonDrip.SetActive (false);
+    primer.SetActive (false);
+    */
+    clickPaintType ();
 
-    //infoPanel = GameObject.Find ("Info Pop Up");
-//    GameObject infoButton = GameObject.Find("Info Button");
-
-    //measurementP = GameObject.Find(GameObjectNames.MeasurementPaint).GetComponent<Text>();
     measurementP = measurementGameObjectP.GetComponent<Text>();
 	}
 	
@@ -41,43 +42,48 @@ public class PaintButtons : MonoBehaviour {
 	}
 
   public void clickPaintType() {
-    if (!clicked) {
-      oilBased.SetActive (true);
-      emulsion.SetActive (true);
-      nonDrip.SetActive (true);
-      infoPanel.SetActive (true);
-      infoDisplayed = true;
-      clicked = true;
-    } else {
-      hideButtons();
-      infoPanel.SetActive (false);
-      infoDisplayed = false;
-    }
+    oilBased.SetActive (!clicked);
+    emulsion.SetActive (!clicked);
+    nonDrip.SetActive (!clicked);
+    primer.SetActive (!clicked);
 
+    infoPanel.SetActive (!clicked);
+
+    clicked = !clicked;
+    infoDisplayed = !clicked;
   }
+
 
   public void clickOilBased() {
     //Choice 0 is oil based
-    paintType.setPaintType (0);
-    measurementP.text = "Paint: " + MeasurementManager.getTotalPaintRequired().ToString("n3") + " litres of " + paintType.ToString() + " paint";
+    changePaintType(0);
   }
 
   public void clickEmulsion() {
     //Choice 1 is emulsion
-    paintType.setPaintType (1);
-    measurementP.text = "Paint: " + MeasurementManager.getTotalPaintRequired().ToString("n3") + " litres of " + paintType.ToString() + " paint";
+    changePaintType(1);
   }
 
   public void clickNonDrip() {
     //Choice 2 is non drip
-    paintType.setPaintType (2);
-    measurementP.text = "Paint: " + MeasurementManager.getTotalPaintRequired().ToString("n3") + " litres of " + paintType.ToString() + " paint";
+    changePaintType(2);
   }
 
-  private void hideButtons() {
-    oilBased.SetActive (false);
-    emulsion.SetActive (false);
-    nonDrip.SetActive (false);
-    clicked = false;
+  public void clickPrimer() {
+    //Choice 3 is primer
+    changePaintType(3);
+  }
+
+  private void changePaintType(int val) {
+    paintType.setPaintType (val);
+    setMP ();
+  }
+
+  private void setMP() {
+    string suffix = "";
+    if (paintType.getPaintType() != 3) {
+        suffix = " paint";
+      }
+    measurementP.text = "Paint: " + MeasurementManager.getTotalPaintRequired().ToString("n3") + " litres of " + paintType.getName() + suffix;
   }
 }
