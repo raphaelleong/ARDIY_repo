@@ -26,6 +26,7 @@ public class PopulateTools : MonoBehaviour {
     {
       // Create new instances of our prefab until we've created as many as we specified
       newObj = (GameObject)Instantiate(toolText, transform);
+      newObj.transform.localScale = Vector3.one;
  
     }
 
