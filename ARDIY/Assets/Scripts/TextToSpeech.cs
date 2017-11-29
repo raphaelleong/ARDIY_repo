@@ -21,11 +21,8 @@ public class TextToSpeech : MonoBehaviour {
     utterance = text;
   }
 
-  public static string getUtterance() {
-    return utterance;
-  }
 
-  public static void beginSpeechSynthesize() {
+  public void beginSpeechSynthesize() {
     tts.Begin(utterance);
   }
 }

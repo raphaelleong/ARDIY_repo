@@ -23,7 +23,6 @@ public class InstructionPicker : MonoBehaviour
     Debug.Log ("Start");
     pickedInstr = 0;
     tts = new TextToSpeechManager();
-    tts.setUtterance(findInstruction());
     initialiseWallInstr (); //        0
     initialiseDoorInstr (); //        1
     initialiseDoorFrameInstr (); //   2
@@ -32,6 +31,7 @@ public class InstructionPicker : MonoBehaviour
     initialiseSkirtingInstr (); //     5
 
 
+    tts.setUtterance(findInstruction());
 
     int count = 0;
     foreach (string[] ss in allInstr) {
@@ -193,7 +193,7 @@ public class InstructionPicker : MonoBehaviour
     tts.setUtterance(findInstruction());
   }
 
-  public string findInstruction() {
+  private string findInstruction() {
     int instrSet = tts.getSet();
     int instrIndex = tts.getInstr();
 
