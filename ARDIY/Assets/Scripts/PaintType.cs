@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PaintType
 {
-	private static readonly int totalPaintTypes = 3; 
+	private static readonly int totalPaintTypes = 4; 
 	private static PaintType instance;
 
 	private int paintTypeVal; //value representing the correct indexes
@@ -31,6 +31,10 @@ public class PaintType
 		instance.paintTypeVal = paint;
 	}
 
+  public int getPaintType() {
+    return paintTypeVal;
+  }
+
 	public string currentPaintStr() {
 		return instance.paintNames[paintTypeVal];
 	}
@@ -45,12 +49,17 @@ public class PaintType
 		paintPerSqM[0] = 0.0714;
 		paintPerSqM[1] = 0.1000;
 		paintPerSqM[2] = 0.0833;
+    paintPerSqM[3] = 0.0625;
 	}
 
 	private void initialisePaintNames() {
-		paintNames[0] = "Oil Based";
-		paintNames[1] = "Emulsion";
-		paintNames[2] = "Non-Drip Gloss";
+		paintNames[0] = "oil-based";
+		paintNames[1] = "emulsion";
+		paintNames[2] = "non-drip gloss";
+    paintNames[3] = "primer";
 	}
-    
+   
+  public string getName() {
+    return paintNames [paintTypeVal];
+  }
 }

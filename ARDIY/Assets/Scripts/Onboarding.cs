@@ -36,6 +36,7 @@ public class Onboarding : MonoBehaviour {
 
   public void ShowOnboarding () {
     PlayerPrefs.SetInt ("onboarding", 1);
+    onboard.SetActive (true);
   }
 
   void OnApplicationQuit()
