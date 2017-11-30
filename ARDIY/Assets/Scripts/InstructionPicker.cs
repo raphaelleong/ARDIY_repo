@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class InstructionPicker : MonoBehaviour
 {
-
 	private int pickedInstr;
 	public GameObject instrDropdown;
 	private List<string[]> allInstr = new List<string[]> ();
@@ -34,21 +33,19 @@ public class InstructionPicker : MonoBehaviour
 		initialiseCeilingInstr (); //     4
 		initialiseSkirtingInstr (); //     5
 
-
-
 		int count = 0;
 		for (int i = 0; i < allInstr.Count; i++) {
 			for (int j = 0; j < allInstr [i].Length; j++) {
 				string instr = allInstr [i][j];
 				GameObject newInstr = Instantiate (instructionObject, hssSets [count].transform.GetChild (0));
-				Text text = newInstr.transform.GetChild (0).GetComponent<Text> ();
+				Text text = newInstr.transform.GetComponentsInChildren<Text> ()[0];
 				text.text = instr;
 				newInstr.transform.localScale = Vector3.one; 
 
 				GameObject ani = allAnimations [i] [j];
 				if (ani != null) {
 					ani.transform.SetParent (newInstr.transform);
-					ani.transform.position = new Vector3 (ani.transform.position.x, Screen.height / 2, ani.transform.position.z);
+//					ani.transform.position = new Vector3 (ani.transform.position.x, Screen.height / 2, ani.transform.position.z);
 
 					Debug.Log (ani.transform.position);
 				}
@@ -173,18 +170,19 @@ public class InstructionPicker : MonoBehaviour
 
 	private void initialiseCeilingInstr ()
 	{
-		string[] instructions = new string[1];
-		instructions [0] = "Ceiling; start!";
-		instructions [0] = "Ceiling; start!";
-		instructions [0] = "Ceiling; start!";
-		instructions [0] = "Ceiling; start!";
-		instructions [0] = "Ceiling; start!";
-		instructions [0] = "Ceiling; start!";
-		instructions [0] = "Ceiling; start!";
-		instructions [0] = "Ceiling; start!";
+		string[] instructions = new string[8];
+		instructions [0] = "Set up a scaffold board or a small ladder to comfortably reach the ceiling - your head should be approximately 3 inch from the ceiling.";
+		instructions [1] = "An extension-handle/broomstick may be used to reach the ceiling but the corners with other walls will still need to be cut-in by standing on steps/board.";
+		instructions [2] = "Avoid the use of gloss paint as it may cause a fire hazard.";
+		instructions [3] = "If possible remove lighting mounted on the wall before starting the painting. If not carefully paint around using a small brush.";
+		instructions [4] = "Paint in strips starting from near windows; choose the window that has more natural light coming in through it first. Strips should be parallel to the natural light (wall that has the window).";
+		instructions [5] = "When one strip is finished, move scaffolding along to to start next strip.";
+		instructions [6] = "Cut-in edges as you work.";
+		instructions [7] = "Finally paint ceiling rose if there is one.";
+
 		allInstr.Add (instructions);
 
-		GameObject[] animations = new GameObject[1];
+		GameObject[] animations = new GameObject[8];
 		allAnimations.Add (animations);
 	}
 
