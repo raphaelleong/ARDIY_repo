@@ -7,20 +7,17 @@ public class InstructionPicker : MonoBehaviour
 {
 
   private int pickedInstr;
-  public GameObject instrDropdown;
   private List<string[]> allInstr = new List<string[]> ();
-
+  //public TextToSpeechManager tts;
 
   public GameObject contentObject;
   public GameObject instructionObject;
   public GameObject[] hssSets = new GameObject[6];
 
-
   // Use this for initialization
   void Start ()
   {
-
-    Debug.Log ("Start");
+    Debug.Log ("Start instrPicker");
     pickedInstr = 0;
 
     initialiseWallInstr (); //        0
@@ -30,7 +27,7 @@ public class InstructionPicker : MonoBehaviour
     initialiseCeilingInstr (); //     4
     initialiseSkirtingInstr (); //     5
 
-
+    //tts.setUtterance (findInstruction ());
 
     int count = 0;
     foreach (string[] ss in allInstr) {
@@ -53,7 +50,6 @@ public class InstructionPicker : MonoBehaviour
       }
 
       GetComponent<CanvasScaler> ().referenceResolution = new Vector2 (1335, 750);
-
       count++;
     }
   }
@@ -184,5 +180,14 @@ public class InstructionPicker : MonoBehaviour
 
 
     pickedInstr = newVal;
+//    tts.changeInstructionSet (newVal);
+//    tts.setUtterance(findInstruction());
   }
+
+
+//  private string findInstruction() {
+//    int instrSet = tts.getSet ();
+//    int instrIndex = tts.getInstr ();
+//    return allInstr [instrSet] [instrIndex];
+//  }
 }
