@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour {
   public GameObject colourButton;
   public GameObject infoButton;
   public GameObject disjointButton;
+  public GameObject onboardingButton;
   public GameObject undoButton;
   public GameObject addButton;
   public GameObject recorder;
@@ -62,6 +63,8 @@ public class UIManager : MonoBehaviour {
 			undoButton.SetActive (false);
 //			GameObject addButton = GameObject.Find("Add Corner Button");
 			addButton.SetActive (false); 
+
+      onboardingButton.SetActive (false);
 
 
 //			GameObject recorder = GameObject.Find("Recorder");
