@@ -9,7 +9,7 @@ public class InstructionPicker : MonoBehaviour
   private int pickedInstr; //index to instruction set
   public GameObject instrDropdown;
   private List<string[]> allInstr = new List<string[]> ();
-  private TextToSpeechManager tts;
+  //private TextToSpeechManager tts;
 
   public GameObject contentObject;
   public GameObject instructionObject;
@@ -22,7 +22,7 @@ public class InstructionPicker : MonoBehaviour
 
     Debug.Log ("Start");
     pickedInstr = 0;
-    tts = new TextToSpeechManager();
+    //tts = new TextToSpeechManager();
     initialiseWallInstr (); //        0
     initialiseDoorInstr (); //        1
     initialiseDoorFrameInstr (); //   2
@@ -31,7 +31,7 @@ public class InstructionPicker : MonoBehaviour
     initialiseSkirtingInstr (); //     5
 
 
-    tts.setUtterance(findInstruction());
+    //tts.setUtterance(findInstruction());
 
     int count = 0;
     foreach (string[] ss in allInstr) {
@@ -184,19 +184,19 @@ public class InstructionPicker : MonoBehaviour
 
 
     pickedInstr = newVal;
-    tts.changeInstructionSet(newVal);
-    tts.setUtterance(findInstruction());
+    //tts.changeInstructionSet(newVal);
+    //tts.setUtterance(findInstruction());
   }
 
-  public void updateInstr(bool flag) {
-    tts.updateCurrentInstruction(flag);
-    tts.setUtterance(findInstruction());
-  }
-
-  private string findInstruction() {
-    int instrSet = tts.getSet();
-    int instrIndex = tts.getInstr();
-
-    return allInstr[instrSet][instrIndex];
-  }
+//  public void updateInstr(bool flag) {
+//    tts.updateCurrentInstruction(flag);
+//    tts.setUtterance(findInstruction());
+//  }
+//
+//  private string findInstruction() {
+//    int instrSet = tts.getSet();
+//    int instrIndex = tts.getInstr();
+//
+//    return allInstr[instrSet][instrIndex];
+//  }
 }

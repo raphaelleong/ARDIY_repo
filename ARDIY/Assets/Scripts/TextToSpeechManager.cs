@@ -5,7 +5,6 @@ using UnityEngine;
 public class TextToSpeechManager : MonoBehaviour {
   private int currInstr = 0;
   private int currSet = 0;
-  private InstructionPicker instrPicker;
 
 	// Use this for initialization
 	void Start () {
