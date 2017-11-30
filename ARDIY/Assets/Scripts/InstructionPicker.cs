@@ -8,11 +8,11 @@ public class InstructionPicker : MonoBehaviour
 
   private int pickedInstr;
   private List<string[]> allInstr = new List<string[]> ();
-  //public TextToSpeechManager tts;
 
   public GameObject contentObject;
   public GameObject instructionObject;
   public GameObject[] hssSets = new GameObject[6];
+  private TextToSpeech tts = TextToSpeech.Instance;
 
   // Use this for initialization
   void Start ()
@@ -26,9 +26,9 @@ public class InstructionPicker : MonoBehaviour
     initialiseWindowFrameInstr (); // 3
     initialiseCeilingInstr (); //     4
     initialiseSkirtingInstr (); //     5
+    Debug.Log ("Start instrPicker 1");
 
-    //tts.setUtterance (findInstruction ());
-
+    updateUtterance ();
     int count = 0;
     foreach (string[] ss in allInstr) {
       //float instrPanelWidth = instructionSets[count].GetComponent<RectTransform>().rect.width;
@@ -52,6 +52,8 @@ public class InstructionPicker : MonoBehaviour
       GetComponent<CanvasScaler> ().referenceResolution = new Vector2 (1335, 750);
       count++;
     }
+    Debug.Log ("Start instrPicker 2");
+
   }
 	
   // Update is called once per frame
@@ -167,7 +169,6 @@ public class InstructionPicker : MonoBehaviour
 
   public void changedDropdown (int newVal)
   {
-
     hssSets [pickedInstr].SetActive(false);
 
     hssSets [newVal].SetActive (true);
@@ -180,14 +181,22 @@ public class InstructionPicker : MonoBehaviour
 
 
     pickedInstr = newVal;
-//    tts.changeInstructionSet (newVal);
-//    tts.setUtterance(findInstruction());
+    tts.changeInstructionSet (newVal);
+    updateUtterance ();
   }
 
+  public void updateUtterance() {
+    tts.setUtterance (findInstruction ());
+  }
 
-//  private string findInstruction() {
-//    int instrSet = tts.getSet ();
-//    int instrIndex = tts.getInstr ();
-//    return allInstr [instrSet] [instrIndex];
-//  }
+  private string findInstruction() {
+    int instrSet = tts.getSet ();
+    int instrIndex = tts.getInstr ();
+    return allInstr [instrSet] [instrIndex];
+  }
+
+  public void speak() {
+    Debug.Log ("INSTRUCTIONS UI Speech synthesis");
+    tts.beginSpeechSynthesize ();
+  }
 }

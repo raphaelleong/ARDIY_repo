@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TextToSpeechManager : MonoBehaviour {
-  private int currInstr = 0;
-  private int currSet = 0;
-  private TextToSpeech tts;
+  
+  private TextToSpeech tts ;
+
+  void Awake() {
+    tts = TextToSpeech.Instance;
+  }
 
 	// Use this for initialization
 	void Start () {
@@ -18,12 +21,11 @@ public class TextToSpeechManager : MonoBehaviour {
 	}
 
   public void updateCurrentInstruction(bool flag) {
-    currInstr = flag ? currInstr + 1 : currInstr - 1;
+    tts.updateCurrentInstruction(flag);
   }
 
   public void changeInstructionSet(int index) {
-    currSet = index;
-    currInstr = 0;
+    changeInstructionSet (index);
   }
 
   public void setUtterance(string utterance) {
@@ -31,14 +33,16 @@ public class TextToSpeechManager : MonoBehaviour {
   }
 
   public void speak() {
+    Debug.Log ("MANAGER Speech synthesis");
+
     tts.beginSpeechSynthesize ();
   }
 
   public int getInstr() {
-    return currInstr;
+    return tts.getInstr();
   }
 
   public int getSet() {
-    return currSet;
+    return tts.getSet();
   }
 }
