@@ -146,11 +146,12 @@ namespace UnityEngine.UI.Extensions
                 InitialiseChildObjectsFromScene();
             }
 
-            if (NextButton)
-                NextButton.GetComponent<Button>().onClick.AddListener(() => { NextScreen(); });
+			if (NextButton)
+				NextButton.GetComponent<Button>().onClick.AddListener(() => { NextScreen(); });
 
             if (PrevButton)
                 PrevButton.GetComponent<Button>().onClick.AddListener(() => { PreviousScreen(); });
+			
         }
 
         internal void InitialiseChildObjectsFromScene()
@@ -247,6 +248,7 @@ namespace UnityEngine.UI.Extensions
                 GetPositionforPage(_currentPage, ref _lerp_target);
                 ScreenChange();
 				Debug.Log ("NextScreen");
+
 				TextToSpeech.Instance.updateCurrentInstruction (true);
 				instrPicker.updateUtterance ();
             }
