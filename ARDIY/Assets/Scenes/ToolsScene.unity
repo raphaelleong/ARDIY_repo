@@ -372,11 +372,6 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 1256.9231
       objectReference: {fileID: 0}
-    - target: {fileID: 224585376927530004, guid: 1bf1a40f7e60f9d488cf013eac145994,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 2280
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1bf1a40f7e60f9d488cf013eac145994, type: 2}
   m_IsPrefabParent: 0
@@ -789,6 +784,7 @@ MonoBehaviour:
   colourButton: {fileID: 0}
   infoButton: {fileID: 0}
   disjointButton: {fileID: 0}
+  onboardingButton: {fileID: 0}
   undoButton: {fileID: 0}
   addButton: {fileID: 0}
   recorder: {fileID: 0}
