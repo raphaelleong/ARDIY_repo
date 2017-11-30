@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.4964127, b: 0.57481724, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -112,6 +112,79 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &129989005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 129989007}
+  - component: {fileID: 129989006}
+  m_Layer: 0
+  m_Name: extension handle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &129989006
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 129989005}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 3566126abd5b94dd2a1538248c6610cd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 4.25, y: 4.25}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!4 &129989007
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 129989005}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 312.08545, y: -264.5333, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &264881657
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,118 +365,17 @@ Prefab:
     - target: {fileID: 224065359720422570, guid: 1bf1a40f7e60f9d488cf013eac145994,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -657.00006
+      value: -657
       objectReference: {fileID: 0}
     - target: {fileID: 224065359720422570, guid: 1bf1a40f7e60f9d488cf013eac145994,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 346.52713
+      value: 1256.9231
       objectReference: {fileID: 0}
-    - target: {fileID: 114190098368247552, guid: 1bf1a40f7e60f9d488cf013eac145994,
+    - target: {fileID: 224585376927530004, guid: 1bf1a40f7e60f9d488cf013eac145994,
         type: 2}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114190098368247552, guid: 1bf1a40f7e60f9d488cf013eac145994,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114190098368247552, guid: 1bf1a40f7e60f9d488cf013eac145994,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114190098368247552, guid: 1bf1a40f7e60f9d488cf013eac145994,
-        type: 2}
-      propertyPath: m_RaycastTarget
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114190098368247552, guid: 1bf1a40f7e60f9d488cf013eac145994,
-        type: 2}
-      propertyPath: m_Type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114190098368247552, guid: 1bf1a40f7e60f9d488cf013eac145994,
-        type: 2}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114190098368247552, guid: 1bf1a40f7e60f9d488cf013eac145994,
-        type: 2}
-      propertyPath: m_FillCenter
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114190098368247552, guid: 1bf1a40f7e60f9d488cf013eac145994,
-        type: 2}
-      propertyPath: m_Color.a
-      value: 0.861
-      objectReference: {fileID: 0}
-    - target: {fileID: 114623602778634080, guid: 1bf1a40f7e60f9d488cf013eac145994,
-        type: 2}
-      propertyPath: m_Text
-      value: 'Paintbrush
-
-        (~1 inch)'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114360220341431994, guid: 1bf1a40f7e60f9d488cf013eac145994,
-        type: 2}
-      propertyPath: m_Text
-      value: 'Paintbrush
-
-        (~2 inch)'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114872191839188622, guid: 1bf1a40f7e60f9d488cf013eac145994,
-        type: 2}
-      propertyPath: m_Text
-      value: 'Paintbrush
-
-        (~5 inch)'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114283076526475042, guid: 1bf1a40f7e60f9d488cf013eac145994,
-        type: 2}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114283076526475042, guid: 1bf1a40f7e60f9d488cf013eac145994,
-        type: 2}
-      propertyPath: m_Text
-      value: 'Foam roller sleeve
-
-        (9 inch)'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114484703110434414, guid: 1bf1a40f7e60f9d488cf013eac145994,
-        type: 2}
-      propertyPath: m_Text
-      value: Mohair roller sleeve
-      objectReference: {fileID: 0}
-    - target: {fileID: 114333226634291450, guid: 1bf1a40f7e60f9d488cf013eac145994,
-        type: 2}
-      propertyPath: m_Text
-      value: 'Roller frame
-
-        (9 inch)'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114366113881749240, guid: 1bf1a40f7e60f9d488cf013eac145994,
-        type: 2}
-      propertyPath: m_Text
-      value: 'Paint kettle /
-
-        bucket'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114902646635456124, guid: 1bf1a40f7e60f9d488cf013eac145994,
-        type: 2}
-      propertyPath: m_Text
-      value: 'Aluminium foil /
-
-        cling film'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114409706562153034, guid: 1bf1a40f7e60f9d488cf013eac145994,
-        type: 2}
-      propertyPath: m_Text
-      value: 'Sandpaper
-
-        - fine & medium'
+      propertyPath: m_SizeDelta.y
+      value: 2280
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1bf1a40f7e60f9d488cf013eac145994, type: 2}
@@ -432,7 +404,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 546229741}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 396.52713, z: 0}
+  m_LocalPosition: {x: 0, y: 355.1277, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 2140003620}
@@ -502,7 +474,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 712868526}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -647.00006, y: 396.52713, z: 0}
+  m_LocalPosition: {x: -647, y: 355.1277, z: 0}
   m_LocalScale: {x: 1.0449775, y: 1.0449775, z: 1.0449775}
   m_Children: []
   m_Father: {fileID: 1441754464}
@@ -750,8 +722,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1441754460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 359.5, y: 224.5, z: 0}
-  m_LocalScale: {x: 0.5389805, y: 0.5389805, z: 0.5389805}
+  m_LocalPosition: {x: 697, y: 392, z: 0}
+  m_LocalScale: {x: 1.0449775, y: 1.0449775, z: 1.0449775}
   m_Children:
   - {fileID: 712868527}
   - {fileID: 546229742}

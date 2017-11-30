@@ -1003,7 +1003,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10f1339d23c594db7ac3702f71dab866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bfd5e26e8489d4e8ba9619796446ca19, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1030,7 +1030,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10f1339d23c594db7ac3702f71dab866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7953ec2a7db1b411f811d4e51efd576e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1124,7 +1124,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10f1339d23c594db7ac3702f71dab866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 10b980c300c07487fbbe38ccea4bc002, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1151,7 +1151,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10f1339d23c594db7ac3702f71dab866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 465a4ccca0d8e4ca693e3fa7429991bc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1245,7 +1245,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10f1339d23c594db7ac3702f71dab866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0828fa081d8a442d591d540bc57e921d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1265,7 +1265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.89705884, g: 0.5078936, b: 0.5078936, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.861}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1299,7 +1299,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10f1339d23c594db7ac3702f71dab866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2f604e70facf24d86af6725cdc449631, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1433,9 +1433,11 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Foam roller sleeve (9 inch)
+  m_Text: 'Foam roller sleeve
+
+    (9 inch)'
 --- !u!114 &114314105792157676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1455,7 +1457,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10f1339d23c594db7ac3702f71dab866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: df837ee0b040e42bc895342d4077cd70, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1495,7 +1497,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Roller frame (9 inch)
+  m_Text: 'Roller frame
+
+    (9 inch)'
 --- !u!114 &114360220341431994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1528,7 +1532,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Paintbrush (~2 inch)
+  m_Text: 'Paintbrush
+
+    (~2 inch)'
 --- !u!114 &114362524459494056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1548,7 +1554,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10f1339d23c594db7ac3702f71dab866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3566126abd5b94dd2a1538248c6610cd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1588,7 +1594,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Paint kettle / bucket
+  m_Text: 'Paint kettle /
+
+    bucket'
 --- !u!114 &114371005413942260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1642,7 +1650,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10f1339d23c594db7ac3702f71dab866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 292bcf7534a774ec7b7ba36faa0c240e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1694,7 +1702,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sandpaper - fine & medium
+  m_Text: 'Sandpaper
+
+    - fine & medium'
 --- !u!114 &114436266578362134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1748,7 +1758,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10f1339d23c594db7ac3702f71dab866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3dce4de667eb54c36b0fbd2fea8b5218, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1841,7 +1851,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10f1339d23c594db7ac3702f71dab866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dc5a61ffb55844c3895d965133f37659, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1935,7 +1945,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10f1339d23c594db7ac3702f71dab866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5a7cb7340a07042ac8d01b51244b424c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2042,7 +2052,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Paintbrush (~1 inch)
+  m_Text: 'Paintbrush
+
+    (~1 inch)'
 --- !u!114 &114628858834837102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2128,7 +2140,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10f1339d23c594db7ac3702f71dab866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a398827a27c9345d6aefeb22b9464247, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2285,7 +2297,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10f1339d23c594db7ac3702f71dab866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dc5b6ce305d304a3795efaa616a74eeb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2390,7 +2402,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10f1339d23c594db7ac3702f71dab866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 58b68aa519778457a9413fa27bc131fb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2483,7 +2495,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10f1339d23c594db7ac3702f71dab866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7978f932a2ac548f5adc2c9c7db484c5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2523,7 +2535,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Paintbrush (~5 inch)
+  m_Text: 'Paintbrush
+
+    (~5 inch)'
 --- !u!114 &114898416965334572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2589,7 +2603,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Aluminium foil / cling film
+  m_Text: 'Aluminium foil /
+
+    cling film'
 --- !u!114 &114915081434393492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2676,7 +2692,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10f1339d23c594db7ac3702f71dab866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4da3b318606704524a33d9dad38359ab, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2803,7 +2819,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 10f1339d23c594db7ac3702f71dab866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f398d0264050645848aae048b800949f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3729,7 +3745,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 2195}
+  m_SizeDelta: {x: 0, y: 2280}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224592213145583234
 RectTransform:
