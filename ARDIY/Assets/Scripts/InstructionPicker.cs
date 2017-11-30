@@ -192,7 +192,8 @@ public class InstructionPicker : MonoBehaviour
   private string findInstruction() {
     int instrSet = tts.getSet ();
     int instrIndex = tts.getInstr ();
-    return allInstr [instrSet] [instrIndex];
+
+	return allInstr [instrSet][instrIndex];
   }
 
   public void speak() {

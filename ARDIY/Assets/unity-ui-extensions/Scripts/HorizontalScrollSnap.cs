@@ -11,14 +11,12 @@ namespace UnityEngine.UI.Extensions
     [AddComponentMenu("Layout/Extensions/Horizontal Scroll Snap")]
     public class HorizontalScrollSnap : ScrollSnapBase, IEndDragHandler
     {
-    private InstructionPicker instrPicker;
         void Start()
         {
             _isVertical = false;
             _childAnchorPoint = new Vector2(0, 0.5f);
             _currentPage = StartingScreen;
             UpdateLayout();
-      instrPicker = new InstructionPicker ();
         }
 
         void Update()
@@ -214,18 +212,11 @@ namespace UnityEngine.UI.Extensions
                         _scroll_rect.velocity = Vector3.zero;
                         if (_startPosition.x - _screensContainer.localPosition.x > 0)
                         {
-                            Debug.Log ("Next Screen");
                             NextScreen();
-                            TextToSpeech.Instance.updateCurrentInstruction (true);
-                            instrPicker.updateUtterance ();
                         }
                         else
                         {
-                            Debug.Log ("Prev. Screen");
                             PreviousScreen();
-                            TextToSpeech.Instance.updateCurrentInstruction (false);
-                            instrPicker.updateUtterance ();
-
                         }
                     }
                     else

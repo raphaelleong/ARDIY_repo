@@ -42,7 +42,7 @@ public class TextToSpeech {
   }
 
   public int getInstr() {
-    return currInstr;
+	return currInstr;
   }
 
   public int getSet() {

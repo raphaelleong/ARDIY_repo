@@ -4,8 +4,11 @@ using UnityEngine.EventSystems;
 
 namespace UnityEngine.UI.Extensions
 {
+
     public class ScrollSnapBase : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
+		private InstructionPicker instrPicker;
+
         internal RectTransform _screensContainer;
         internal bool _isVertical;
 
@@ -114,6 +117,8 @@ namespace UnityEngine.UI.Extensions
         // Use this for initialization
         void Awake()
         {
+			instrPicker = GameObject.Find ("InstructionsUI").GetComponent<InstructionPicker> ();
+
             _scroll_rect = gameObject.GetComponent<ScrollRect>();
 
             if (_scroll_rect.horizontalScrollbar || _scroll_rect.verticalScrollbar)
@@ -241,6 +246,9 @@ namespace UnityEngine.UI.Extensions
                 CurrentPage = _currentPage + 1;
                 GetPositionforPage(_currentPage, ref _lerp_target);
                 ScreenChange();
+				Debug.Log ("NextScreen");
+				TextToSpeech.Instance.updateCurrentInstruction (true);
+				instrPicker.updateUtterance ();
             }
         }
 
@@ -255,6 +263,10 @@ namespace UnityEngine.UI.Extensions
                 CurrentPage = _currentPage - 1;
                 GetPositionforPage(_currentPage, ref _lerp_target);
                 ScreenChange();
+				Debug.Log ("PrevScreen");
+
+				TextToSpeech.Instance.updateCurrentInstruction (false);
+				instrPicker.updateUtterance ();
             }
         }
 
