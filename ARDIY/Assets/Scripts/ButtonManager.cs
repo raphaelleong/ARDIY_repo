@@ -16,6 +16,7 @@ public class ButtonManager : MonoBehaviour {
     public void OpenSteps()
     {
         isPreview = false;
+		TextToSpeech.Instance.changeInstructionSet (0);
         SceneManager.LoadScene("EditorTestScene");
     }
 

@@ -62,4 +62,8 @@ public class PaintType
   public string getName() {
     return paintNames [paintTypeVal];
   }
+		
+	public override string ToString() {
+		return "oil-based";
+	}
 }

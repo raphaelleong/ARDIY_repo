@@ -13,7 +13,7 @@ public class CutoutButton : MonoBehaviour {
   public DrawLine drawLine;
 	public Sprite cutout;
 	public Sprite wallMode;
-
+ 
   public void onClick() {
 		
     cutoutMode = !cutoutMode;
@@ -21,9 +21,9 @@ public class CutoutButton : MonoBehaviour {
 		Image icon = this.GetComponent<Image> ();
 
 		if (!cutoutMode) {
-			icon.sprite = wallMode;
-		} else {
 			icon.sprite = cutout;
+		} else {
+			icon.sprite = wallMode;
 		}
 
     wallManager.enabled = !wallManager.enabled;
